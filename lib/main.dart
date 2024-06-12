@@ -27,6 +27,7 @@ class SwiftMart extends StatelessWidget {
       child: BlocBuilder<ThemeCubit, ThemeCubitState>(
         builder: (context, state) {
           return MaterialApp.router(
+            title: 'Swift Mart',
             debugShowCheckedModeBanner: false,
             routerConfig: AppRouter.router,
             theme: appThemeData(
