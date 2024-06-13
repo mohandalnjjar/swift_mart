@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
+import 'package:swift_mart/features/auth/presentatiion/views/login_view.dart';
 import 'package:swift_mart/features/home/presentation/views/home_view.dart';
 
 abstract class AppRouter {
@@ -8,6 +9,10 @@ abstract class AppRouter {
       GoRoute(
         path: AppConstance.kHomeViewRouter,
         builder: (context, state) => const HomeView(),
+      ),
+      GoRoute(
+        path: AppConstance.kLoginView,
+        builder: (context, state) => const LoginView(),
       )
     ],
   );
