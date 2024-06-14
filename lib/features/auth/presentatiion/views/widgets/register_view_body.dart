@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:swift_mart/features/auth/presentatiion/views/widgets/register_form.dart';
+import 'package:swift_mart/core/utils/services/adaptive_layout.dart';
+import 'package:swift_mart/features/auth/presentatiion/views/widgets/desktop_register_vewi_layotu.dart';
+import 'package:swift_mart/features/auth/presentatiion/views/widgets/mobile_register_view_Layotu.dart';
 
 class RegisterViewBody extends StatelessWidget {
   const RegisterViewBody({
@@ -9,13 +11,10 @@ class RegisterViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: RegisterForm(),
-        ),
-      ),
+    return AdaptiveLayout(
+      mobileLayout: (context) => const MobileRegisterViewLayotu(),
+      tabletLayout: (context) => const MobileRegisterViewLayotu(),
+      desktopLayout: (context) => const DesktopRegisterViewLayotu(),
     );
   }
 }
