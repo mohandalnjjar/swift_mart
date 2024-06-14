@@ -13,6 +13,7 @@ class CustomTextFromField extends StatelessWidget {
     this.focusNode,
     this.onChanged,
     this.suffixIcon,
+    this.obscureText = false,
   });
 
   final String hint;
@@ -26,11 +27,11 @@ class CustomTextFromField extends StatelessWidget {
   final TextEditingController? controller;
   final void Function(String)? onFieldSubmitted;
   final FocusNode? focusNode;
-
+  final bool obscureText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      textAlign: TextAlign.center,
+      obscureText: obscureText,
       onChanged: onChanged,
       focusNode: focusNode,
       onFieldSubmitted: onFieldSubmitted,
@@ -39,17 +40,18 @@ class CustomTextFromField extends StatelessWidget {
       onSaved: onSaved,
       validator: validator,
       decoration: InputDecoration(
+        filled: true,
         contentPadding: const EdgeInsets.all(13),
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
         hintText: hint,
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.transparent),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(35),
           borderSide: const BorderSide(color: Colors.grey),
+          borderRadius: BorderRadius.circular(10),
         ),
       ),
     );

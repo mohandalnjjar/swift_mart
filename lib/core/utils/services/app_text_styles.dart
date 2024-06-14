@@ -51,6 +51,13 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleSemiBold30(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: getResponsizeFontSize(fontSize: 30, context: context),
+    );
+  }
+
   static TextStyle styleSemiBold41(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w600,
@@ -60,7 +67,6 @@ abstract class AppStyles {
 
   static TextStyle styleRegular18(BuildContext context) {
     return TextStyle(
-      fontWeight: FontWeight.w600,
       fontSize: getResponsizeFontSize(fontSize: 18, context: context),
     );
   }
@@ -72,9 +78,23 @@ abstract class AppStyles {
     );
   }
 
-  static TextStyle styleRegular16(BuildContext context) {
+  static TextStyle styleRegular24(BuildContext context) {
     return TextStyle(
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w600,
+      fontSize: getResponsizeFontSize(fontSize: 23, context: context),
+    );
+  }
+
+  static TextStyle style700w16(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: getResponsizeFontSize(fontSize: 16, context: context),
+    );
+  }
+
+  static TextStyle styleGreyReg16(BuildContext context) {
+    return TextStyle(
+      color: Colors.grey,
       fontSize: getResponsizeFontSize(fontSize: 16, context: context),
     );
   }
@@ -100,10 +120,9 @@ abstract class AppStyles {
     );
   }
 
-  static TextStyle styleRegular14(BuildContext context) {
+  static TextStyle style700w14(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w700,
-      color: Colors.grey,
       fontSize: getResponsizeFontSize(fontSize: 14, context: context),
     );
   }
