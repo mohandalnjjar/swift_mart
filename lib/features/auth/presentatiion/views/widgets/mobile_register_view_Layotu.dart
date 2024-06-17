@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:swift_mart/core/functions/show_meeage.dart';
+import 'package:swift_mart/core/utils/const/app_constance.dart';
+import 'package:swift_mart/features/auth/presentatiion/managers/signup/sign_up_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/register_form.dart';
 
 class MobileRegisterViewLayotu extends StatelessWidget {
@@ -8,11 +13,36 @@ class MobileRegisterViewLayotu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
-          child: RegisterForm(),
+          child: BlocListener<SignUpCubit, SignUpState>(
+            listener: (context, state) {
+              if (state is SignUpLoadding) {
+                showDialog(
+                  context: context,
+                  builder: (context) => const AbsorbPointer(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                );
+              }
+              if (state is SignUpSuccess) {
+                showedScaffoldMessage(
+                    context: context, message: 'Successfully Login');
+                GoRouter.of(context)
+                    .pushReplacement(AppConstance.kHomeViewRouter);
+              }
+              if (state is SignUpFailure) {
+                showedScaffoldMessage(
+                    context: context, message: state.errorMessage);
+                Navigator.pop(context);
+              }
+            },
+            child: const RegisterForm(),
+          ),
         ),
       ),
     );

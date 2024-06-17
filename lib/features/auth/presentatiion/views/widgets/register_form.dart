@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:swift_mart/core/functions/validators/validators.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/core/utils/widgets/custom_text_form_field.dart';
+import 'package:swift_mart/features/auth/presentatiion/managers/signup/sign_up_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/login_with_social_media_widget.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/or_widget.dart';
 
@@ -19,7 +21,7 @@ class _RegisterFormState extends State<RegisterForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   bool obscureText = true;
-
+  String? email, password;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -53,6 +55,9 @@ class _RegisterFormState extends State<RegisterForm> {
             height: 20,
           ),
           CustomTextFromField(
+            onSaved: (value) {
+              email = value;
+            },
             validator: (value) {
               return Validators.emailValidator(value);
             },
@@ -63,6 +68,9 @@ class _RegisterFormState extends State<RegisterForm> {
             height: 20,
           ),
           CustomTextFromField(
+            onSaved: (value) {
+              password = value;
+            },
             obscureText: obscureText,
             suffixIcon: IconButton(
               icon: Icon(
@@ -88,6 +96,8 @@ class _RegisterFormState extends State<RegisterForm> {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
                 FocusScope.of(context).unfocus();
+                await BlocProvider.of<SignUpCubit>(context)
+                    .signUpMethod(email: email!, password: password!);
               } else {
                 setState(() {
                   autovalidateMode = AutovalidateMode.always;

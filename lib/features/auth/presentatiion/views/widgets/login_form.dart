@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:swift_mart/core/functions/validators/validators.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/core/utils/widgets/custom_text_form_field.dart';
+import 'package:swift_mart/features/auth/presentatiion/managers/login_cubit/login_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/login_with_social_media_widget.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/or_widget.dart';
 
@@ -21,6 +23,7 @@ class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   bool obscureText = true;
+  String? email, password;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -45,6 +48,9 @@ class _LoginFormState extends State<LoginForm> {
             height: 25,
           ),
           CustomTextFromField(
+            onSaved: (value) {
+              email = value;
+            },
             hint: 'Email',
             validator: (value) {
               return Validators.emailValidator(value);
@@ -55,6 +61,9 @@ class _LoginFormState extends State<LoginForm> {
             height: 20,
           ),
           CustomTextFromField(
+            onSaved: (value) {
+              password = value;
+            },
             obscureText: obscureText,
             suffixIcon: IconButton(
               icon: Icon(
@@ -90,6 +99,10 @@ class _LoginFormState extends State<LoginForm> {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
                 FocusScope.of(context).unfocus();
+                await BlocProvider.of<LoginCubit>(context).loginMethod(
+                  email: email!,
+                  password: password!,
+                );
               } else {
                 setState(() {
                   autovalidateMode = AutovalidateMode.always;
