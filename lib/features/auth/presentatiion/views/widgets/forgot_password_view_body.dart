@@ -11,8 +11,9 @@ class ForgotPasswordViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptiveLayout(
-        mobileLayout: (context) => const MobileForgotPassswordBody(),
-        tabletLayout: (context) => const MobileForgotPassswordBody(),
-        desktopLayout: (context) => const DesktopForgotPasswordViewLayout());
+      mobileLayout: (context) => const MobileForgotPassswordBody(),
+      tabletLayout: (context) => const MobileForgotPassswordBody(),
+      desktopLayout: (context) => const DesktopForgotPasswordViewLayout(),
+    );
   }
 }

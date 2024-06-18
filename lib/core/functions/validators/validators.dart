@@ -12,8 +12,7 @@ abstract class Validators {
 
   //Password validator
   static String? passwordValidator(String? value) {
-    if (RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
-        .hasMatch(value!)) {
+    if (RegExp(r'^(?=.*[A-Za-z])(?=.*\d).+$').hasMatch(value!)) {
       return null;
     } else {
       return "enter a valid password";
@@ -31,4 +30,3 @@ abstract class Validators {
     }
   }
 }
- 

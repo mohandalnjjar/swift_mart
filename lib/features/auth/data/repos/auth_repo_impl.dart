@@ -53,4 +53,27 @@ class AuthRepoImpl extends AuthRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, void>> resetPasswordMethod(
+      {required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return right(null);
+    } catch (e) {
+      if (e is FirebaseAuthException) {
+        return left(
+          FirebaseAuthExcep.fromFireException(
+            errorCode: e.code,
+          ),
+        );
+      } else {
+        return left(
+          FirebaseAuthExcep(
+            errorMessage: e.toString(),
+          ),
+        );
+      }
+    }
+  }
 }
