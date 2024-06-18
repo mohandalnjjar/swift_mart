@@ -16,7 +16,7 @@ void main(List<String> args) async {
   runApp(
     DevicePreview(
       enabled: false,
-      builder: (context) => const SwiftMart(), 
+      builder: (context) => const SwiftMart(),
     ),
   );
 }
@@ -32,7 +32,7 @@ class SwiftMart extends StatelessWidget {
           create: (context) => ThemeCubit(
             ThemeRepoImpl(),
           )..getTheme(context: context),
-        )
+        ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeCubitState>(
         builder: (context, state) {
