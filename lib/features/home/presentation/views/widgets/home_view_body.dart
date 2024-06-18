@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/theme/presentation/managers/cubit/theme_cubit.dart';
@@ -22,6 +23,9 @@ class HomeViewBody extends StatelessWidget {
             ),
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
+              GoogleSignIn googleSignIn = GoogleSignIn();
+              await googleSignIn.disconnect();
+
               if (context.mounted) {
                 GoRouter.of(context).pushReplacement(AppConstance.kLoginView);
               }

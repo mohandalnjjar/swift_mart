@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:swift_mart/core/errors/failures.dart';
 import 'package:swift_mart/features/auth/data/repos/auth_repo.dart';
 
@@ -59,6 +60,41 @@ class AuthRepoImpl extends AuthRepo {
       {required String email}) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return right(null);
+    } catch (e) {
+      if (e is FirebaseAuthException) {
+        return left(
+          FirebaseAuthExcep.fromFireException(
+            errorCode: e.code,
+          ),
+        );
+      } else {
+        return left(
+          FirebaseAuthExcep(
+            errorMessage: e.toString(),
+          ),
+        );
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> googleLogin() async {
+    try {
+      final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+      if (gUser == null) {
+        return left(
+          FirebaseAuthExcep(
+            errorMessage: 'User canceled the login',
+          ),
+        );
+      }
+      final GoogleSignInAuthentication gAuth = await gUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: gAuth.accessToken,
+        idToken: gAuth.idToken,
+      );
+      await FirebaseAuth.instance.signInWithCredential(credential);
       return right(null);
     } catch (e) {
       if (e is FirebaseAuthException) {

@@ -31,14 +31,13 @@ class MobileRegisterViewLayotu extends StatelessWidget {
               }
               if (state is SignUpSuccess) {
                 showedScaffoldMessage(
-                    context: context, message: 'Successfully Login');
+                    context: context, message: 'Successfully Created');
                 GoRouter.of(context)
                     .pushReplacement(AppConstance.kHomeViewRouter);
               }
               if (state is SignUpFailure) {
                 showedScaffoldMessage(
                     context: context, message: state.errorMessage);
-                Navigator.pop(context);
               }
             },
             child: const RegisterForm(),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:swift_mart/features/auth/data/repos/auth_repo_impl.dart';
+import 'package:swift_mart/features/auth/presentatiion/managers/cubit/google_login_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/managers/signup/sign_up_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/register_view_body.dart';
 
@@ -11,10 +12,19 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignUpCubit(
-        authRepoImpl: AuthRepoImpl(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SignUpCubit(
+            authRepoImpl: AuthRepoImpl(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => GoogleLoginCubit(
+            authRepoImpl: AuthRepoImpl(),
+          ),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,

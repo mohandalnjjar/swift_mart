@@ -9,7 +9,7 @@ class LoginSocialMeadiWidget extends StatelessWidget {
     required this.onTap,
   });
   final String image;
-  final void Function() onTap;
+  final Future<void> Function() onTap;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeCubit, ThemeCubitState>(

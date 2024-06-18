@@ -17,7 +17,6 @@ class ForGotPasswordFrom extends StatefulWidget {
 class _ForGotPasswordFromState extends State<ForGotPasswordFrom> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  @override
   String? email;
 
   @override
