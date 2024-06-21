@@ -85,7 +85,7 @@ class AuthRepoImpl extends AuthRepo {
       if (gUser == null) {
         return left(
           FirebaseAuthExcep(
-            errorMessage: 'User canceled the login',
+            errorMessage: 'Google login canceled',
           ),
         );
       }

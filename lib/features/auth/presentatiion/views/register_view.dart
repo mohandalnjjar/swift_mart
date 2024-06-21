@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:swift_mart/features/auth/data/repos/auth_repo_impl.dart';
-import 'package:swift_mart/features/auth/presentatiion/managers/cubit/google_login_cubit.dart';
-import 'package:swift_mart/features/auth/presentatiion/managers/signup/sign_up_cubit.dart';
+import 'package:swift_mart/features/auth/presentatiion/managers/google_login_cubit/google_login_cubit.dart';
+import 'package:swift_mart/features/auth/presentatiion/managers/signup_cubit/sign_up_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/register_view_body.dart';
 
 class RegisterView extends StatelessWidget {
@@ -32,13 +32,6 @@ class RegisterView extends StatelessWidget {
           centerTitle: true,
           leading: Center(
             child: IconButton(
-              style: IconButton.styleFrom(
-                side: const BorderSide(color: Colors.grey, width: 1),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
               onPressed: () {
                 context.pop();
               },

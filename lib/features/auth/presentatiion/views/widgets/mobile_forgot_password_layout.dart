@@ -33,7 +33,7 @@ class MobileForgotPassswordBody extends StatelessWidget {
               context.pop();
             } else {
               showedScaffoldMessage(
-                  context: context, message: 'Check your emial ');
+                  context: context, message: 'Check your emial');
 
               GoRouter.of(context).pushReplacement(
                 AppConstance.kLoginView,

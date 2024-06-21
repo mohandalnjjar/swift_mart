@@ -18,17 +18,10 @@ class ForgotPasswordView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text('Reset password'),
+          title: const Text('Forgot Password'),
           centerTitle: true,
           leading: Center(
             child: IconButton(
-              style: IconButton.styleFrom(
-                side: const BorderSide(color: Colors.grey, width: 1),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
               onPressed: () {
                 context.pop();
               },

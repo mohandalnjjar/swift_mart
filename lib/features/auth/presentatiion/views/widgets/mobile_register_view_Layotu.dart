@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/functions/show_meeage.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
-import 'package:swift_mart/features/auth/presentatiion/managers/signup/sign_up_cubit.dart';
+import 'package:swift_mart/features/auth/presentatiion/managers/signup_cubit/sign_up_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/register_form.dart';
 
 class MobileRegisterViewLayotu extends StatelessWidget {

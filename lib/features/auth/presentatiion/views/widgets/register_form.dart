@@ -7,8 +7,8 @@ import 'package:swift_mart/core/functions/validators/validators.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/core/utils/widgets/custom_text_form_field.dart';
-import 'package:swift_mart/features/auth/presentatiion/managers/cubit/google_login_cubit.dart';
-import 'package:swift_mart/features/auth/presentatiion/managers/signup/sign_up_cubit.dart';
+import 'package:swift_mart/features/auth/presentatiion/managers/google_login_cubit/google_login_cubit.dart';
+import 'package:swift_mart/features/auth/presentatiion/managers/signup_cubit/sign_up_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/login_with_social_media_widget.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/or_widget.dart';
 
@@ -157,7 +157,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     width: 40,
                   ),
                   LoginSocialMeadiWidget(
-                    image: 'assets/images/apple.png',
+                    image: 'assets/images/facebook.png',
                     onTap: () async {},
                   ),
                 ],

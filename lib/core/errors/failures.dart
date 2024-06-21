@@ -20,6 +20,9 @@ class FirebaseAuthExcep extends Failure {
     } else if (errorCode == 'weak-password') {
       return FirebaseAuthExcep(
           errorMessage: 'The password provided is too weak.');
+    } else if (errorCode == 'invalid-credential') {
+      return FirebaseAuthExcep(
+          errorMessage: 'may be your email or password wrong');
     } else if (errorCode == 'email-already-in-use') {
       return FirebaseAuthExcep(
           errorMessage: 'The account already exists for that email.');

@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:swift_mart/core/functions/show_meeage.dart';
@@ -7,7 +9,7 @@ import 'package:swift_mart/core/functions/validators/validators.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/core/utils/widgets/custom_text_form_field.dart';
-import 'package:swift_mart/features/auth/presentatiion/managers/cubit/google_login_cubit.dart';
+import 'package:swift_mart/features/auth/presentatiion/managers/google_login_cubit/google_login_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/managers/login_cubit/login_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/login_with_social_media_widget.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/or_widget.dart';
@@ -116,7 +118,8 @@ class _LoginFormState extends State<LoginForm> {
                   },
                   child: Text(
                     'Forgot Password?',
-                    style: AppStyles.styleGreyReg16(context),
+                    style: AppStyles.styleRegular15(context)
+                        .copyWith(color: Colors.grey),
                   ),
                 ),
               ),
@@ -155,8 +158,10 @@ class _LoginFormState extends State<LoginForm> {
                     width: 40,
                   ),
                   LoginSocialMeadiWidget(
-                    image: 'assets/images/apple.png',
-                    onTap: () async {},
+                    image: 'assets/images/facebook.png',
+                    onTap: () async {
+                      await signInWithFacebook();
+                    },
                   ),
                 ],
               ),
@@ -166,4 +171,16 @@ class _LoginFormState extends State<LoginForm> {
       },
     );
   }
+}
+
+Future<void> signInWithFacebook() async {
+  // Trigger the sign-in flow
+  final LoginResult loginResult = await FacebookAuth.instance.login();
+
+  // Create a credential from the access token
+  final OAuthCredential facebookAuthCredential =
+      FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+  // Once signed in, return the UserCredential
+  await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
 }
