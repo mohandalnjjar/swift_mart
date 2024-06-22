@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:swift_mart/core/errors/failures.dart';
+import 'package:swift_mart/core/functions/add_user_deatails_fire_store.dart';
+import 'package:swift_mart/core/functions/add_user_details_to_firestore__second_time.dart';
 import 'package:swift_mart/features/auth/data/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
@@ -95,6 +97,18 @@ class AuthRepoImpl extends AuthRepo {
         idToken: gAuth.idToken,
       );
       await FirebaseAuth.instance.signInWithCredential(credential);
+
+      final userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      final isNewUser = userCredential.additionalUserInfo?.isNewUser ?? false;
+      if (isNewUser) {
+        await addUserDetailsFistTime(
+            name: gUser.email.replaceAll('@gmail.com', ''), email: gUser.email);
+      } else {
+        await addUserDetailsWithGoogle(
+            name: gUser.email.replaceAll('@gmail.com', ''), email: gUser.email);
+      }
+
       return right(null);
     } catch (e) {
       if (e is FirebaseAuthException) {

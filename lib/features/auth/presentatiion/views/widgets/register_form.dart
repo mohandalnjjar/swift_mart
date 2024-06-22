@@ -144,7 +144,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       email: email!,
                       password: password!,
                     );
-                    await addUserDetails(
+                    await addUserDetailsFistTime(
                       email: _emailControler.text.trim(),
                       name: _nameControler.text.trim(),
                     );
