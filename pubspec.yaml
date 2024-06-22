@@ -45,6 +45,7 @@ dependencies:
   go_router: ^14.1.4
   google_fonts: ^6.2.1
   google_sign_in: ^6.2.1
+  google_sign_in_web: ^0.12.4+1
   iconly: ^1.0.1
   ionicons: ^0.2.2
   shared_preferences: ^2.2.3
