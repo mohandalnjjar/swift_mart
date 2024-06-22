@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
+import 'package:swift_mart/core/functions/add_user_deatails_fire_store.dart';
 import 'package:swift_mart/core/functions/show_meeage.dart';
 import 'package:swift_mart/core/functions/validators/validators.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
@@ -24,8 +25,20 @@ class RegisterForm extends StatefulWidget {
 class _RegisterFormState extends State<RegisterForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  bool obscureText = true;
+  final _nameControler = TextEditingController();
+  final _emailControler = TextEditingController();
+  final _passwordControler = TextEditingController();
   String? email, password;
+  bool obscureText = true;
+
+  @override
+  void dispose() {
+    _nameControler.dispose();
+    _emailControler.dispose();
+    _passwordControler.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<GoogleLoginCubit, GoogleLoginState>(
@@ -72,6 +85,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 height: 25,
               ),
               CustomTextFromField(
+                controller: _nameControler,
                 hint: 'UserName',
                 validator: (value) {
                   return Validators.nameValidator(value);
@@ -85,6 +99,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 onSaved: (value) {
                   email = value;
                 },
+                controller: _emailControler,
                 validator: (value) {
                   return Validators.emailValidator(value);
                 },
@@ -125,12 +140,14 @@ class _RegisterFormState extends State<RegisterForm> {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
                     FocusScope.of(context).unfocus();
-                    await BlocProvider.of<SignUpCubit>(context)
-                        .signUpMethod(email: email!, password: password!);
-                    if (context.mounted) {
-                      GoRouter.of(context)
-                          .pushReplacement(AppConstance.kCheckAuthState);
-                    }
+                    await BlocProvider.of<SignUpCubit>(context).signUpMethod(
+                      email: email!,
+                      password: password!,
+                    );
+                    await addUserDetails(
+                      email: _emailControler.text.trim(),
+                      name: _nameControler.text.trim(),
+                    );
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;

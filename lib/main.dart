@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swift_mart/core/functions/app_theme_func.dart';
 import 'package:swift_mart/core/utils/services/app_router.dart';
+import 'package:swift_mart/features/home/presentation/managers/fetc_user_data_cubit/fetch_user_data_cubit.dart';
 import 'package:swift_mart/features/theme/data/repos/theme_repo_impl.dart';
 import 'package:swift_mart/features/theme/presentation/managers/cubit/theme_cubit.dart';
 import 'package:swift_mart/firebase_options.dart';
@@ -32,6 +33,9 @@ class SwiftMart extends StatelessWidget {
           create: (context) => ThemeCubit(
             ThemeRepoImpl(),
           )..getTheme(context: context),
+        ),
+        BlocProvider(
+          create: (context) => FetchUserDataCubit()..fetchUserDataMethod(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeCubitState>(

@@ -46,6 +46,7 @@ class _LoginFormState extends State<LoginForm> {
 
           showedScaffoldMessage(context: context, message: state.errorMessage);
         } else {
+          GoRouter.of(context).pushReplacement(AppConstance.kHomeViewRouter);
           context.pop();
 
           showedScaffoldMessage(context: context, message: 'Done');

@@ -10,5 +10,5 @@ abstract class AuthRepo {
 
   Future<Either<Failure, void>> resetPasswordMethod({required String email});
 
-  Future<void> googleLogin();
+  Future<Either<Failure, void>> googleLogin();
 }
