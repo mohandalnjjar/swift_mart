@@ -39,11 +39,17 @@ class _LoginFormState extends State<LoginForm> {
           ),
         );
         if (state is GoogleLoginFailed) {
+          context.pop();
+
           showedScaffoldMessage(context: context, message: state.errorMessage);
+          context.pop();
         } else if (state is GoogleLoginDone) {
+          context.pop();
+
           GoRouter.of(context).pushReplacement(AppConstance.kHomeViewRouter);
 
           showedScaffoldMessage(context: context, message: 'Done');
+          context.pop();
         }
       },
       builder: (context, state) {

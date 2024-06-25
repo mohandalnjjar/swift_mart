@@ -35,8 +35,11 @@ class MobileLoginLayout extends StatelessWidget {
             }
 
             if (state is LoginFailure) {
+              context.pop();
+
               showedScaffoldMessage(
                   context: context, message: state.errorMessage);
+              context.pop();
             }
           },
           builder: (context, state) {
