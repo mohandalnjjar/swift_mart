@@ -96,7 +96,6 @@ class AuthRepoImpl extends AuthRepo {
         accessToken: gAuth.accessToken,
         idToken: gAuth.idToken,
       );
-      await FirebaseAuth.instance.signInWithCredential(credential);
 
       final userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
