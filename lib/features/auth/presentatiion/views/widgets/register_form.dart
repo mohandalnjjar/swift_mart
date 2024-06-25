@@ -7,6 +7,7 @@ import 'package:swift_mart/core/functions/show_meeage.dart';
 import 'package:swift_mart/core/functions/validators/validators.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/core/utils/widgets/custom_loading_indicator.dart';
 import 'package:swift_mart/core/utils/widgets/custom_text_form_field.dart';
 import 'package:swift_mart/features/auth/presentatiion/managers/google_login_cubit/google_login_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/managers/signup_cubit/sign_up_cubit.dart';
@@ -43,22 +44,16 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget build(BuildContext context) {
     return BlocConsumer<GoogleLoginCubit, GoogleLoginState>(
       listener: (context, state) {
-        if (state is GoogleLoginLoading) {
-          showDialog(
-            context: context,
-            builder: (context) => const AbsorbPointer(
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-          );
-        } else if (state is GoogleLoginFailed) {
-          context.pop();
-
+        showDialog(
+          context: context,
+          builder: (context) => CustomLoadingIndicator(
+            inAsyncCall: state is GoogleLoginLoading ? true : false,
+          ),
+        );
+        if (state is GoogleLoginFailed) {
           showedScaffoldMessage(context: context, message: state.errorMessage);
         } else {
-          context.pop();
-          GoRouter.of(context).push(AppConstance.kCheckAuthState);
+          GoRouter.of(context).push(AppConstance.kHomeViewRouter);
 
           showedScaffoldMessage(context: context, message: 'Done');
         }

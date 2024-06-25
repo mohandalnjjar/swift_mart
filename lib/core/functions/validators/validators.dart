@@ -15,7 +15,7 @@ abstract class Validators {
     if (RegExp(r'^(?=.*[A-Za-z])(?=.*\d).+$').hasMatch(value!)) {
       return null;
     } else {
-      return "enter a valid password";
+      return "Strong valid password";
     }
   }
 

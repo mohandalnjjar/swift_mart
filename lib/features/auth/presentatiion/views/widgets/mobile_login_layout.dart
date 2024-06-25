@@ -19,27 +19,24 @@ class MobileLoginLayout extends StatelessWidget {
       child: Center(
         child: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
-            if (state is LoginLoadding) {
-              const CustomLoadingIndicator(
-                inAsyncCall: true,
-              );
-            }
+            showDialog(
+              context: context,
+              builder: (context) => CustomLoadingIndicator(
+                inAsyncCall: state is LoginLoadding ? true : false,
+              ),
+            );
 
             if (state is LoginSuccess) {
-              const CustomLoadingIndicator(
-                inAsyncCall: true,
-              );
               showedScaffoldMessage(
                   context: context, message: 'Successfully Login');
 
-              // GoRouter.of(context)
-              //     .pushReplacement(AppConstance.kHomeViewRouter);
+              GoRouter.of(context)
+                  .pushReplacement(AppConstance.kHomeViewRouter);
             }
 
             if (state is LoginFailure) {
               showedScaffoldMessage(
                   context: context, message: state.errorMessage);
-              context.pop();
             }
           },
           builder: (context, state) {

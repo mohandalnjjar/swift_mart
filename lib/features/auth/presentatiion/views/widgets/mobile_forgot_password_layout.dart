@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/functions/show_meeage.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
+import 'package:swift_mart/core/utils/widgets/custom_loading_indicator.dart';
 import 'package:swift_mart/features/auth/presentatiion/managers/reset_password_cubit/rest_password_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/forgot_password_from.dart';
 
@@ -18,20 +19,17 @@ class MobileForgotPassswordBody extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: BlocConsumer<RestPasswordCubit, RestPasswordState>(
           listener: (context, state) {
-            if (state is RestPasswordLoading) {
-              showDialog(
-                context: context,
-                builder: (context) => const AbsorbPointer(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-              );
-            } else if (state is RestPasswordFailed) {
+            showDialog(
+              context: context,
+              builder: (context) => CustomLoadingIndicator(
+                inAsyncCall: state is RestPasswordLoading ? true : false,
+              ),
+            );
+            if (state is RestPasswordFailed) {
               showedScaffoldMessage(
                   context: context, message: state.errorMessage);
               context.pop();
-            } else {
+            } else if (state is RestPasswordDone) {
               showedScaffoldMessage(
                   context: context, message: 'Check your emial');
 
