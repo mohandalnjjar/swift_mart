@@ -44,7 +44,7 @@ abstract class AppStyles {
     );
   }
 
-  static TextStyle styleSemiBold27(BuildContext context) {
+  static TextStyle styleBold27(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: getResponsizeFontSize(fontSize: 27, context: context),
@@ -55,6 +55,13 @@ abstract class AppStyles {
     return TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: getResponsizeFontSize(fontSize: 30, context: context),
+    );
+  }
+
+  static TextStyle styleSemiBold25(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: getResponsizeFontSize(fontSize: 25, context: context),
     );
   }
 

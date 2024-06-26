@@ -46,7 +46,7 @@ class _LoginFormState extends State<LoginForm> {
         } else if (state is GoogleLoginDone) {
           context.pop();
 
-          GoRouter.of(context).pushReplacement(AppConstance.kHomeViewRouter);
+          GoRouter.of(context).pushReplacement(RouterPath.kHomeViewRouter);
 
           showedScaffoldMessage(context: context, message: 'Done');
           context.pop();
@@ -116,7 +116,7 @@ class _LoginFormState extends State<LoginForm> {
                   child: TextButton(
                     onPressed: () async {
                       await GoRouter.of(context)
-                          .push(AppConstance.kForgotPasswordView);
+                          .push(RouterPath.kForgotPasswordView);
                     },
                     child: Text(
                       'Forgot Password?',

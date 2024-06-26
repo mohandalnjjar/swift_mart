@@ -34,7 +34,7 @@ class MobileForgotPassswordBody extends StatelessWidget {
                   context: context, message: 'Check your emial');
 
               GoRouter.of(context).pushReplacement(
-                AppConstance.kLoginView,
+                RouterPath.kLoginView,
               );
             }
           },

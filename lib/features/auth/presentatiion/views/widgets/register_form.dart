@@ -53,7 +53,7 @@ class _RegisterFormState extends State<RegisterForm> {
         if (state is GoogleLoginFailed) {
           showedScaffoldMessage(context: context, message: state.errorMessage);
         } else {
-          GoRouter.of(context).push(AppConstance.kHomeViewRouter);
+          GoRouter.of(context).push(RouterPath.kHomeViewRouter);
 
           showedScaffoldMessage(context: context, message: 'Done');
         }

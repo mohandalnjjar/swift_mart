@@ -16,47 +16,47 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: AppConstance.kLoginView,
+        path: RouterPath.kLoginView,
         builder: (context, state) => const LoginView(),
       ),
       GoRoute(
-        path: AppConstance.kRegisterView,
+        path: RouterPath.kRegisterView,
         builder: (context, state) => const RegisterView(),
       ),
       GoRoute(
-        path: AppConstance.kHomeViewRouter,
+        path: RouterPath.kHomeViewRouter,
         builder: (context, state) => const PageViewViews(),
       ),
       GoRoute(
-        path: AppConstance.kPageViewViews,
+        path: RouterPath.kPageViewViews,
         builder: (context, state) => const HomeView(),
       ),
       GoRoute(
-        path: AppConstance.kForgotPasswordView,
+        path: RouterPath.kForgotPasswordView,
         builder: (context, state) => const ForgotPasswordView(),
       ),
       GoRoute(
-        path: AppConstance.kCheckAuthState,
+        path: RouterPath.kCheckAuthState,
         builder: (context, state) => const CheckAuth(),
       ),
       GoRoute(
-        path: AppConstance.kDetailsView,
+        path: RouterPath.kDetailsView,
         builder: (context, state) => const DetailsView(),
       ),
       GoRoute(
-        path: AppConstance.kSearchView,
+        path: RouterPath.kSearchView,
         builder: (context, state) => const SearchView(),
       ),
       GoRoute(
-        path: AppConstance.kMyFavView,
+        path: RouterPath.kMyFavView,
         builder: (context, state) => const MyFavView(),
       ),
       GoRoute(
-        path: AppConstance.kProfileView,
+        path: RouterPath.kProfileView,
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
-        path: AppConstance.kCartView,
+        path: RouterPath.kCartView,
         builder: (context, state) => const CartView(),
       ),
     ],

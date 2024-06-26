@@ -1,4 +1,4 @@
-abstract class AppConstance {
+abstract class RouterPath {
   static const kHomeViewRouter = '/kHomeViewRouter';
   static const kRegisterView = '/KRegisterView';
   static const kForgotPasswordView = '/ForgotPasswordView';
@@ -11,5 +11,4 @@ abstract class AppConstance {
   static const kMyFavView = '/kMyFavView';
   static const kProfileView = '/kProfileView';
   static const kCartView = '/kCartView';
-  
 }

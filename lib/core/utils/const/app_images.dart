@@ -21,8 +21,16 @@ class Assets {
   /// assets/images/native_screen.png
   static const String imagesNativeScreen = "assets/images/native_screen.png";
 
+  /// Assets for imagesShose
+  /// assets/images/shose.png
+  static const String imagesShose = "assets/images/shose.png";
+
   /// Assets for imagesSmartwatch
   /// assets/images/smartwatch.png
   static const String imagesSmartwatch = "assets/images/smartwatch.png";
+
+  /// Assets for imagesTshirt
+  /// assets/images/tshirt.png
+  static const String imagesTshirt = "assets/images/tshirt.png";
 }
 

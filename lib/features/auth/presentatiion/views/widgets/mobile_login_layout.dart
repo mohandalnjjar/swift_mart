@@ -30,8 +30,7 @@ class MobileLoginLayout extends StatelessWidget {
               showedScaffoldMessage(
                   context: context, message: 'Successfully Login');
 
-              GoRouter.of(context)
-                  .pushReplacement(AppConstance.kHomeViewRouter);
+              GoRouter.of(context).pushReplacement(RouterPath.kHomeViewRouter);
             }
 
             if (state is LoginFailure) {

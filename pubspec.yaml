@@ -101,9 +101,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-  
+
 flutter_assets:
   assets_path: assets/images/
   output_path: lib/core/utils/const/
   filename: app_images.dart
-  field_prefix:
+  field_prefix: null

@@ -20,7 +20,7 @@ class LoginButtomNavBar extends StatelessWidget {
           TextButton(
             style: TextButton.styleFrom(padding: const EdgeInsets.all(0)),
             onPressed: () {
-              GoRouter.of(context).push(AppConstance.kRegisterView);
+              GoRouter.of(context).push(RouterPath.kRegisterView);
             },
             child: const Text(
               'Register',

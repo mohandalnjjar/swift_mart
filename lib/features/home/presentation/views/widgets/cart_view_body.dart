@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/categoryListView.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({
@@ -8,9 +9,7 @@ class CartViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text(
-        'Cart View Body',
-      ),
+      child: CategoryListView()
     );
   }
 }

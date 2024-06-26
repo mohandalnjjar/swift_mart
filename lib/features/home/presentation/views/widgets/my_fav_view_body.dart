@@ -20,7 +20,7 @@ class MyFavViewBody extends StatelessWidget {
               backgroundColor: AppColors.kPrimaryColor,
             ),
             onPressed: () async {
-              GoRouter.of(context).pushReplacement(AppConstance.kLoginView);
+              GoRouter.of(context).pushReplacement(RouterPath.kLoginView);
               await FirebaseAuth.instance.signOut();
             },
             child: Text(

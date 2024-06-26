@@ -14,7 +14,7 @@ class CustomSearchBar extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: () {
-          GoRouter.of(context).push(AppConstance.kSearchView);
+          GoRouter.of(context).push(RouterPath.kSearchView);
         },
         child: Container(
           padding: const EdgeInsets.all(10),

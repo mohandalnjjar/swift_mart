@@ -28,7 +28,7 @@ class MobileRegisterViewLayotu extends StatelessWidget {
               );
               if (state is SignUpSuccess) {
                 GoRouter.of(context)
-                    .pushReplacement(AppConstance.kHomeViewRouter);
+                    .pushReplacement(RouterPath.kHomeViewRouter);
                 showedScaffoldMessage(
                     context: context, message: 'Successfully Created');
               }

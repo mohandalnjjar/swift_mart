@@ -41,7 +41,7 @@ class SwiftMart extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             routerConfig: AppRouter.router,
             theme: appThemeData(
-              isDark: BlocProvider.of<ThemeCubit>(context).themeMode,
+              isDark: false,
               context: context,
             ),
             locale: DevicePreview.locale(context),
