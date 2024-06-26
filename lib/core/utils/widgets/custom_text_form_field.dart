@@ -41,7 +41,7 @@ class CustomTextFromField extends StatelessWidget {
       validator: validator,
       decoration: InputDecoration(
         filled: true,
-        contentPadding: const EdgeInsets.all(13),
+        contentPadding: const EdgeInsets.all(17),
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
         hintText: hint,

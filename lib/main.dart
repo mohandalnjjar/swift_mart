@@ -33,7 +33,6 @@ class SwiftMart extends StatelessWidget {
             ThemeRepoImpl(),
           )..getTheme(context: context),
         ),
-        
       ],
       child: BlocBuilder<ThemeCubit, ThemeCubitState>(
         builder: (context, state) {

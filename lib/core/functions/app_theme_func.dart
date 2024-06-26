@@ -16,7 +16,7 @@ ThemeData appThemeData({required bool isDark, required BuildContext context}) {
         elevation: 0,
         foregroundColor: Colors.white,
         padding: const EdgeInsets.all(
-          10,
+          13,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
