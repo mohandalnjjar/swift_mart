@@ -13,39 +13,38 @@ class CategoryListView extends StatefulWidget {
 
 class _CategoryListViewState extends State<CategoryListView> {
   int selectedIndex = 0;
-
-  final List<CategoryItmeModel> items = [
-    CategoryItmeModel(
-      title: 'Shose',
-      onPressed: (BuildContext context) {},
-      image: Assets.imagesAppIcon,
-    ),
-    CategoryItmeModel(
-      title: 'Phones',
-      onPressed: (BuildContext context) {},
-      image: Assets.imagesShose,
-    ),
-    CategoryItmeModel(
-      title: 'Laptops',
-      onPressed: (BuildContext context) {},
-      image: Assets.imagesAppIcon,
-    ),
-    CategoryItmeModel(
-      title: 'TVs',
-      onPressed: (BuildContext context) {},
-      image: Assets.imagesAppIcon,
-    ),
-    CategoryItmeModel(
-      title: 'Clothes',
-      onPressed: (BuildContext context) {},
-      image: Assets.imagesAppIcon,
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<CategoryItmeModel> items = [
+      CategoryItmeModel(
+        title: 'Beauty',
+        onPressed: (BuildContext context) {},
+        image: Assets.imagesBeauty,
+      ),
+      CategoryItmeModel(
+        title: 'Furniture',
+        onPressed: (BuildContext context) {},
+        image: Assets.imagesFurniture,
+      ),
+      CategoryItmeModel(
+        title: 'Shose',
+        onPressed: (BuildContext context) {},
+        image: Assets.imagesShose,
+      ),
+      CategoryItmeModel(
+        title: 'Clothing',
+        onPressed: (BuildContext context) {},
+        image: Assets.imagesTshirt,
+      ),
+      CategoryItmeModel(
+        title: 'Electronics',
+        onPressed: (BuildContext context) {},
+        image: Assets.imagesLaptop,
+      ),
+    ];
+
     return SizedBox(
-      height: 120,
+      height: 115,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: items.length,

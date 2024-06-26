@@ -12,9 +12,9 @@ class CategoryItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 70,
-          width: 70,
-          padding: const EdgeInsets.all(5),
+          height: 73,
+          width: 73,
+          padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             color: AppColors.kWhiteGrey,
             borderRadius: BorderRadius.circular(360),
@@ -26,10 +26,12 @@ class CategoryItem extends StatelessWidget {
         const SizedBox(
           height: 5,
         ),
-        Text(
-          categoryItmeModel.title,
-          style: AppStyles.style700w14(context),
-          maxLines: 1,
+        Flexible(
+          child: Text(
+            categoryItmeModel.title,
+            style: AppStyles.style700w14(context),
+            maxLines: 1,
+          ),
         ),
       ],
     );

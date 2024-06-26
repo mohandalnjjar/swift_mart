@@ -58,4 +58,3 @@ class HomeViewBody extends StatelessWidget {
     );
   }
 }
-  
