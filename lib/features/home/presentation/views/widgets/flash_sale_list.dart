@@ -10,7 +10,7 @@ class FlashSaleList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height * .26,
+      height: MediaQuery.sizeOf(context).height * .27,
       child: CarouselSlider.builder(
         itemCount: 10,
         itemBuilder: (context, index, realIndex) => const FlashSaleItem(),

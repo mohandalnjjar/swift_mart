@@ -4,9 +4,11 @@ import 'package:swift_mart/core/utils/const/app_colors.dart';
 
 ThemeData appThemeData({required bool isDark, required BuildContext context}) {
   return ThemeData(
-    appBarTheme: isDark
-        ? const AppBarTheme(backgroundColor: AppColors.kDarkScaffoldColor)
-        : const AppBarTheme(backgroundColor: AppColors.kLightScaffoldColor),
+    splashColor: Colors.transparent,
+    appBarTheme: AppBarTheme(
+        backgroundColor: isDark
+            ? AppColors.kDarkScaffoldColor
+            : AppColors.kLightScaffoldColor),
     iconTheme: isDark
         ? const IconThemeData(color: Colors.white)
         : const IconThemeData(color: Colors.black),
@@ -34,5 +36,12 @@ ThemeData appThemeData({required bool isDark, required BuildContext context}) {
     textTheme: isDark
         ? GoogleFonts.robotoTextTheme(ThemeData.dark().textTheme)
         : GoogleFonts.robotoTextTheme(),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor:
+          isDark ? AppColors.kDarkScaffoldColor : AppColors.kLightScaffoldColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(0),
+      ),
+    ),
   );
 }

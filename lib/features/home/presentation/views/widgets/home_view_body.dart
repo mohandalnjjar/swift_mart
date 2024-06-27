@@ -21,15 +21,19 @@ class HomeViewBody extends StatelessWidget {
       slivers: [
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 18, bottom: 8, right: 8),
             child: Row(
               children: [
                 const CustomSearchBar(),
-                CustomButton(
-                  onPressed: () {
-                    GoRouter.of(context).push(RouterPath.kCartView);
-                  },
-                  icon: const Icon(IconlyLight.bag),
+                Badge(
+                  label: const Text('10'),
+                  offset: const Offset(-11, 3),
+                  child: CustomButton(
+                    onPressed: () {
+                      GoRouter.of(context).push(RouterPath.kCartView);
+                    },
+                    icon: const Icon(IconlyLight.bag),
+                  ),
                 ),
               ],
             ),
@@ -59,7 +63,7 @@ class HomeViewBody extends StatelessWidget {
                 TextButton.icon(
                   onPressed: () {},
                   label: const Text(
-                    'View All',
+                    'See More',
                   ),
                 )
               ],
@@ -89,7 +93,7 @@ class HomeViewBody extends StatelessWidget {
                 TextButton.icon(
                   onPressed: () {},
                   label: const Text(
-                    'View All',
+                    'See More',
                   ),
                 )
               ],

@@ -13,9 +13,9 @@ class Assets {
   /// assets/images/beauty.png
   static const String imagesBeauty = "assets/images/beauty.png";
 
-  /// Assets for imagesCars
-  /// assets/images/cars.png
-  static const String imagesCars = "assets/images/cars.png";
+  /// Assets for imagesDelete
+  /// assets/images/delete.png
+  static const String imagesDelete = "assets/images/delete.png";
 
   /// Assets for imagesFacebook
   /// assets/images/facebook.png

@@ -15,7 +15,7 @@ void main(List<String> args) async {
   );
   runApp(
     DevicePreview(
-      enabled: false,
+      enabled: !true,
       builder: (context) => const SwiftMart(),
     ),
   );
@@ -41,7 +41,7 @@ class SwiftMart extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             routerConfig: AppRouter.router,
             theme: appThemeData(
-              isDark: false,
+              isDark: !true,
               context: context,
             ),
             locale: DevicePreview.locale(context),

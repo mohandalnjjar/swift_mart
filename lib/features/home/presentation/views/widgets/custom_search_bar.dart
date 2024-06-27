@@ -17,7 +17,7 @@ class CustomSearchBar extends StatelessWidget {
           GoRouter.of(context).push(RouterPath.kSearchView);
         },
         child: Container(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(13),
           margin: const EdgeInsets.only(
             left: 8,
             right: 5,

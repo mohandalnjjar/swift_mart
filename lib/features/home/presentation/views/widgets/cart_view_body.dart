@@ -1,5 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:swift_mart/features/home/presentation/views/widgets/categoryListView.dart';
+import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
+import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/core/utils/widgets/custom_appbar.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/cart_item.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({
@@ -8,8 +13,52 @@ class CartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: CategoryListView()
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: CustomAppbar(
+            title: 'Cart',
+            widget: InkWell(
+              onTap: () {
+                context.pop();
+              },
+              child: const Icon(Icons.arrow_back_ios_new),
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              'Your Cart',
+              style: AppStyles.styleRegular24(context)
+                  .copyWith(fontSize: 40, fontWeight: FontWeight.normal),
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              'List ( 10 )',
+              style: AppStyles.styleRegular24(context)
+                  .copyWith(fontSize: 30, fontWeight: FontWeight.normal),
+            ),
+          ),
+        ),
+        SliverList.builder(
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: MediaQuery.sizeOf(context).height * .19,
+                child: const CartItem(),
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }

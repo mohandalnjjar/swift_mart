@@ -14,34 +14,32 @@ class MobileForgotPassswordBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: BlocConsumer<RestPasswordCubit, RestPasswordState>(
-          listener: (context, state) {
-            showDialog(
-              context: context,
-              builder: (context) => CustomLoadingIndicator(
-                inAsyncCall: state is RestPasswordLoading ? true : false,
-              ),
-            );
-            if (state is RestPasswordFailed) {
-              showedScaffoldMessage(
-                  context: context, message: state.errorMessage);
-              context.pop();
-            } else if (state is RestPasswordDone) {
-              showedScaffoldMessage(
-                  context: context, message: 'Check your emial');
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: BlocConsumer<RestPasswordCubit, RestPasswordState>(
+        listener: (context, state) {
+          showDialog(
+            context: context,
+            builder: (context) => CustomLoadingIndicator(
+              inAsyncCall: state is RestPasswordLoading ? true : false,
+            ),
+          );
+          if (state is RestPasswordFailed) {
+            showedScaffoldMessage(
+                context: context, message: state.errorMessage);
+            context.pop();
+          } else if (state is RestPasswordDone) {
+            showedScaffoldMessage(
+                context: context, message: 'Check your emial');
 
-              GoRouter.of(context).pushReplacement(
-                RouterPath.kLoginView,
-              );
-            }
-          },
-          builder: (context, state) {
-            return const ForGotPasswordFrom();
-          },
-        ),
+            GoRouter.of(context).pushReplacement(
+              RouterPath.kLoginView,
+            );
+          }
+        },
+        builder: (context, state) {
+          return const ForGotPasswordFrom();
+        },
       ),
     );
   }

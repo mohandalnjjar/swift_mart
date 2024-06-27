@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:swift_mart/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:swift_mart/features/auth/presentatiion/managers/google_login_cubit/google_login_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/managers/signup_cubit/sign_up_cubit.dart';
@@ -36,7 +35,7 @@ class RegisterView extends StatelessWidget {
                 context.pop();
               },
               icon: const Icon(
-                Ionicons.arrow_back,
+                Icons.arrow_back_ios_new,
                 size: 27,
               ),
             ),

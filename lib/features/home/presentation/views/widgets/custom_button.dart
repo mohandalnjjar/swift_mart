@@ -10,19 +10,16 @@ class CustomButton extends StatelessWidget {
   final Widget icon;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: IconButton(
-        padding: const EdgeInsets.all(10),
-        style: IconButton.styleFrom(
-          backgroundColor: Colors.grey.withOpacity(0.1),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
+    return IconButton(
+      padding: const EdgeInsets.all(13),
+      style: IconButton.styleFrom(
+        backgroundColor: Colors.grey.withOpacity(0.1),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
         ),
-        onPressed: onPressed,
-        icon: icon,
       ),
+      onPressed: onPressed,
+      icon: icon,
     );
   }
 }
