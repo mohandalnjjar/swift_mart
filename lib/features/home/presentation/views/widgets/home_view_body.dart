@@ -39,21 +39,73 @@ class HomeViewBody extends StatelessWidget {
           child: FlashSaleList(),
         ),
         const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 5,
+          ),
+        ),
+        const SliverToBoxAdapter(
           child: CategoryListView(),
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Selected for you',
-              style: AppStyles.styleSemiBold25(context),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              children: [
+                Text(
+                  'Most Rated',
+                  style: AppStyles.styleSemiBold25(context),
+                ),
+                const Spacer(),
+                TextButton.icon(
+                  onPressed: () {},
+                  label: const Text(
+                    'View All',
+                  ),
+                )
+              ],
             ),
           ),
         ),
-        SliverList.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) => const ProductItem(),
-        )
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: MediaQuery.sizeOf(context).height * .31,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (context, index) => const ProductItem(),
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              children: [
+                Text(
+                  'Most Rated',
+                  style: AppStyles.styleSemiBold25(context),
+                ),
+                const Spacer(),
+                TextButton.icon(
+                  onPressed: () {},
+                  label: const Text(
+                    'View All',
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: MediaQuery.sizeOf(context).height * .31,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (context, index) => const ProductItem(),
+            ),
+          ),
+        ),
       ],
     );
   }

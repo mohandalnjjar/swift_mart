@@ -44,7 +44,7 @@ class _CategoryListViewState extends State<CategoryListView> {
     ];
 
     return SizedBox(
-      height: 115,
+      height: 120,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: items.length,

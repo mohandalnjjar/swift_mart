@@ -15,48 +15,55 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            onTap: () => GoRouter.of(context).push(RouterPath.kDetailsView),
-            child: SizedBox(
-              height: MediaQuery.sizeOf(context).height * .24,
-              child: AspectRatio(
-                aspectRatio: 3.2 / 4,
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  height: MediaQuery.sizeOf(context).height * .23,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(13),
-                      color: AppColors.kWhiteGrey),
-                  child: Image.asset(Assets.imagesShose),
+      child: GestureDetector(
+        onTap: () => GoRouter.of(context).push(RouterPath.kDetailsView),
+        child: AspectRatio(
+          aspectRatio: 2 / 3.4,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () =>
+                      GoRouter.of(context).push(RouterPath.kDetailsView),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(13),
+                        color: AppColors.kWhiteGrey),
+                    child: Image.asset(Assets.imagesShose),
+                  ),
                 ),
               ),
-            ),
-          ),
-          Row(
-            children: [
+              const SizedBox(
+                height: 5,
+              ),
               Text(
-                r'$350',
+                'New Nike air shose ',
+                maxLines: 2,
                 style: AppStyles.style700w16(context),
               ),
               const SizedBox(
-                width: 5,
+                height: 5,
               ),
-              InkWell(
-                onTap: () {},
-                child: const Icon(
-                  Ionicons.heart_outline,
-                ),
-              )
+              Row(
+                children: [
+                  Text(
+                    r'$350',
+                    style: AppStyles.style700w16(context),
+                  ),
+                  const Spacer(),
+                  InkWell(
+                    onTap: () {},
+                    child: const Icon(
+                      Ionicons.heart_outline,
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
-          Text(
-            'Apple ',
-            style: AppStyles.style700w16(context),
-          ),
-        ],
+        ),
       ),
     );
   }
