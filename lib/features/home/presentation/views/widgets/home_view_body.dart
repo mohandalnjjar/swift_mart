@@ -30,7 +30,9 @@ class HomeViewBody extends StatelessWidget {
                   offset: const Offset(-11, 3),
                   child: CustomButton(
                     onPressed: () {
-                      GoRouter.of(context).push(RouterPath.kCartView);
+                      GoRouter.of(context).push(
+                        RouterPath.kCartView,
+                      );
                     },
                     icon: const Icon(IconlyLight.bag),
                   ),

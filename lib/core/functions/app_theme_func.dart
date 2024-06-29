@@ -6,12 +6,10 @@ ThemeData appThemeData({required bool isDark, required BuildContext context}) {
   return ThemeData(
     splashColor: Colors.transparent,
     appBarTheme: AppBarTheme(
-        backgroundColor: isDark
-            ? AppColors.kDarkScaffoldColor
-            : AppColors.kLightScaffoldColor),
-    iconTheme: isDark
-        ? const IconThemeData(color: Colors.white)
-        : const IconThemeData(color: Colors.black),
+      backgroundColor:
+          isDark ? AppColors.kDarkScaffoldColor : AppColors.kLightScaffoldColor,
+    ),
+    iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.kPrimaryColor,
@@ -42,6 +40,10 @@ ThemeData appThemeData({required bool isDark, required BuildContext context}) {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
       ),
+    ),
+    expansionTileTheme: ExpansionTileThemeData(
+      backgroundColor:
+          isDark ? AppColors.kDarkScaffoldColor : AppColors.kLightScaffoldColor,
     ),
   );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swift_mart/features/home/presentation/views/details_view_buttom_sheet.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/details_view_body.dart';
 
 class DetailsView extends StatelessWidget {
@@ -10,6 +11,7 @@ class DetailsView extends StatelessWidget {
       body: SafeArea(
         child: DetailsViewBody(),
       ),
+      bottomNavigationBar: DetailsButtomSheetWidget(),
     );
   }
 }
