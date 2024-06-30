@@ -23,9 +23,7 @@ class Gnav extends StatelessWidget {
           margin: const EdgeInsets.all(6),
           padding: const EdgeInsets.all(3),
           decoration: BoxDecoration(
-            color: BlocProvider.of<ThemeCubit>(context).themeMode
-                ? AppColors.kGnavColor
-                : AppColors.kGnavColor,
+            color: AppColors.kGnavColor,
             borderRadius: BorderRadius.circular(40),
           ),
           child: GNav(

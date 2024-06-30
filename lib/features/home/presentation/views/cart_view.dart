@@ -11,7 +11,7 @@ class CartView extends StatelessWidget {
       body: SafeArea(
         child: CartViewBody(),
       ),
-      bottomSheet: CartButtomSheetWidget(),
+      bottomNavigationBar: CartButtomSheetWidget(),
     );
   }
 }

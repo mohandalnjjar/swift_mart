@@ -3,13 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
-import 'package:swift_mart/core/utils/const/app_images.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
     super.key,
+    required this.image,
   });
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class ProductItem extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(13),
                         color: AppColors.kWhiteGrey),
-                    child: Image.asset(Assets.imagesShose),
+                    child: Image.asset(image),
                   ),
                 ),
               ),
@@ -39,7 +40,7 @@ class ProductItem extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                'New Nike air shose ',
+                'New Nike air',
                 maxLines: 2,
                 style: AppStyles.style700w16(context),
               ),

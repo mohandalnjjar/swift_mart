@@ -22,26 +22,27 @@ class _PageViewViewsState extends State<PageViewViews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: PageViewViewBody(
-          controller: controller,
-          onPageChanged: (value) {
-            setState(
-              () {
-                currentScreen = value;
+      body: PageViewViewBody(
+        controller: controller,
+        onPageChanged: (value) {
+          setState(
+            () {
+              currentScreen = value;
+            },
+          );
+        },
+      ),
+      bottomNavigationBar: MediaQuery.sizeOf(context).width < 900
+          ? Gnav(
+              currentScreen: currentScreen,
+              onTabChange: (value) {
+                setState(() {
+                  currentScreen = value;
+                  controller.jumpToPage(currentScreen);
+                });
               },
-            );
-          },
-        ),
-        bottomNavigationBar: MediaQuery.sizeOf(context).width < 900
-            ? Gnav(
-                currentScreen: currentScreen,
-                onTabChange: (value) {
-                  setState(() {
-                    currentScreen = value;
-                    controller.jumpToPage(currentScreen);
-                  });
-                },
-              )
-            : null);
+            )
+          : null,
+    );
   }
 }

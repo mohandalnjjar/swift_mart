@@ -1,9 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:swift_mart/core/utils/const/app_colors.dart';
-import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/favoriest_item.dart';
 
 class MyFavViewBody extends StatelessWidget {
   const MyFavViewBody({
@@ -14,22 +11,27 @@ class MyFavViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
-          child: TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: AppColors.kPrimaryColor,
-            ),
-            onPressed: () async {
-              GoRouter.of(context).pushReplacement(RouterPath.kLoginView);
-              await FirebaseAuth.instance.signOut();
-            },
-            child: Text(
-              'Yes, SignOut',
-              style: AppStyles.styleRegular15(context)
-                  .copyWith(color: Colors.white),
+        //fav Appbar
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          sliver: SliverAppBar(
+            centerTitle: true,
+            title: Text(
+              'favorites list',
+              style: AppStyles.styleSemiBold25(context),
             ),
           ),
         ),
+
+        SliverGrid.builder(
+          itemCount: 5,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 2.8 / 3,
+            mainAxisExtent: 277,
+          ),
+          itemBuilder: (context, index) => const FavoritesItem(),
+        )
       ],
     );
   }

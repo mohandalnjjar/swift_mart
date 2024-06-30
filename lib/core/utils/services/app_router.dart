@@ -8,7 +8,7 @@ import 'package:swift_mart/features/home/presentation/views/details_view.dart';
 import 'package:swift_mart/features/home/presentation/views/home_view.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/register_view.dart';
 import 'package:swift_mart/features/home/presentation/views/my_fav_view.dart';
-import 'package:swift_mart/features/home/presentation/views/page_view_views.dart';
+import 'package:swift_mart/page_view_views.dart';
 import 'package:swift_mart/features/home/presentation/views/profile_view.dart';
 import 'package:swift_mart/features/home/presentation/views/search_view.dart';
 

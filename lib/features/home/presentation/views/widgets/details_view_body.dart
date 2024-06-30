@@ -22,9 +22,9 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
   @override
   Widget build(BuildContext context) {
     final List<String> items = [
-      Assets.imagesAppIcon,
-      Assets.imagesApple,
-      Assets.imagesLaptop,
+      Assets.imagesShoe2,
+      Assets.imagesShose3,
+      Assets.imagesShose4,
       Assets.imagesShose,
     ];
 
