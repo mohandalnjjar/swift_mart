@@ -88,6 +88,13 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleRegular19(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 19, context: context),
+    );
+  }
+
   static TextStyle styleRegular21(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w400,
@@ -113,6 +120,13 @@ abstract class AppStyles {
     return TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: getResponsizeFontSize(fontSize: 24, context: context),
+    );
+  }
+
+  static TextStyle styleRegular26(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 26, context: context),
     );
   }
 
@@ -152,6 +166,14 @@ abstract class AppStyles {
       color: Colors.grey,
       fontWeight: FontWeight.w400,
       fontSize: getResponsizeFontSize(fontSize: 16, context: context),
+    );
+  }
+
+  static TextStyle styleGreyReg17(BuildContext context) {
+    return TextStyle(
+      color: Colors.grey,
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 17, context: context),
     );
   }
 }

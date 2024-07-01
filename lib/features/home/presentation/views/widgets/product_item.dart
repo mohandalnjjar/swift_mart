@@ -40,9 +40,9 @@ class ProductItem extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                'New Nike air',
-                maxLines: 2,
-                style: AppStyles.style700w16(context),
+                'Air zoom max',
+                maxLines: 1,
+                style: AppStyles.styleRegular19(context),
               ),
               const SizedBox(
                 height: 5,

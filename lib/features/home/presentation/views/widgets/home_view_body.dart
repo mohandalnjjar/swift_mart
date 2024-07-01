@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:iconly/iconly.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/const/app_images.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
-import 'package:swift_mart/features/home/presentation/views/widgets/categoryListView.dart';
-import 'package:swift_mart/features/home/presentation/views/widgets/custom_button.dart';
-import 'package:swift_mart/features/home/presentation/views/widgets/custom_search_bar.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/flash_sale_list.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/product_item.dart';
 
@@ -26,62 +23,104 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 18, bottom: 8, right: 8),
-            child: Row(
+        //SliverAppBar
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          sliver: SliverAppBar(
+            title: Row(
               children: [
-                const CustomSearchBar(),
-                Badge(
-                  label: const Text('10'),
-                  offset: const Offset(-11, 3),
-                  child: CustomButton(
-                    onPressed: () {
-                      GoRouter.of(context).push(
-                        RouterPath.kCartView,
-                      );
-                    },
-                    icon: const Icon(IconlyLight.bag),
+                Text(
+                  'Swift ',
+                  style: AppStyles.styleSemiBold25(context),
+                ),
+                Text(
+                  'Mart',
+                  style: AppStyles.styleSemiBold25(context).copyWith(
+                    color: AppColors.kPrimaryColor,
                   ),
                 ),
               ],
             ),
+            actions: [
+              GestureDetector(
+                onTap: () => GoRouter.of(context).push(RouterPath.kCartView),
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  margin: const EdgeInsets.only(right: 8),
+                  decoration: BoxDecoration(
+                    color: AppColors.kWhiteGrey,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: const Icon(
+                    Ionicons.cart_outline,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
+
+        //FlashSaleList
         const SliverToBoxAdapter(
           child: FlashSaleList(),
         ),
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 5,
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: CategoryListView(),
-        ),
+
+        // //SizedBox
+        // const SliverToBoxAdapter(
+        //   child: SizedBox(
+        //     height: 15,
+        //   ),
+        // ),
+
+        //Head Title2
+        // SliverToBoxAdapter(
+        //   child: Padding(
+        //     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
+        //     child: Row(
+        //       children: [
+        //         Text(
+        //           'Categories',
+        //           style: AppStyles.styleRegular26(context),
+        //         ),
+        //         const Spacer(),
+        //         GestureDetector(
+        //           onTap: () {},
+        //           child: const Icon(Icons.arrow_forward_ios_sharp),
+        //         )
+        //       ],
+        //     ),
+        //   ),
+        // ),
+
+        // CategoryListView
+        // const SliverToBoxAdapter(
+        //   child: CategoryListView(),
+        // ),
+
+        //Head Title1
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
             child: Row(
               children: [
                 Text(
-                  'Most Rated',
-                  style: AppStyles.styleSemiBold25(context),
+                  'Selected for you',
+                  style: AppStyles.styleRegular24(context),
                 ),
                 const Spacer(),
-                TextButton.icon(
-                  onPressed: () {},
-                  label: const Text(
-                    'See More',
-                  ),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Icon(Icons.arrow_forward_ios_sharp),
                 )
               ],
             ),
           ),
         ),
+
+        //Firs list
         SliverToBoxAdapter(
           child: SizedBox(
-            height: MediaQuery.sizeOf(context).height * .31,
+            height: MediaQuery.sizeOf(context).height * .30,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: items.length,
@@ -91,26 +130,28 @@ class HomeViewBody extends StatelessWidget {
             ),
           ),
         ),
+
+        //Head Title2
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
             child: Row(
               children: [
                 Text(
                   'Most Rated',
-                  style: AppStyles.styleSemiBold25(context),
+                  style: AppStyles.styleRegular24(context),
                 ),
                 const Spacer(),
-                TextButton.icon(
-                  onPressed: () {},
-                  label: const Text(
-                    'See More',
-                  ),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Icon(Icons.arrow_forward_ios_sharp),
                 )
               ],
             ),
           ),
         ),
+
+        //Second list
         SliverToBoxAdapter(
           child: SizedBox(
             height: MediaQuery.sizeOf(context).height * .31,

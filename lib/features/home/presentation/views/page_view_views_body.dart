@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:swift_mart/features/home/presentation/views/home_view.dart';
 import 'package:swift_mart/features/home/presentation/views/my_fav_view.dart';
 import 'package:swift_mart/features/home/presentation/views/profile_view.dart';
+import 'package:swift_mart/features/home/presentation/views/search_view.dart';
 
-class PageViewViewBody extends StatelessWidget {
-  const PageViewViewBody({
+class MainPageViewBody extends StatelessWidget {
+  const MainPageViewBody({
     super.key,
     required this.controller,
     this.onPageChanged,
@@ -19,6 +20,7 @@ class PageViewViewBody extends StatelessWidget {
             onPageChanged: onPageChanged,
             children: const [
               HomeView(),
+              SearchView(),
               MyFavView(),
               ProfileView(),
             ],

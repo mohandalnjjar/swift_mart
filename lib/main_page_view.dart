@@ -3,14 +3,14 @@ import 'package:flutter/widgets.dart';
 import 'package:swift_mart/core/utils/widgets/gnav.dart';
 import 'package:swift_mart/features/home/presentation/views/page_view_views_body.dart';
 
-class PageViewViews extends StatefulWidget {
-  const PageViewViews({super.key});
+class MainPageView extends StatefulWidget {
+  const MainPageView({super.key});
 
   @override
-  State<PageViewViews> createState() => _PageViewViewsState();
+  State<MainPageView> createState() => _MainPageViewState();
 }
 
-class _PageViewViewsState extends State<PageViewViews> {
+class _MainPageViewState extends State<MainPageView> {
   late PageController controller;
   int currentScreen = 0;
   @override
@@ -22,7 +22,7 @@ class _PageViewViewsState extends State<PageViewViews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageViewViewBody(
+      body: MainPageViewBody(
         controller: controller,
         onPageChanged: (value) {
           setState(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swift_mart/core/utils/const/app_colors.dart';
 
 class CustomTextFromField extends StatelessWidget {
   const CustomTextFromField({
@@ -14,9 +15,11 @@ class CustomTextFromField extends StatelessWidget {
     this.onChanged,
     this.suffixIcon,
     this.obscureText = false,
+    this.hintStyle,
   });
 
   final String hint;
+  final TextStyle? hintStyle;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
 
@@ -45,12 +48,15 @@ class CustomTextFromField extends StatelessWidget {
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
         hintText: hint,
+        hintStyle: hintStyle,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(color: Colors.transparent),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.grey),
+          borderSide: BorderSide(
+            color: AppColors.kWhiteGrey,
+          ),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
