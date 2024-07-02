@@ -16,7 +16,7 @@ class CartViewBody extends StatelessWidget {
       slivers: [
         //Cart Appbar
         SliverPadding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           sliver: SliverAppBar(
             leading: GestureDetector(
               onTap: () => context.pop(),
@@ -25,7 +25,7 @@ class CartViewBody extends StatelessWidget {
             centerTitle: true,
             title: Text(
               'Cart',
-              style: AppStyles.styleSemiBold25(context),
+              style: AppStyles.styleSemiBold30(context),
             ),
           ),
         ),

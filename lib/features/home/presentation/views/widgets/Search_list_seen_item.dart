@@ -22,7 +22,7 @@ class SearchListSeenItem extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(13),
-            color: AppColors.kWhiteGrey,
+            color: AppColors.kWhitePrimaryColor,
           ),
           child: Image.asset(image),
         ),

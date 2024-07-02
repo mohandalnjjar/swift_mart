@@ -37,6 +37,14 @@ class Assets {
   /// assets/images/laptop.png
   static const String imagesLaptop = "assets/images/laptop.png";
 
+  /// Assets for imagesMuhaned
+  /// assets/images/Muhaned.jpg
+  static const String imagesMuhaned = "assets/images/Muhaned.jpg";
+
+  /// Assets for imagesMuhanedtwo
+  /// assets/images/muhanedtwo.jpg
+  static const String imagesMuhanedtwo = "assets/images/muhanedtwo.jpg";
+
   /// Assets for imagesNativeScreen
   /// assets/images/native_screen.png
   static const String imagesNativeScreen = "assets/images/native_screen.png";

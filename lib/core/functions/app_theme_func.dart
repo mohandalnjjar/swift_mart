@@ -24,7 +24,7 @@ ThemeData appThemeData({required bool isDark, required BuildContext context}) {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      fillColor: AppColors.kWhiteGrey,
+      fillColor: AppColors.kWhitePrimaryColor,
     ),
     scaffoldBackgroundColor:
         isDark ? AppColors.kDarkScaffoldColor : AppColors.kLightScaffoldColor,

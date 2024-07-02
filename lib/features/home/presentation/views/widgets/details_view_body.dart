@@ -37,7 +37,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
               fit: BoxFit.contain,
             ),
           ),
-          backgroundColor: AppColors.kWhiteGrey,
+          backgroundColor: AppColors.kWhitePrimaryColor,
           expandedHeight: MediaQuery.sizeOf(context).height * .40,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(10),

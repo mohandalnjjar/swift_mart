@@ -20,7 +20,7 @@ class FavoritesItem extends StatelessWidget {
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(13),
-          color: AppColors.kWhiteGrey,
+          color: AppColors.kWhitePrimaryColor,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +29,7 @@ class FavoritesItem extends StatelessWidget {
               children: [
                 Image.asset(
                   Assets.imagesShoe2,
-                  height: 190,
+                  height: 140,
                   width: double.infinity,
                   fit: BoxFit.contain,
                 ),

@@ -16,8 +16,8 @@ class CategoryItem extends StatelessWidget {
           width: 76,
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-            color: AppColors.kWhiteGrey,
-            borderRadius: BorderRadius.circular(100),
+            color: AppColors.kWhitePrimaryColor,
+            borderRadius: BorderRadius.circular(360),
           ),
           child: Image.asset(
             categoryItmeModel.image,

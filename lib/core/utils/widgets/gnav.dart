@@ -40,7 +40,7 @@ class Gnav extends StatelessWidget {
               ),
               GButton(
                 padding: EdgeInsets.all(13),
-                icon: IconlyLight.discovery,
+                icon: IconlyLight.search,
                 iconColor: Colors.white,
                 iconSize: 25,
               ),

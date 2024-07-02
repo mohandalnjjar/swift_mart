@@ -5,9 +5,11 @@ import 'package:swift_mart/features/auth/presentatiion/views/forgot_password_vie
 import 'package:swift_mart/features/auth/presentatiion/views/login_view.dart';
 import 'package:swift_mart/features/home/presentation/views/cart_view.dart';
 import 'package:swift_mart/features/home/presentation/views/details_view.dart';
+import 'package:swift_mart/features/home/presentation/views/edit_profile_view.dart';
 import 'package:swift_mart/features/home/presentation/views/home_view.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/register_view.dart';
 import 'package:swift_mart/features/home/presentation/views/my_fav_view.dart';
+import 'package:swift_mart/features/home/presentation/views/orders_view.dart';
 import 'package:swift_mart/main_page_view.dart';
 import 'package:swift_mart/features/home/presentation/views/profile_view.dart';
 import 'package:swift_mart/features/home/presentation/views/search_view.dart';
@@ -58,6 +60,14 @@ abstract class AppRouter {
       GoRoute(
         path: RouterPath.kCartView,
         builder: (context, state) => const CartView(),
+      ),
+      GoRoute(
+        path: RouterPath.kOrdersView,
+        builder: (conext, state) => const OrdersView(),
+      ),
+      GoRoute(
+        path: RouterPath.kEditProfileView,
+        builder: (conext, state) => const EditProfileView(),
       ),
     ],
   );

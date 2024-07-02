@@ -16,7 +16,7 @@ class LastSeenListItem extends StatelessWidget {
           width: 76,
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-            color: AppColors.kWhiteGrey,
+            color: AppColors.kWhitePrimaryColor,
             borderRadius: BorderRadius.circular(100),
           ),
           child: Image.asset(

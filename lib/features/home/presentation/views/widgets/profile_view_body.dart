@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:swift_mart/core/utils/const/app_colors.dart';
+import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/profile_image_section.dart';
 import 'package:swift_mart/features/theme/presentation/managers/cubit/theme_cubit.dart';
 
 class ProfileViewBody extends StatelessWidget {
@@ -10,38 +15,109 @@ class ProfileViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        BlocBuilder<ThemeCubit, ThemeCubitState>(
-          builder: (context, state) {
-            return SwitchListTile(
-              contentPadding: const EdgeInsets.only(right: 10),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(
-                    BlocProvider.of<ThemeCubit>(context).themeMode
-                        ? Icons.dark_mode
-                        : Icons.light_mode,
-                    color: BlocProvider.of<ThemeCubit>(context).themeMode
-                        ? Colors.white
-                        : Colors.black,
-                  ),
-                  Text(
-                    BlocProvider.of<ThemeCubit>(context).themeMode
-                        ? "Dark mode"
-                        : "light mode",
-                    style: AppStyles.styleRegular17(context),
-                  ),
-                ],
+    return CustomScrollView(
+      slivers: [
+        //Profile Appbar
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 20,
+          ),
+          sliver: SliverAppBar(
+            centerTitle: true,
+            title: Text(
+              'Profile',
+              style: AppStyles.styleSemiBold30(context),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 13.0),
+                child: BlocBuilder<ThemeCubit, ThemeCubitState>(
+                  builder: (context, state) {
+                    return GestureDetector(
+                      onTap: () async {
+                        await BlocProvider.of<ThemeCubit>(context).appTheme(
+                          themeValue:
+                              !BlocProvider.of<ThemeCubit>(context).themeMode,
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: BlocProvider.of<ThemeCubit>(context).themeMode
+                              ? AppColors.kPrimaryColor
+                              : Colors.amber,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Icon(
+                          BlocProvider.of<ThemeCubit>(context).themeMode
+                              ? Ionicons.sunny
+                              : Ionicons.moon,
+                          color: Colors.white,
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
-              value: BlocProvider.of<ThemeCubit>(context).themeMode,
-              onChanged: (value) async {
-                await BlocProvider.of<ThemeCubit>(context)
-                    .appTheme(themeValue: value);
-              },
-            );
-          },
+            ],
+          ),
+        ),
+
+        const SliverToBoxAdapter(
+          child: ProfileImageSection(),
+        ),
+
+        SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Text(
+                  'Account Setting',
+                  style: AppStyles.style7500w14(context)
+                      .copyWith(color: Colors.grey),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  'Edit Profile',
+                  style: AppStyles.styleRegular20(context),
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios_outlined,
+                ),
+                onTap: () {
+                  GoRouter.of(context).push(RouterPath.kEditProfileView);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  'Forgot Password',
+                  style: AppStyles.styleRegular20(context),
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios_outlined,
+                ),
+                onTap: () {
+                  GoRouter.of(context).push(RouterPath.kForgotPasswordView);
+                },
+              ),
+              ListTile(
+                title: Text(
+                  'Orders',
+                  style: AppStyles.styleRegular20(context),
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios_outlined,
+                ),
+                onTap: () {
+                  GoRouter.of(context).push(RouterPath.kOrdersView);
+                },
+              ),
+            ],
+          ),
         ),
       ],
     );

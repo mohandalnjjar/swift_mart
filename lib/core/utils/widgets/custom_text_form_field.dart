@@ -55,7 +55,7 @@ class CustomTextFromField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.kWhiteGrey,
+            color: AppColors.kWhitePrimaryColor,
           ),
           borderRadius: BorderRadius.circular(10),
         ),

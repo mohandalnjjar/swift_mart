@@ -25,7 +25,7 @@ class CartItem extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(13),
-                color: AppColors.kWhiteGrey,
+                color: AppColors.kWhitePrimaryColor,
               ),
               child: Image.asset(Assets.imagesShose),
             ),

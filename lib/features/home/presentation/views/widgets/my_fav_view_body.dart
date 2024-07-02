@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/custom_cart_button.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/favoriest_item.dart';
 
 class MyFavViewBody extends StatelessWidget {
@@ -25,23 +23,8 @@ class MyFavViewBody extends StatelessWidget {
               'favorites',
               style: AppStyles.styleSemiBold30(context),
             ),
-            actions: [
-              GestureDetector(
-                onTap: () => GoRouter.of(context).push(RouterPath.kCartView),
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  margin: const EdgeInsets.only(right: 8),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.blueGrey,
-                    ),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: const Icon(
-                    Ionicons.cart_outline,
-                  ),
-                ),
-              ),
+            actions: const [
+              CustomCartButton(),
             ],
           ),
         ),
@@ -77,8 +60,7 @@ class MyFavViewBody extends StatelessWidget {
           itemCount: 5,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 2.8 / 3,
-            mainAxisExtent: 277,
+            mainAxisExtent: 240,
           ),
           itemBuilder: (context, index) => const FavoritesItem(),
         )

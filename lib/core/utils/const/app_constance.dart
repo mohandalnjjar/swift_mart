@@ -11,4 +11,6 @@ abstract class RouterPath {
   static const kMyFavView = '/kMyFavView';
   static const kProfileView = '/kProfileView';
   static const kCartView = '/kCartView';
+  static const kOrdersView = '/kOrdersView';
+  static const kEditProfileView = '/kEditProfileView';
 }

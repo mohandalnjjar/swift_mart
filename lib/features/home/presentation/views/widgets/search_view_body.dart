@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/core/utils/widgets/custom_text_form_field.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/custom_cart_button.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/last_search_text_list.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/search_last_seen_list.dart';
 
@@ -28,23 +26,8 @@ class SearchViewBody extends StatelessWidget {
               'Search',
               style: AppStyles.styleSemiBold30(context),
             ),
-            actions: [
-              GestureDetector(
-                onTap: () => GoRouter.of(context).push(RouterPath.kCartView),
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  margin: const EdgeInsets.only(right: 8),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.blueGrey,
-                    ),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: const Icon(
-                    Ionicons.cart_outline,
-                  ),
-                ),
-              ),
+            actions: const [
+              CustomCartButton(),
             ],
           ),
         ),

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:swift_mart/core/utils/const/app_colors.dart';
-import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/const/app_images.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/custom_cart_button.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/flash_sale_list.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/product_item.dart';
 
@@ -25,37 +22,14 @@ class HomeViewBody extends StatelessWidget {
       slivers: [
         //SliverAppBar
         SliverPadding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           sliver: SliverAppBar(
-            title: Row(
-              children: [
-                Text(
-                  'Swift ',
-                  style: AppStyles.styleSemiBold25(context),
-                ),
-                Text(
-                  'Mart',
-                  style: AppStyles.styleSemiBold25(context).copyWith(
-                    color: AppColors.kPrimaryColor,
-                  ),
-                ),
-              ],
+            title: Text(
+              'Swift Mart',
+              style: AppStyles.styleSemiBold30(context),
             ),
-            actions: [
-              GestureDetector(
-                onTap: () => GoRouter.of(context).push(RouterPath.kCartView),
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  margin: const EdgeInsets.only(right: 8),
-                  decoration: BoxDecoration(
-                    color: AppColors.kWhiteGrey,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: const Icon(
-                    Ionicons.cart_outline,
-                  ),
-                ),
-              ),
+            actions:const [
+              CustomCartButton(),
             ],
           ),
         ),
@@ -80,7 +54,7 @@ class HomeViewBody extends StatelessWidget {
         //       children: [
         //         Text(
         //           'Categories',
-        //           style: AppStyles.styleRegular26(context),
+        //           style: AppStyles.styleRegular24(context),
         //         ),
         //         const Spacer(),
         //         GestureDetector(
@@ -92,7 +66,7 @@ class HomeViewBody extends StatelessWidget {
         //   ),
         // ),
 
-        // CategoryListView
+        //    CategoryListView
         // const SliverToBoxAdapter(
         //   child: CategoryListView(),
         // ),

@@ -95,6 +95,13 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleRegular20(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: getResponsizeFontSize(fontSize: 20, context: context),
+    );
+  }
+
   static TextStyle styleRegular21(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w400,
@@ -149,6 +156,13 @@ abstract class AppStyles {
   static TextStyle style700w14(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w700,
+      fontSize: getResponsizeFontSize(fontSize: 14, context: context),
+    );
+  }
+
+  static TextStyle style7500w14(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w500,
       fontSize: getResponsizeFontSize(fontSize: 14, context: context),
     );
   }
