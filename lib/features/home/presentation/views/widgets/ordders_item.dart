@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/const/app_images.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/theme/presentation/managers/cubit/theme_cubit.dart';
 
 class OrdersViewItem extends StatelessWidget {
   const OrdersViewItem({
@@ -28,19 +30,25 @@ class OrdersViewItem extends StatelessWidget {
             onTap: () {
               GoRouter.of(context).push(RouterPath.kDetailsView);
             },
-            child: Container(
-              margin: const EdgeInsets.only(right: 20),
-              padding: const EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                color: AppColors.kLightScaffoldColor,
-                borderRadius: BorderRadius.circular(13),
-              ),
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: Image.asset(
-                  Assets.imagesShoe2,
-                ),
-              ),
+            child: BlocBuilder<ThemeCubit, ThemeCubitState>(
+              builder: (context, state) {
+                return Container(
+                  margin: const EdgeInsets.only(right: 20),
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: BlocProvider.of<ThemeCubit>(context).themeMode
+                        ? AppColors.kDarkScaffoldColor
+                        : AppColors.kLightScaffoldColor,
+                    borderRadius: BorderRadius.circular(13),
+                  ),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Image.asset(
+                      Assets.imagesShoe2,
+                    ),
+                  ),
+                );
+              },
             ),
           ),
           Column(

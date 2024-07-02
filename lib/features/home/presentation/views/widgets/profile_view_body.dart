@@ -5,6 +5,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/custom_alert_dialog.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/profile_image_section.dart';
 import 'package:swift_mart/features/theme/presentation/managers/cubit/theme_cubit.dart';
 
@@ -19,45 +20,62 @@ class ProfileViewBody extends StatelessWidget {
       slivers: [
         //Profile Appbar
         SliverPadding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 20,
-          ),
+          padding:
+              const EdgeInsets.only(top: 20, bottom: 20, right: 12, left: 5),
           sliver: SliverAppBar(
+            leading: GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return const CustomAlertDialog();
+                  },
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: const Icon(
+                  Ionicons.log_out_outline,
+                  color: Colors.white,
+                ),
+              ),
+            ),
             centerTitle: true,
             title: Text(
               'Profile',
               style: AppStyles.styleSemiBold30(context),
             ),
             actions: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 13.0),
-                child: BlocBuilder<ThemeCubit, ThemeCubitState>(
-                  builder: (context, state) {
-                    return GestureDetector(
-                      onTap: () async {
-                        await BlocProvider.of<ThemeCubit>(context).appTheme(
-                          themeValue:
-                              !BlocProvider.of<ThemeCubit>(context).themeMode,
-                        );
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: BlocProvider.of<ThemeCubit>(context).themeMode
-                              ? AppColors.kPrimaryColor
-                              : Colors.amber,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Icon(
-                          BlocProvider.of<ThemeCubit>(context).themeMode
-                              ? Ionicons.sunny
-                              : Ionicons.moon,
-                          color: Colors.white,
-                        ),
+              BlocBuilder<ThemeCubit, ThemeCubitState>(
+                builder: (context, state) {
+                  return GestureDetector(
+                    onTap: () async {
+                      await BlocProvider.of<ThemeCubit>(context).appTheme(
+                        themeValue:
+                            !BlocProvider.of<ThemeCubit>(context).themeMode,
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: BlocProvider.of<ThemeCubit>(context).themeMode
+                            ? AppColors.kPrimaryColor
+                            : Colors.amber,
+                        borderRadius: BorderRadius.circular(100),
                       ),
-                    );
-                  },
-                ),
+                      child: Icon(
+                        BlocProvider.of<ThemeCubit>(context).themeMode
+                            ? Ionicons.sunny
+                            : Ionicons.moon,
+                        color: Colors.white,
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
