@@ -51,7 +51,7 @@ class CartViewBody extends StatelessWidget {
           ),
           sliver: SliverToBoxAdapter(
             child: Text(
-              '${S.of(context).List} (5)',
+              S.of(context).List('4'),
               style: AppStyles.styleRegular30(context),
             ),
           ),

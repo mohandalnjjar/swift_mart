@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
+  static String m0(number) => "قائمة(${number})";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AccountSetting":
@@ -46,7 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "LastSearch": MessageLookupByLibrary.simpleMessage("آخر بحث"),
         "LastSeen": MessageLookupByLibrary.simpleMessage("آخر مشاهدة"),
-        "List": MessageLookupByLibrary.simpleMessage("قائمة"),
+        "List": m0,
         "Loading": MessageLookupByLibrary.simpleMessage("جار التحميل..."),
         "MostRated": MessageLookupByLibrary.simpleMessage("الأكثر تقييماً"),
         "Orders": MessageLookupByLibrary.simpleMessage("الطلبات"),
@@ -54,7 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "ResetPassword":
             MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة المرور"),
-        "Search": MessageLookupByLibrary.simpleMessage("بحث"),
+        "Search": MessageLookupByLibrary.simpleMessage("البحث"),
         "SearchForProduct":
             MessageLookupByLibrary.simpleMessage("ابحث عن منتج"),
         "Selectedforyou": MessageLookupByLibrary.simpleMessage("مختار لك"),

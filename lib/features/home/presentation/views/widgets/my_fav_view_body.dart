@@ -49,8 +49,10 @@ class MyFavViewBody extends StatelessWidget {
             bottom: 10,
           ),
           sliver: SliverToBoxAdapter(
-            child: Text('${S.of(context).List} (5)',
-                style: AppStyles.styleRegular30(context)),
+            child: Text(
+              S.of(context).List('5'),
+              style: AppStyles.styleRegular30(context),
+            ),
           ),
         ),
         //fav Sliver Grid

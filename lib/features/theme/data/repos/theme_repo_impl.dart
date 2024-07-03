@@ -8,7 +8,7 @@ class ThemeRepoImpl extends ThemeRepo {
   Future<void> setTheme({required bool themeValue}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    preferences.setBool(themeStatus, themeValue);
+    await preferences.setBool(themeStatus, themeValue);
   }
 
   @override

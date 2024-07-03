@@ -2,13 +2,12 @@
     "SwiftMart": "سويفت مارت",
     "Selectedforyou": "مختار لك",
     "MostRated": "الأكثر تقييماً",
-    "Search": "بحث",
+    "Search": "البحث",
     "SearchForProduct": "ابحث عن منتج",
     "LastSeen": "آخر مشاهدة",
     "LastSearch": "آخر بحث",
     "favorites": "المفضلة",
     "YourFavorites": "مفضلاتك",
-    "List": "قائمة",
     "Profile": "الملف الشخصي",
     "AccountSetting": "إعدادات الحساب",
     "EditProfile": "تعديل الملف الشخصي",
@@ -35,5 +34,14 @@
     "ResetPassword": "إعادة تعيين كلمة المرور",
     "OrdersSummary": "ملخص الطلبات",
     "Code": "الرمز",
-    "shipping":"مَشْحُون"
+    "shipping":"مَشْحُون",
+
+    "List":"قائمة({number})",
+    "@List":{
+        "Description":"Numbers of list",
+
+        "placeholders":    {
+    "number":{"type":"String"}
+    }
+}
 }

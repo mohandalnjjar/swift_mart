@@ -140,16 +140,6 @@ class S {
     );
   }
 
-  /// `List`
-  String get List {
-    return Intl.message(
-      'List',
-      name: 'List',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Profile`
   String get Profile {
     return Intl.message(
@@ -417,6 +407,16 @@ class S {
       name: 'shipping',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `List({number})`
+  String List(String number) {
+    return Intl.message(
+      'List($number)',
+      name: 'List',
+      desc: '',
+      args: [number],
     );
   }
 }
