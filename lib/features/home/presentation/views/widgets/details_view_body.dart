@@ -8,6 +8,7 @@ import 'package:swift_mart/features/home/presentation/views/widgets/detailes_lis
 import 'package:swift_mart/features/home/presentation/views/widgets/details_view_nums_list.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/rating_widget.dart';
 import 'package:swift_mart/features/theme/presentation/managers/cubit/theme_cubit.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class DetailsViewBody extends StatefulWidget {
   const DetailsViewBody({super.key});
@@ -152,7 +153,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                 ),
                 const SizedBox(height: 15),
                 Text(
-                  'Size Guide',
+                  S.of(context).SizeGuide,
                   style: AppStyles.styleSemiBold24(context),
                 ),
                 const SizedBox(height: 15),
@@ -166,7 +167,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                   tilePadding: const EdgeInsets.all(0),
                   shape: Border.all(color: Colors.transparent),
                   title: Text(
-                    'Description',
+                    S.of(context).Description,
                     style: AppStyles.styleSemiBold24(context),
                   ),
                   children: [

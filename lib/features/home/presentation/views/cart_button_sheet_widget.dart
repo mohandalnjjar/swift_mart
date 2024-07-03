@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class CartButtomSheetWidget extends StatelessWidget {
   const CartButtomSheetWidget({
@@ -46,7 +47,7 @@ class CartButtomSheetWidget extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Total Price',
+                                  S.of(context).TotalPrice,
                                   style: AppStyles.styleRegular22(context),
                                 ),
                                 Row(
@@ -69,7 +70,7 @@ class CartButtomSheetWidget extends StatelessWidget {
                                 context.pop();
                               },
                               child: Text(
-                                'Checkout',
+                                S.of(context).Checkout,
                                 style: AppStyles.style700w16(context),
                               ),
                             ),
@@ -87,7 +88,7 @@ class CartButtomSheetWidget extends StatelessWidget {
                 );
               },
               child: Text(
-                'Checkout',
+                S.of(context).Checkout,
                 style: AppStyles.style700w16(context),
               ),
             ),

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:swift_mart/core/functions/is_arabic.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/custom_alert_dialog.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/profile_image_section.dart';
 import 'package:swift_mart/features/theme/presentation/managers/cubit/theme_cubit.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({
@@ -20,8 +22,12 @@ class ProfileViewBody extends StatelessWidget {
       slivers: [
         //Profile Appbar
         SliverPadding(
-          padding:
-              const EdgeInsets.only(top: 20, bottom: 20, right: 12, left: 5),
+          padding: EdgeInsets.only(
+            top: 20,
+            bottom: 20,
+            right: isArabic() ? 5 : 12,
+            left: isArabic() ? 12 : 5,
+          ),
           sliver: SliverAppBar(
             leading: GestureDetector(
               onTap: () {
@@ -46,7 +52,7 @@ class ProfileViewBody extends StatelessWidget {
             ),
             centerTitle: true,
             title: Text(
-              'Profile',
+              S.of(context).Profile,
               style: AppStyles.styleSemiBold30(context),
             ),
             actions: [
@@ -93,14 +99,14 @@ class ProfileViewBody extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Text(
-                  'Account Setting',
+                  S.of(context).AccountSetting,
                   style: AppStyles.style7500w14(context)
                       .copyWith(color: Colors.grey),
                 ),
               ),
               ListTile(
                 title: Text(
-                  'Edit Profile',
+                  S.of(context).EditProfile,
                   style: AppStyles.styleRegular20(context),
                 ),
                 trailing: const Icon(
@@ -112,7 +118,7 @@ class ProfileViewBody extends StatelessWidget {
               ),
               ListTile(
                 title: Text(
-                  'Forgot Password',
+                  S.of(context).ForgotPassword,
                   style: AppStyles.styleRegular20(context),
                 ),
                 trailing: const Icon(
@@ -124,7 +130,7 @@ class ProfileViewBody extends StatelessWidget {
               ),
               ListTile(
                 title: Text(
-                  'Orders',
+                  S.of(context).Orders,
                   style: AppStyles.styleRegular20(context),
                 ),
                 trailing: const Icon(
@@ -133,6 +139,25 @@ class ProfileViewBody extends StatelessWidget {
                 onTap: () {
                   GoRouter.of(context).push(RouterPath.kOrdersView);
                 },
+              ),
+              ListTile(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      S.of(context).Language,
+                      style: AppStyles.styleRegular20(context),
+                    ),
+                    Text(
+                      S.of(context).English,
+                      style: AppStyles.styleGreyReg16(context),
+                    ),
+                  ],
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios_outlined,
+                ),
+                onTap: () {},
               ),
             ],
           ),

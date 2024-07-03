@@ -6,6 +6,7 @@ import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/widgets/custom_loading_indicator.dart';
 import 'package:swift_mart/features/auth/presentatiion/managers/reset_password_cubit/rest_password_cubit.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/widgets/forgot_password_from.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class MobileForgotPassswordBody extends StatelessWidget {
   const MobileForgotPassswordBody({
@@ -30,7 +31,9 @@ class MobileForgotPassswordBody extends StatelessWidget {
             context.pop();
           } else if (state is RestPasswordDone) {
             showedScaffoldMessage(
-                context: context, message: 'Check your emial');
+              context: context,
+              message: S.of(context).CheckYourEmial,
+            );
 
             GoRouter.of(context).pushReplacement(
               RouterPath.kLoginView,

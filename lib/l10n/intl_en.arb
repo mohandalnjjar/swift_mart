@@ -1,0 +1,43 @@
+{
+    
+
+
+    "SwiftMart":"Swift Mart",
+    "Selectedforyou" :"Selected for you",
+    "MostRated":"Most Rated",
+    "Search":"Search",
+    "SearchForProduct":"Search for product",
+    "LastSeen":"Last Seen",
+    "LastSearch":"Last Search",
+    "favorites":"favorites",
+    "YourFavorites":"Your favorites",
+    "List":"List",
+    "Profile":"Profile",
+    "AccountSetting":"Account Setting",
+    "EditProfile":"Edit Profile",
+    "ForgotPassword":"Forgot Password",
+    "Orders":"Orders",
+    "Language":"Language",
+    "English":"English",
+    "Description":"Description",
+    "SizeGuide":"Size Guide",
+    "AddToCart":"Add to cart",
+    "Cart":"Cart",
+    "YourCart":"Your Cart",
+    "Checkout":"Checkout",
+    "TotalPrice":"Total Price",
+    "ChangeImage":"Change Image",
+    "AreYouSureWantLogOut":"Are you sure want log out ?",
+    "Cancle":"Cancle",
+    "logOut":"log out",
+    "CheckYourEmial":"Check your emial",
+    "Loading":"Loading...",
+    "EnterYourEmail":"Enter your email",
+    "WeWillSendAResetLink":"we will send a reset link",
+    "Email":"Email",
+    "ResetPassword":"Reset Password",
+    "OrdersSummary":"Orders Summary",
+    "Code":"Code",
+    "shipping":"shipping"
+
+}

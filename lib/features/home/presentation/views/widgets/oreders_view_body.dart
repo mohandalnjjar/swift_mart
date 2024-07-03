@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/ordders_item.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class OrdersViewBody extends StatelessWidget {
   const OrdersViewBody({
@@ -24,7 +25,7 @@ class OrdersViewBody extends StatelessWidget {
             ),
             centerTitle: true,
             title: Text(
-              'Order Summary',
+              S.of(context).OrdersSummary,
               style: AppStyles.styleSemiBold30(context),
             ),
           ),
@@ -39,4 +40,3 @@ class OrdersViewBody extends StatelessWidget {
     );
   }
 }
-

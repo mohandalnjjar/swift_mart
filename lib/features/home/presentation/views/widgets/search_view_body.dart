@@ -5,6 +5,7 @@ import 'package:swift_mart/core/utils/widgets/custom_text_form_field.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/custom_cart_button.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/last_search_text_list.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/search_last_seen_list.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({
@@ -23,7 +24,7 @@ class SearchViewBody extends StatelessWidget {
           sliver: SliverAppBar(
             centerTitle: true,
             title: Text(
-              'Search',
+              S.of(context).Search,
               style: AppStyles.styleSemiBold30(context),
             ),
             actions: const [
@@ -42,14 +43,14 @@ class SearchViewBody extends StatelessWidget {
                   prefixIcon: const Icon(
                     IconlyLight.search,
                   ),
-                  hint: 'Search for product',
+                  hint: S.of(context).SearchForProduct,
                   hintStyle: AppStyles.styleRegular17(context),
                 ),
                 const SizedBox(
                   height: 25,
                 ),
                 Text(
-                  'Last Seen',
+                  S.of(context).LastSeen,
                   style: AppStyles.styleSemiBold24(context),
                 ),
                 const SearchLastSeenList(),
@@ -57,7 +58,7 @@ class SearchViewBody extends StatelessWidget {
                   height: 15,
                 ),
                 Text(
-                  'Last Search',
+                  S.of(context).LastSearch,
                   style: AppStyles.styleSemiBold24(context),
                 ),
               ],

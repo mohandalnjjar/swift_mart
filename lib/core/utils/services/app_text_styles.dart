@@ -130,6 +130,20 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleRegular30(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 30, context: context),
+    );
+  }
+
+  static TextStyle styleRegular40(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 40, context: context),
+    );
+  }
+
   static TextStyle styleRegular26(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w400,

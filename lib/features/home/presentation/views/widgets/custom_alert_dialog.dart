@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swift_mart/core/functions/is_arabic.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   const CustomAlertDialog({
@@ -11,10 +13,14 @@ class CustomAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      contentPadding: const EdgeInsets.only(bottom: 14, right: 14, top: 30),
-      // icon: const Icon(IconlyLight.logout),
+      contentPadding: EdgeInsets.only(
+        bottom: 14,
+        right: isArabic() ? 0 : 14,
+        top: 30,
+        left: isArabic() ? 14 : 0,
+      ),
       title: Text(
-        'Are you sure want log out ?',
+        S.of(context).AreYouSureWantLogOut,
         style: AppStyles.styleRegular22(context),
       ),
       shape: RoundedRectangleBorder(
@@ -26,9 +32,7 @@ class CustomAlertDialog extends StatelessWidget {
           TextButton(
             style: TextButton.styleFrom(
               backgroundColor: AppColors.kPrimaryColor,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(7),
               ),
@@ -37,7 +41,7 @@ class CustomAlertDialog extends StatelessWidget {
               context.pop();
             },
             child: Text(
-              '   log out   ',
+              S.of(context).logOut,
               style: AppStyles.styleRegular15(context).copyWith(
                 fontSize: 15,
                 color: Colors.white,
@@ -50,7 +54,7 @@ class CustomAlertDialog extends StatelessWidget {
           TextButton(
             style: TextButton.styleFrom(
               backgroundColor: AppColors.kWhitePrimaryColor,
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(7),
               ),
@@ -59,7 +63,7 @@ class CustomAlertDialog extends StatelessWidget {
               context.pop();
             },
             child: Text(
-              '   Cancle   ',
+              S.of(context).Cancle,
               style: AppStyles.styleRegular15(context).copyWith(
                 fontSize: 15,
               ),

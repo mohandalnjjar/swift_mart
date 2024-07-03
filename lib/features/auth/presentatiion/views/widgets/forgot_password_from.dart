@@ -4,6 +4,7 @@ import 'package:swift_mart/core/functions/validators/validators.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/core/utils/widgets/custom_text_form_field.dart';
 import 'package:swift_mart/features/auth/presentatiion/managers/reset_password_cubit/rest_password_cubit.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class ForGotPasswordFrom extends StatefulWidget {
   const ForGotPasswordFrom({
@@ -29,11 +30,11 @@ class _ForGotPasswordFromState extends State<ForGotPasswordFrom> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'Enter your email',
+            S.of(context).EnterYourEmail,
             style: AppStyles.styleSemiBold30(context),
           ),
           Text(
-            'we will send a reset link',
+            S.of(context).WeWillSendAResetLink,
             style: AppStyles.styleSemiBold30(context),
           ),
           const SizedBox(
@@ -43,7 +44,7 @@ class _ForGotPasswordFromState extends State<ForGotPasswordFrom> {
             onSaved: (value) {
               email = value;
             },
-            hint: 'Email',
+            hint: S.of(context).Email,
             validator: (value) {
               return Validators.emailValidator(value);
             },
@@ -65,7 +66,7 @@ class _ForGotPasswordFromState extends State<ForGotPasswordFrom> {
               }
             },
             child: Text(
-              'Reset Password',
+              S.of(context).ResetPassword,
               style: AppStyles.style700w16(context),
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class DetailsButtomSheetWidget extends StatelessWidget {
   const DetailsButtomSheetWidget({
@@ -31,7 +32,7 @@ class DetailsButtomSheetWidget extends StatelessWidget {
                 width: 7,
               ),
               Text(
-                'Add to cart',
+                S.of(context).AddToCart,
                 style: AppStyles.styleSemiBold17(context),
               ),
             ],

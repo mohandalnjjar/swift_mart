@@ -4,6 +4,7 @@ import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/custom_cart_button.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/flash_sale_list.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/product_item.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({
@@ -25,10 +26,10 @@ class HomeViewBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 20),
           sliver: SliverAppBar(
             title: Text(
-              'Swift Mart',
+              S.of(context).SwiftMart,
               style: AppStyles.styleSemiBold30(context),
             ),
-            actions:const [
+            actions: const [
               CustomCartButton(),
             ],
           ),
@@ -78,7 +79,7 @@ class HomeViewBody extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'Selected for you',
+                  S.of(context).Selectedforyou,
                   style: AppStyles.styleRegular24(context),
                 ),
                 const Spacer(),
@@ -112,7 +113,7 @@ class HomeViewBody extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'Most Rated',
+                  S.of(context).MostRated,
                   style: AppStyles.styleRegular24(context),
                 ),
                 const Spacer(),

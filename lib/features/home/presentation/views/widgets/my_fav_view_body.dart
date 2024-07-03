@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:swift_mart/core/functions/is_arabic.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/custom_cart_button.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/favoriest_item.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class MyFavViewBody extends StatelessWidget {
   const MyFavViewBody({
@@ -20,7 +22,7 @@ class MyFavViewBody extends StatelessWidget {
           sliver: SliverAppBar(
             centerTitle: true,
             title: Text(
-              'favorites',
+              S.of(context).favorites,
               style: AppStyles.styleSemiBold30(context),
             ),
             actions: const [
@@ -34,25 +36,21 @@ class MyFavViewBody extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              'Your favorites',
-              style: AppStyles.styleRegular24(context)
-                  .copyWith(fontSize: 40, fontWeight: FontWeight.normal),
+              S.of(context).YourFavorites,
+              style: AppStyles.styleRegular40(context),
             ),
           ),
         ),
         //titles
-
         SliverPadding(
-          padding: const EdgeInsets.only(
-            left: 8.0,
+          padding: EdgeInsets.only(
+            left: isArabic() ? 0 : 8.0,
+            right: isArabic() ? 8.0 : 0,
             bottom: 10,
           ),
           sliver: SliverToBoxAdapter(
-            child: Text(
-              'List ( 5 )',
-              style: AppStyles.styleRegular24(context)
-                  .copyWith(fontSize: 30, fontWeight: FontWeight.normal),
-            ),
+            child: Text('${S.of(context).List} (5)',
+                style: AppStyles.styleRegular30(context)),
           ),
         ),
         //fav Sliver Grid

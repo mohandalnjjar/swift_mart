@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swift_mart/core/functions/is_arabic.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/cart_item.dart';
+import 'package:swift_mart/generated/l10n.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({
@@ -24,7 +26,7 @@ class CartViewBody extends StatelessWidget {
             ),
             centerTitle: true,
             title: Text(
-              'Cart',
+              S.of(context).Cart,
               style: AppStyles.styleSemiBold30(context),
             ),
           ),
@@ -34,25 +36,26 @@ class CartViewBody extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              'Your Cart',
-              style: AppStyles.styleRegular24(context)
-                  .copyWith(fontSize: 40, fontWeight: FontWeight.normal),
+              S.of(context).YourCart,
+              style: AppStyles.styleRegular40(context),
             ),
           ),
         ),
         //titles
 
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        SliverPadding(
+          padding: EdgeInsets.only(
+            left: isArabic() ? 0 : 8.0,
+            right: isArabic() ? 8.0 : 0,
+            bottom: 10,
+          ),
+          sliver: SliverToBoxAdapter(
             child: Text(
-              'List ( 10 )',
-              style: AppStyles.styleRegular24(context)
-                  .copyWith(fontSize: 30, fontWeight: FontWeight.normal),
+              '${S.of(context).List} (5)',
+              style: AppStyles.styleRegular30(context),
             ),
           ),
         ),
-
         //Cart list of Items
 
         SliverList.builder(
@@ -62,7 +65,10 @@ class CartViewBody extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
                 height: MediaQuery.sizeOf(context).height * .19,
-                child: const CartItem(),
+                child: const Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: CartItem(),
+                ),
               ),
             );
           },
