@@ -419,6 +419,46 @@ class S {
       args: [number],
     );
   }
+
+  /// `Arabic`
+  String get Arabic {
+    return Intl.message(
+      'Arabic',
+      name: 'Arabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language changed successfully`
+  String get LanguageChangedSuccessfully {
+    return Intl.message(
+      'Language changed successfully',
+      name: 'LanguageChangedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Some thing went wrong tyr again`
+  String get SomeThingWentWongTyrAgain {
+    return Intl.message(
+      'Some thing went wrong tyr again',
+      name: 'SomeThingWentWongTyrAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language already used`
+  String get LanguageAlreadyUsed {
+    return Intl.message(
+      'Language already used',
+      name: 'LanguageAlreadyUsed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -428,6 +468,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'ar'),
+      Locale.fromSubtags(languageCode: 'de'),
     ];
   }
 

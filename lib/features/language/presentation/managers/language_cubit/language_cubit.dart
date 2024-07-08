@@ -11,21 +11,30 @@ class LanguageCubit extends Cubit<LanguageState> {
   String currentLanguage = 'en';
 
   Future<void> changeAppLanguage({required String langValue}) async {
+    emit(
+      LanguageLoading(),
+    );
     var result = await languageRepoImpl.setLanguage(langValue: langValue);
     currentLanguage = langValue;
 
-    result.fold((langFailed) {
-      emit(
-        LanguageFailed(errorMeassage: langFailed),
-      );
-    }, (langChanged) {
-      emit(
-        LanguageChangeDone(),
-      );
-    });
+    result.fold(
+      (langFailed) {
+        emit(
+          LanguageFailed(errorMeassage: langFailed),
+        );
+      },
+      (langChanged) {
+        emit(
+          LanguageChangeDone(),
+        );
+      },
+    );
   }
 
   Future<void> getAppLanguage({required BuildContext context}) async {
+    emit(
+      LanguageLoading(),
+    );
     var result = await languageRepoImpl.getLanguage(context: context);
 
     result.fold(
@@ -35,6 +44,8 @@ class LanguageCubit extends Cubit<LanguageState> {
         );
       },
       (getDone) {
+        currentLanguage = getDone;
+
         emit(
           GetLanguageDone(),
         );

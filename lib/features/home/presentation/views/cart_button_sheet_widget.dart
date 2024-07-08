@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/payment/data/repos/check_out_repo_impl.dart';
+import 'package:swift_mart/features/payment/presentation/managers/payment_cubit/payment_cubit.dart';
+import 'package:swift_mart/features/payment/presentation/views/widgets/payment_sheet_widget.dart';
 import 'package:swift_mart/generated/l10n.dart';
 
 class CartButtomSheetWidget extends StatelessWidget {
@@ -20,63 +23,11 @@ class CartButtomSheetWidget extends StatelessWidget {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return SizedBox(
-                      height: MediaQuery.sizeOf(context).height * .2,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 13),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  height: 5,
-                                  width: 30,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey,
-                                    borderRadius: BorderRadius.circular(100),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  S.of(context).TotalPrice,
-                                  style: AppStyles.styleRegular22(context),
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.attach_money_outlined,
-                                      color: Colors.green,
-                                    ),
-                                    Text(
-                                      '2394',
-                                      style: AppStyles.styleSemiBold19(context),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const Spacer(),
-                            ElevatedButton(
-                              onPressed: () {
-                                context.pop();
-                              },
-                              child: Text(
-                                S.of(context).Checkout,
-                                style: AppStyles.style700w16(context),
-                              ),
-                            ),
-                          ],
-                        ),
+                    return BlocProvider(
+                      create: (context) => PaymentCubit(
+                        CheckOutRepoImpl(),
                       ),
+                      child: const PaymentSheetWidget(),
                     );
                   },
                   shape: const RoundedRectangleBorder(

@@ -1,0 +1,48 @@
+{
+    "SwiftMart": "Swift Mart",
+    "Selectedforyou": "Für Sie ausgewählt",
+    "MostRated": "Am besten bewertet",
+    "Search": "Suche",
+    "SearchForProduct": "Nach Produkt suchen",
+    "LastSeen": "Zuletzt gesehen",
+    "LastSearch": "Letzte Suche",
+    "favorites": "Favoriten",
+    "YourFavorites": "Ihre Favoriten",
+    "Profile": "Profil",
+    "AccountSetting": "Kontoeinstellungen",
+    "EditProfile": "Profil bearbeiten",
+    "ForgotPassword": "Passwort vergessen",
+    "Orders": "Bestellungen",
+    "Language": "Sprache",
+    "English": "Englisch",
+    "Description": "Beschreibung",
+    "SizeGuide": "Größentabelle",
+    "AddToCart": "In den Warenkorb",
+    "Cart": "Warenkorb",
+    "YourCart": "Ihr Warenkorb",
+    "Checkout": "Zur Kasse",
+    "TotalPrice": "Gesamtpreis",
+    "ChangeImage": "Bild ändern",
+    "AreYouSureWantLogOut": "Möchten Sie sich wirklich abmelden?",
+    "Cancle": "Abbrechen",
+    "logOut": "Abmelden",
+    "CheckYourEmial": "Überprüfen Sie Ihre E-Mail",
+    "Loading": "Lädt...",
+    "EnterYourEmail": "Geben Sie Ihre E-Mail ein",
+    "WeWillSendAResetLink": "Wir senden einen Link zum Zurücksetzen",
+    "Email": "E-Mail",
+    "ResetPassword": "Passwort zurücksetzen",
+    "OrdersSummary": "Bestellübersicht",
+    "Code": "Code",
+    "shipping": "Versand",
+    "List": "Liste({number})",
+    "@List": {
+        "Description": "Anzahl der Liste",
+        "placeholders": {
+            "number": {
+                "type": "String"
+            }
+        }
+    },
+    "Arabic": "Arabisch"
+}

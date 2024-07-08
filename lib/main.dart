@@ -3,7 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:swift_mart/core/functions/app_theme_func.dart';
+import 'package:swift_mart/core/utils/services/api_keys.dart';
 import 'package:swift_mart/core/utils/services/app_router.dart';
 import 'package:swift_mart/features/home/presentation/managers/fetc_user_data_cubit/fetch_user_data_cubit.dart';
 import 'package:swift_mart/features/language/data/repos/language_repo_impl.dart';
@@ -18,6 +20,8 @@ void main(List<String> args) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  Stripe.publishableKey = ApiKeys.publishablekey;
   runApp(
     DevicePreview(
       enabled: !true,
@@ -44,7 +48,7 @@ class SwiftMart extends StatelessWidget {
         BlocProvider(
           create: (context) => LanguageCubit(
             languageRepoImpl: LanguageRepoImpl(),
-          ),
+          )..getAppLanguage(context: context),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

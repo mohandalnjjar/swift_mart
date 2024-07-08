@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "AccountSetting":
             MessageLookupByLibrary.simpleMessage("Account Setting"),
         "AddToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
+        "Arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "AreYouSureWantLogOut":
             MessageLookupByLibrary.simpleMessage("Are you sure want log out ?"),
         "Cancle": MessageLookupByLibrary.simpleMessage("Cancle"),
@@ -45,6 +46,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "ForgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "Language": MessageLookupByLibrary.simpleMessage("Language"),
+        "LanguageAlreadyUsed":
+            MessageLookupByLibrary.simpleMessage("Language already used"),
+        "LanguageChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Language changed successfully"),
         "LastSearch": MessageLookupByLibrary.simpleMessage("Last Search"),
         "LastSeen": MessageLookupByLibrary.simpleMessage("Last Seen"),
         "List": m0,
@@ -60,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Selectedforyou":
             MessageLookupByLibrary.simpleMessage("Selected for you"),
         "SizeGuide": MessageLookupByLibrary.simpleMessage("Size Guide"),
+        "SomeThingWentWongTyrAgain": MessageLookupByLibrary.simpleMessage(
+            "Some thing went wrong tyr again"),
         "SwiftMart": MessageLookupByLibrary.simpleMessage("Swift Mart"),
         "TotalPrice": MessageLookupByLibrary.simpleMessage("Total Price"),
         "WeWillSendAResetLink":

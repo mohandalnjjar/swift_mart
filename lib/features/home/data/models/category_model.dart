@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-
-class CategoryItmeModel {
+class CategoryItemModel {
   final String title;
-  final void Function(BuildContext context) onPressed;
+  final String langShort;
   final String image;
 
-  const CategoryItmeModel({
+  const CategoryItemModel({
     required this.image,
     required this.title,
-    required this.onPressed,
+    required this.langShort,
   });
 }

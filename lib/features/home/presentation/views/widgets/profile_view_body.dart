@@ -141,23 +141,16 @@ class ProfileViewBody extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      S.of(context).Language,
-                      style: AppStyles.styleRegular20(context),
-                    ),
-                    Text(
-                      S.of(context).English,
-                      style: AppStyles.styleGreyReg16(context),
-                    ),
-                  ],
+                title: Text(
+                  S.of(context).Language,
+                  style: AppStyles.styleRegular20(context),
                 ),
                 trailing: const Icon(
                   Icons.arrow_forward_ios_outlined,
                 ),
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).push(RouterPath.kLanguageView);
+                },
               ),
             ],
           ),

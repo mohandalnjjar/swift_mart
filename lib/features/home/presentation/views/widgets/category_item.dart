@@ -6,7 +6,7 @@ import 'package:swift_mart/features/home/data/models/category_model.dart';
 class CategoryItem extends StatelessWidget {
   const CategoryItem({super.key, required this.categoryItmeModel});
 
-  final CategoryItmeModel categoryItmeModel;
+  final CategoryItemModel categoryItmeModel;
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -47,7 +47,5 @@ ThemeData appThemeData({required bool isDark, required BuildContext context}) {
       backgroundColor:
           isDark ? AppColors.kDarkScaffoldColor : AppColors.kLightScaffoldColor,
     ),
- 
- 
   );
 }

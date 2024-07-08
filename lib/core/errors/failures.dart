@@ -31,3 +31,8 @@ class FirebaseAuthExcep extends Failure {
     }
   }
 }
+
+
+class ServerFailure extends Failure{
+  ServerFailure({required super.errorMessage});
+}

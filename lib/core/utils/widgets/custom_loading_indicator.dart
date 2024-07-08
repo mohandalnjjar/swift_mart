@@ -48,8 +48,6 @@ class CustomLoadingIndicator extends StatelessWidget {
   }
 }
 
-
-
 // import 'package:flutter/material.dart';
 // import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 
@@ -68,28 +66,28 @@ class CustomLoadingIndicator extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
 //     if (inAsyncCall) {
-      // return Container(
-      //   color: overlayColor.withOpacity(0.5),
-      //   child: Center(
-      //     child: Container(
-      //       padding: const EdgeInsets.all(20),
-      //       decoration: BoxDecoration(
-      //         color: Colors.white,
-      //         borderRadius: BorderRadius.circular(12),
-      //       ),
-      //       child: Column(
-      //         mainAxisSize: MainAxisSize.min,
-      //         children: [
-      //           const CircularProgressIndicator(),
-      //           const SizedBox(height: 20),
-      //           Text(
-      //             loadingText,
-      //             style: AppStyles.style700w16(context),
-      //           ),
-      //         ],             ),
-      //     ),
+// return Container(
+//   color: overlayColor.withOpacity(0.5),
+//   child: Center(
+//     child: Container(
+//       padding: const EdgeInsets.all(20),
+//       decoration: BoxDecoration(
+//         color: Colors.white,
+//         borderRadius: BorderRadius.circular(12),
+//       ),
+//       child: Column(
+//         mainAxisSize: MainAxisSize.min,
+//         children: [
+//           const CircularProgressIndicator(),
+//           const SizedBox(height: 20),
+//           Text(
+//             loadingText,
+//             style: AppStyles.style700w16(context),
+//           ),
+//         ],             ),
+//     ),
 //      ),
 //       );
-//     } 
+//     }
 //   }
 // }

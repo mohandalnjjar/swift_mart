@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:swift_mart/core/utils/const/app_images.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/custom_cart_button.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/flash_sale_list.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/product_item.dart';
 import 'package:swift_mart/generated/l10n.dart';
+
+import '../../../../../core/utils/const/app_constance.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({
@@ -29,8 +33,14 @@ class HomeViewBody extends StatelessWidget {
               S.of(context).SwiftMart,
               style: AppStyles.styleSemiBold30(context),
             ),
-            actions: const [
-              CustomCartButton(),
+            actions: [
+              CustomButton(
+                icon: const Icon(
+                  Ionicons.cart,
+                  color: Colors.white,
+                ),
+                onTap: () => GoRouter.of(context).push(RouterPath.kCartView),
+              ),
             ],
           ),
         ),

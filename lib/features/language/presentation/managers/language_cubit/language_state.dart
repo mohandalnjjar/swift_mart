@@ -8,8 +8,8 @@ final class LanguageInitial extends LanguageState {}
 final class LanguageLoading extends LanguageState {}
 
 final class LanguageChangeDone extends LanguageState {}
-final class GetLanguageDone extends LanguageState {}
 
+final class GetLanguageDone extends LanguageState {}
 
 final class LanguageFailed extends LanguageState {
   final String errorMeassage;

@@ -8,6 +8,7 @@ import 'package:swift_mart/features/home/presentation/views/details_view.dart';
 import 'package:swift_mart/features/home/presentation/views/edit_profile_view.dart';
 import 'package:swift_mart/features/home/presentation/views/home_view.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/register_view.dart';
+import 'package:swift_mart/features/language/presentation/views/language_view.dart';
 import 'package:swift_mart/features/home/presentation/views/my_fav_view.dart';
 import 'package:swift_mart/features/home/presentation/views/orders_view.dart';
 import 'package:swift_mart/main_page_view.dart';
@@ -68,6 +69,10 @@ abstract class AppRouter {
       GoRoute(
         path: RouterPath.kEditProfileView,
         builder: (conext, state) => const EditProfileView(),
+      ),
+      GoRoute(
+        path: RouterPath.kLanguageView,
+        builder: (conext, state) => const LanguageView(),
       ),
     ],
   );
