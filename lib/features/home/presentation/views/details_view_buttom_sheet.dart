@@ -33,7 +33,7 @@ class DetailsButtomSheetWidget extends StatelessWidget {
               ),
               Text(
                 S.of(context).AddToCart,
-                style: AppStyles.styleSemiBold17(context),
+                style: AppStyles.styleSemiBold18(context),
               ),
             ],
           ),

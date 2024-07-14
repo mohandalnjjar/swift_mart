@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/payment/data/repos/check_out_repo_impl.dart';
 import 'package:swift_mart/features/payment/presentation/managers/payment_cubit/payment_cubit.dart';
@@ -13,11 +14,59 @@ class CartButtomSheetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Row(
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: AppColors.kPrimaryColor,
+          ),
+        ),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(
+            17,
+          ),
+          topRight: Radius.circular(
+            17,
+          ),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  S.of(context).TotalPrice,
+                  style: AppStyles.styleRegular20(context),
+                ),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.attach_money_outlined,
+                      color: Colors.green,
+                    ),
+                    Text(
+                      '2394',
+                      style: AppStyles.styleSemiBold19(context),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: ElevatedButton(
               onPressed: () {
                 showModalBottomSheet(
@@ -39,8 +88,8 @@ class CartButtomSheetWidget extends StatelessWidget {
                 );
               },
               child: Text(
-                S.of(context).Checkout,
-                style: AppStyles.style700w16(context),
+                'Complete Payment',
+                style: AppStyles.styleSemiBold18(context),
               ),
             ),
           ),
