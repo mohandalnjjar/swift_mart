@@ -6,30 +6,32 @@ class DetailsVewiNumsListItem extends StatelessWidget {
   const DetailsVewiNumsListItem({
     super.key,
     required this.isActive,
+    required this.sizeValue,
   });
+
   final bool isActive;
+  final String sizeValue;
+
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 2 / 2,
-      child: Container(
-        margin: const EdgeInsets.only(
-          right: 8,
-          top: 8,
-          bottom: 8,
+    return Container(
+      margin: const EdgeInsets.only(
+        right: 8,
+        top: 8,
+        bottom: 8,
+      ),
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(13),
+        color: isActive ? AppColors.kPrimaryColor : Colors.transparent,
+        border: Border.all(
+          color: isActive ? Colors.transparent : Colors.grey,
         ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(13),
-          color: isActive ? AppColors.kPrimaryColor : Colors.transparent,
-          border: Border.all(
-            color: isActive ? Colors.transparent : Colors.grey,
-          ),
-        ),
-        child: Center(
-          child: Text(
-            '43',
-            style: AppStyles.styleRegular23(context),
-          ),
+      ),
+      child: Center(
+        child: Text(
+          sizeValue,
+          style: AppStyles.styleRegular22(context),
         ),
       ),
     );

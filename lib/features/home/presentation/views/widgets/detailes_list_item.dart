@@ -1,8 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
 
-class DetailedListItem extends StatelessWidget {
-  const DetailedListItem(
+class DetailedListSelectedImage extends StatelessWidget {
+  const DetailedListSelectedImage(
       {super.key, required this.isActive, required this.image});
   final bool isActive;
   final String image;
@@ -26,7 +27,10 @@ class DetailedListItem extends StatelessWidget {
                 )
               : null,
         ),
-        child: Image.asset(image),
+        child: CachedNetworkImage(
+          imageUrl: image,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }

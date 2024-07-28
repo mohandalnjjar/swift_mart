@@ -1,13 +1,15 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:firebase_core/firebase_core.dart'; 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:swift_mart/core/functions/app_theme_func.dart';
+import 'package:swift_mart/core/utils/app_theme_data.dart';
 import 'package:swift_mart/core/utils/services/api_keys.dart';
 import 'package:swift_mart/core/utils/services/app_router.dart';
+import 'package:swift_mart/features/home/data/repos/home_repo_impl.dart';
 import 'package:swift_mart/features/home/presentation/managers/fetc_user_data_cubit/fetch_user_data_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/fetch_products_cubit/fetch_products_cubit.dart';
 import 'package:swift_mart/features/language/data/repos/language_repo_impl.dart';
 import 'package:swift_mart/features/language/presentation/managers/language_cubit/language_cubit.dart';
 import 'package:swift_mart/features/theme/data/repos/theme_repo_impl.dart';
@@ -49,6 +51,11 @@ class SwiftMart extends StatelessWidget {
           create: (context) => LanguageCubit(
             languageRepoImpl: LanguageRepoImpl(),
           )..getAppLanguage(context: context),
+        ),
+        BlocProvider(
+          create: (context) => FetchProductsCubit(
+            HomeRepoImpl(),
+          )..fetchProductsMethod(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

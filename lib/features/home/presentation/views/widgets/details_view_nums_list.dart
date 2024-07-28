@@ -4,7 +4,10 @@ import 'package:swift_mart/features/home/presentation/views/widgets/details_vewi
 class DetailsViewNumsList extends StatefulWidget {
   const DetailsViewNumsList({
     super.key,
+    required this.sizes,
   });
+
+  final List<dynamic>? sizes;
 
   @override
   State<DetailsViewNumsList> createState() => _DetailsViewNumsList();
@@ -15,23 +18,31 @@ class _DetailsViewNumsList extends State<DetailsViewNumsList> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: 4,
-      itemBuilder: (BuildContext context, int index) {
-        return GestureDetector(
-          onTap: () {
-            if (activeIndex != index) {
-              setState(() {
-                activeIndex = index;
-              });
-            }
+    if (widget.sizes == null || widget.sizes!.isEmpty) {
+      return const SizedBox();
+    } else {
+      return SizedBox(
+        height: 67,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: widget.sizes!.length,
+          itemBuilder: (BuildContext context, int index) {
+            return GestureDetector(
+              onTap: () {
+                if (activeIndex != index) {
+                  setState(() {
+                    activeIndex = index;
+                  });
+                }
+              },
+              child: DetailsVewiNumsListItem(
+                isActive: activeIndex == index,
+                sizeValue: widget.sizes![index],
+              ),
+            );
           },
-          child: DetailsVewiNumsListItem(
-            isActive: activeIndex == index,
-          ),
-        );
-      },
-    );
+        ),
+      );
+    }
   }
 }

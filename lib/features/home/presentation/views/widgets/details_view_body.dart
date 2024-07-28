@@ -1,9 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
-import 'package:swift_mart/core/utils/const/app_images.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/home/data/models/product_model.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/detailes_list_item.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/details_view_nums_list.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/rating_widget.dart';
@@ -11,7 +12,12 @@ import 'package:swift_mart/features/theme/presentation/managers/cubit/theme_cubi
 import 'package:swift_mart/generated/l10n.dart';
 
 class DetailsViewBody extends StatefulWidget {
-  const DetailsViewBody({super.key});
+  const DetailsViewBody({
+    super.key,
+    required this.productModel,
+  });
+
+  final ProductModel productModel;
 
   @override
   State<DetailsViewBody> createState() => _DetailsViewBodyState();
@@ -22,19 +28,14 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> items = [
-      Assets.imagesShoe2,
-      Assets.imagesShose3,
-      Assets.imagesShose4,
-      Assets.imagesShose,
-    ];
+    final List<dynamic> items = widget.productModel.images;
 
     return CustomScrollView(
       slivers: [
         SliverAppBar(
           flexibleSpace: FlexibleSpaceBar(
-            background: Image.asset(
-              items[activeIndex],
+            background: CachedNetworkImage(
+              imageUrl: items[activeIndex],
               fit: BoxFit.contain,
             ),
           ),
@@ -101,20 +102,12 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
               children: [
                 const SizedBox(height: 10),
                 Text(
-                  'Nike air jordan xxxv',
+                  widget.productModel.title,
                   style: AppStyles.styleRegular24(context),
                   maxLines: 3,
                 ),
                 const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'Nike Men\'s shose',
-                  style: AppStyles.styleGreyReg16(context),
-                  maxLines: 3,
-                ),
-                const SizedBox(
-                  height: 5,
+                  height: 1,
                 ),
 
                 Row(
@@ -122,7 +115,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                     const RatingWidget(),
                     const Spacer(),
                     Text(
-                      r'$230,12',
+                      '\$ ${widget.productModel.price}',
                       style: AppStyles.styleBold27(context),
                     ),
                   ],
@@ -143,7 +136,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                             });
                           }
                         },
-                        child: DetailedListItem(
+                        child: DetailedListSelectedImage(
                           isActive: activeIndex == index,
                           image: items[index],
                         ),
@@ -151,16 +144,21 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                     },
                   ),
                 ),
-                const SizedBox(height: 15),
-                Text(
-                  S.of(context).SizeGuide,
-                  style: AppStyles.styleSemiBold24(context),
-                ),
-                const SizedBox(height: 15),
+                widget.productModel.sizes!.isNotEmpty
+                    ? Column(
+                        children: [
+                          const SizedBox(height: 15),
+                          Text(
+                            S.of(context).SizeGuide,
+                            style: AppStyles.styleSemiBold24(context),
+                          ),
+                          const SizedBox(height: 15),
+                        ],
+                      )
+                    : const SizedBox(),
                 //DetailsViewNumsList
-                const SizedBox(
-                  height: 67,
-                  child: DetailsViewNumsList(),
+                DetailsViewNumsList(
+                  sizes: widget.productModel.sizes,
                 ),
                 //Details Sections
                 ExpansionTile(
@@ -172,7 +170,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                   ),
                   children: [
                     Text(
-                      'Hello thsi is me muhanned alnjjar a flutter developer with greatmind in conding Hello thsi is me muhanned alnjjar a flutter developer with greatmind in conding Hello thsi is me muhanned alnjjar a flutter developer with greatmind in conding Hello thsi is me muhanned alnjjar a flutter developer with greatmind in conding Hello thsi is me muhanned alnjjar a flutter developer with greatmind in conding',
+                      widget.productModel.description,
                       style: AppStyles.styleRegular17(context),
                     ),
                   ],

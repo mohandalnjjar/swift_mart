@@ -3,6 +3,7 @@ import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/check_auth_state_view.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/forgot_password_view.dart';
 import 'package:swift_mart/features/auth/presentatiion/views/login_view.dart';
+import 'package:swift_mart/features/home/data/models/product_model.dart';
 import 'package:swift_mart/features/home/presentation/views/cart_view.dart';
 import 'package:swift_mart/features/home/presentation/views/details_view.dart';
 import 'package:swift_mart/features/home/presentation/views/edit_profile_view.dart';
@@ -44,7 +45,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: RouterPath.kDetailsView,
-        builder: (context, state) => const DetailsView(),
+        builder: (context, state) => DetailsView(
+          productModel: state.extra as ProductModel,
+        ),
       ),
       GoRoute(
         path: RouterPath.kSearchView,
