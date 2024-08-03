@@ -1,23 +1,28 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
-import 'package:swift_mart/core/utils/const/app_images.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/home/data/models/product_model.dart';
+import 'package:swift_mart/features/home/presentation/managers/remove_from_cubit/remove_from_cart_cubit.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
     super.key,
+    required this.productModel,
   });
-
+  final ProductModel productModel;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         GestureDetector(
           onTap: () {
-            GoRouter.of(context).push(RouterPath.kDetailsView);
+            GoRouter.of(context)
+                .push(RouterPath.kDetailsView, extra: productModel);
           },
           child: AspectRatio(
             aspectRatio: 3 / 4,
@@ -27,7 +32,9 @@ class CartItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(13),
                 color: AppColors.kWhitePrimaryColor,
               ),
-              child: Image.asset(Assets.imagesShose),
+              child: CachedNetworkImage(
+                imageUrl: productModel.images[0],
+              ),
             ),
           ),
         ),
@@ -41,7 +48,7 @@ class CartItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Nike Aire Zone',
+                productModel.title,
                 style: AppStyles.styleRegular21(context),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
@@ -50,7 +57,7 @@ class CartItem extends StatelessWidget {
                 height: 7,
               ),
               Text(
-                r'$ 304',
+                '\$ ${productModel.price}',
                 style: AppStyles.styleSemiBold21(context),
               ),
               const SizedBox(
@@ -100,7 +107,10 @@ class CartItem extends StatelessWidget {
           children: [
             Expanded(
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  BlocProvider.of<RemoveFromCartCubit>(context)
+                      .removeToCartMethod(productModel: productModel);
+                },
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 30),
                   padding: const EdgeInsets.symmetric(horizontal: 14),

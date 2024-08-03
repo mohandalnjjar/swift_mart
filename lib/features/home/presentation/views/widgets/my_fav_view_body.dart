@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:swift_mart/core/functions/is_arabic.dart';
+import 'package:swift_mart/core/functions/show_meeage.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/home/presentation/managers/fetch_user_favoriets_cubit/fetch_user_favoriets_cubit.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/custom_cart_button.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/favoriest_item.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/favoriets_loading_indicatorl_list.dart';
 import 'package:swift_mart/generated/l10n.dart';
 
 class MyFavViewBody extends StatelessWidget {
@@ -17,7 +21,6 @@ class MyFavViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        //fav Appbar
         SliverPadding(
           padding: const EdgeInsets.symmetric(
             vertical: 20,
@@ -39,8 +42,6 @@ class MyFavViewBody extends StatelessWidget {
             ],
           ),
         ),
-
-        // titles
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -50,29 +51,57 @@ class MyFavViewBody extends StatelessWidget {
             ),
           ),
         ),
-        //titles
-        SliverPadding(
-          padding: EdgeInsets.only(
-            left: isArabic() ? 0 : 8.0,
-            right: isArabic() ? 8.0 : 0,
-            bottom: 10,
-          ),
-          sliver: SliverToBoxAdapter(
-            child: Text(
-              S.of(context).List('5'),
-              style: AppStyles.styleRegular30(context),
-            ),
-          ),
+        BlocBuilder<FetchUserFavorietsCubit, FetchUserFavorietsState>(
+          builder: (context, state) {
+            if (state is FetchUserFavorietsSuccess) {
+              return SliverPadding(
+                padding: EdgeInsets.only(
+                  left: isArabic() ? 0 : 8.0,
+                  right: isArabic() ? 8.0 : 0,
+                  bottom: 10,
+                ),
+                sliver: SliverToBoxAdapter(
+                  child: Text(
+                    S.of(context).List('${state.products.length}'),
+                    style: AppStyles.styleRegular30(context),
+                  ),
+                ),
+              );
+            } else if (state is FetchUserFavorietsFailed) {
+              return SliverToBoxAdapter(
+                child: Text(state.errorMessage),
+              );
+            } else {
+              return SliverToBoxAdapter(
+                child: Text('s'),
+              );
+            }
+          },
         ),
-        //fav Sliver Grid
-        SliverGrid.builder(
-          itemCount: 5,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisExtent: 240,
-          ),
-          itemBuilder: (context, index) => const FavoritesItem(),
-        )
+        BlocConsumer<FetchUserFavorietsCubit, FetchUserFavorietsState>(
+          builder: (context, state) {
+            if (state is FetchUserFavorietsSuccess) {
+              return SliverGrid.builder(
+                itemCount: state.products.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisExtent: 240,
+                ),
+                itemBuilder: (context, index) => FavoritesItem(
+                  productModel: state.products[index],
+                ),
+              );
+            } else {
+              return const FavloritesLoadingIndicatorList();
+            }
+          },
+          listener: (context, state) {
+            if (state is FetchUserFavorietsFailed) {
+              showedScaffoldMessage(
+                  context: context, message: state.errorMessage);
+            }
+          },
+        ),
       ],
     );
   }

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/data/models/product_model.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/add_remove_to_favoriets_cubit.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/detailes_list_item.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/details_view_nums_list.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/rating_widget.dart';
@@ -33,67 +34,66 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          flexibleSpace: FlexibleSpaceBar(
-            background: CachedNetworkImage(
-              imageUrl: items[activeIndex],
-              fit: BoxFit.contain,
+            flexibleSpace: FlexibleSpaceBar(
+              background: CachedNetworkImage(
+                imageUrl: items[activeIndex],
+                fit: BoxFit.contain,
+              ),
             ),
-          ),
-          backgroundColor: AppColors.kWhitePrimaryColor,
-          expandedHeight: MediaQuery.sizeOf(context).height * .40,
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(10),
-            child: BlocBuilder<ThemeCubit, ThemeCubitState>(
-              builder: (context, state) {
-                return Container(
-                  height: 30,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: BlocProvider.of<ThemeCubit>(context).themeMode
-                        ? AppColors.kDarkScaffoldColor
-                        : AppColors.kLightScaffoldColor,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(70),
-                      topRight: Radius.circular(70),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        height: 5,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
+            backgroundColor: AppColors.kWhitePrimaryColor,
+            expandedHeight: MediaQuery.sizeOf(context).height * .40,
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(10),
+              child: BlocBuilder<ThemeCubit, ThemeCubitState>(
+                builder: (context, state) {
+                  return Container(
+                    height: 30,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: BlocProvider.of<ThemeCubit>(context).themeMode
+                          ? AppColors.kDarkScaffoldColor
+                          : AppColors.kLightScaffoldColor,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(70),
+                        topRight: Radius.circular(70),
                       ),
-                    ],
-                  ),
-                );
-              },
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 10),
+                          height: 5,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-          automaticallyImplyLeading: false,
-          actions: [
-            GestureDetector(
-              onTap: () => context.pop(),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.arrow_back_ios_new,
+            automaticallyImplyLeading: false,
+            actions: [
+              GestureDetector(
+                onTap: () => context.pop(),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.arrow_back_ios_new,
+                  ),
                 ),
               ),
-            ),
-            const Spacer(),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.favorite_border,
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: AddRemoveToFavorietsButton(
+                  productModel: widget.productModel,
+                ),
               ),
-            ),
-          ],
-        ),
+            ]),
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           sliver: SliverToBoxAdapter(

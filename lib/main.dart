@@ -8,8 +8,13 @@ import 'package:swift_mart/core/utils/app_theme_data.dart';
 import 'package:swift_mart/core/utils/services/api_keys.dart';
 import 'package:swift_mart/core/utils/services/app_router.dart';
 import 'package:swift_mart/features/home/data/repos/home_repo_impl.dart';
-import 'package:swift_mart/features/home/presentation/managers/fetc_user_data_cubit/fetch_user_data_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/add_favoriets_cubit/add_favorites_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/fetch_user_cart_cubit/fetch_user_cart_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/fetch_user_data_cubit/fetch_user_data_cubit.dart';
 import 'package:swift_mart/features/home/presentation/managers/fetch_products_cubit/fetch_products_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/fetch_user_favoriets_cubit/fetch_user_favoriets_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/remove_favoriets_cubit/remove_favorites_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/remove_from_cubit/remove_from_cart_cubit.dart';
 import 'package:swift_mart/features/language/data/repos/language_repo_impl.dart';
 import 'package:swift_mart/features/language/presentation/managers/language_cubit/language_cubit.dart';
 import 'package:swift_mart/features/theme/data/repos/theme_repo_impl.dart';
@@ -56,6 +61,28 @@ class SwiftMart extends StatelessWidget {
           create: (context) => FetchProductsCubit(
             HomeRepoImpl(),
           )..fetchProductsMethod(),
+        ),
+        BlocProvider(
+          create: (context) => AddFavoritesCubit(
+            homeRepoImpl: HomeRepoImpl(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => RemoveFavoritesCubit(
+            homeRepoImpl: HomeRepoImpl(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) =>
+              FetchUserFavorietsCubit()..fetchFavorietsMethod(),
+        ),
+        BlocProvider(
+          create: (context) => FetchUserCartCubit()..fetchUserCartMethod(),
+        ),
+        BlocProvider(
+          create: (context) => RemoveFromCartCubit(
+            homeRepoImpl: HomeRepoImpl(),
+          ),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

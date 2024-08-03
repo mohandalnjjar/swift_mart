@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/functions/is_arabic.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
-import 'package:swift_mart/features/home/presentation/views/widgets/cart_item.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/user_cart_list_bloc_builder.dart';
 import 'package:swift_mart/generated/l10n.dart';
 
 class CartViewBody extends StatelessWidget {
@@ -57,22 +57,7 @@ class CartViewBody extends StatelessWidget {
           ),
         ),
         //Cart list of Items
-
-        SliverList.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: MediaQuery.sizeOf(context).height * .19,
-                child: const Directionality(
-                  textDirection: TextDirection.ltr,
-                  child: CartItem(),
-                ),
-              ),
-            );
-          },
-        ),
+        const UserCartBlocBuilderList(),
       ],
     );
   }

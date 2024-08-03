@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/data/models/product_model.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/add_remove_to_favoriets_cubit.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
@@ -54,16 +54,11 @@ class ProductItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    productModel.price,
+                    '\$ ${productModel.price}',
                     style: AppStyles.style700w16(context),
                   ),
                   const Spacer(),
-                  InkWell(
-                    onTap: () {},
-                    child: const Icon(
-                      Ionicons.heart_outline,
-                    ),
-                  )
+                  AddRemoveToFavorietsButton(productModel: productModel),
                 ],
               ),
             ],
