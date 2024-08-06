@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/home/presentation/views/cart_products_details_builder.dart';
 import 'package:swift_mart/features/payment/data/repos/check_out_repo_impl.dart';
 import 'package:swift_mart/features/payment/presentation/managers/payment_cubit/payment_cubit.dart';
 import 'package:swift_mart/features/payment/presentation/views/widgets/payment_sheet_widget.dart';
-import 'package:swift_mart/generated/l10n.dart';
 
 class CartButtomSheetWidget extends StatelessWidget {
   const CartButtomSheetWidget({
@@ -38,29 +38,11 @@ class CartButtomSheetWidget extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 17),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  S.of(context).TotalPrice,
-                  style: AppStyles.styleRegular20(context),
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.attach_money_outlined,
-                      color: Colors.green,
-                    ),
-                    Text(
-                      '2394',
-                      style: AppStyles.styleSemiBold19(context),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CartProductsDetailsBuilder(),
+            ],
           ),
           const SizedBox(
             height: 15,

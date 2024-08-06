@@ -49,7 +49,7 @@ class AddRemoveToCartButton extends StatelessWidget {
                     width: 7,
                   ),
                   Text(
-                    isCart ? 'Added to cart' : S.of(context).AddToCart,
+                    isCart ? 'Remove from cart' : S.of(context).AddToCart,
                     style: AppStyles.styleSemiBold18(context),
                   ),
                 ],

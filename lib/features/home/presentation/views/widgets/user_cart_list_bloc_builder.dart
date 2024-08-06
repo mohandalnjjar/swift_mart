@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swift_mart/core/functions/show_meeage.dart';
 import 'package:swift_mart/features/home/presentation/managers/fetch_user_cart_cubit/fetch_user_cart_cubit.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/cart_item.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/cart_loading_list.dart';
 
 class UserCartBlocBuilderList extends StatelessWidget {
   const UserCartBlocBuilderList({
@@ -23,17 +25,19 @@ class UserCartBlocBuilderList extends StatelessWidget {
                   child: Directionality(
                     textDirection: TextDirection.ltr,
                     child: CartItem(
-                      productModel: state.products[index],
+                      productModel: state.products.reversed.toList()[index],
                     ),
                   ),
                 ),
               );
             },
           );
-        } else {
+        } else if (state is FetchUserCartFailure) {
+          showedScaffoldMessage(context: context, message: state.errorMessage);
           return const SliverToBoxAdapter(
-            child: Text('data'),
-          );
+            child: SizedBox.shrink(), );
+        } else {
+          return const CartLoadingList();
         }
       },
     );

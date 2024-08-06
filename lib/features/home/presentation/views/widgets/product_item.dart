@@ -30,7 +30,7 @@ class ProductItem extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(13),
                     color: AppColors.kWhitePrimaryColor,

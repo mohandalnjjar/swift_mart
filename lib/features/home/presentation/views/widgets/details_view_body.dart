@@ -35,9 +35,12 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
       slivers: [
         SliverAppBar(
             flexibleSpace: FlexibleSpaceBar(
-              background: CachedNetworkImage(
-                imageUrl: items[activeIndex],
-                fit: BoxFit.contain,
+              background: Padding(
+                padding: const EdgeInsets.only(bottom: 30),
+                child: CachedNetworkImage(
+                  imageUrl: items[activeIndex],
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
             backgroundColor: AppColors.kWhitePrimaryColor,
@@ -162,6 +165,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                 ),
                 //Details Sections
                 ExpansionTile(
+                  initiallyExpanded: true,
                   tilePadding: const EdgeInsets.all(0),
                   shape: Border.all(color: Colors.transparent),
                   title: Text(

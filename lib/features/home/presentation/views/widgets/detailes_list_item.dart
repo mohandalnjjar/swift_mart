@@ -12,6 +12,7 @@ class DetailedListSelectedImage extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 3 / 2,
       child: Container(
+        padding: const EdgeInsets.all(4),
         margin: const EdgeInsets.only(
           right: 8,
           top: 8,

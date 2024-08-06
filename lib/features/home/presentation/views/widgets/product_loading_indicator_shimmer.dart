@@ -10,8 +10,8 @@ class ProductLoadingShimmerIndicatorItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: AppColors.kWhitePrimaryColor,
-      highlightColor: AppColors.kPrimaryColor,
+      highlightColor: AppColors.kWhitePrimaryColor,
+      baseColor: Colors.grey,
       child: AspectRatio(
         aspectRatio: 2 / 3.4,
         child: Column(
@@ -21,7 +21,7 @@ class ProductLoadingShimmerIndicatorItem extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: ThemeData().dialogBackgroundColor.withOpacity(0.3),
+                  color: AppColors.kWhitePrimaryColor,
                 ),
               ),
             ),
@@ -34,7 +34,7 @@ class ProductLoadingShimmerIndicatorItem extends StatelessWidget {
                 height: 17,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: ThemeData().dialogBackgroundColor.withOpacity(0.3),
+                  color: AppColors.kWhitePrimaryColor,
                 ),
               ),
             ),
@@ -47,7 +47,7 @@ class ProductLoadingShimmerIndicatorItem extends StatelessWidget {
                 height: 17,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: ThemeData().dialogBackgroundColor.withOpacity(0.3),
+                  color: AppColors.kWhitePrimaryColor,
                 ),
               ),
             ),

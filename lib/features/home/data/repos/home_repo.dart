@@ -14,4 +14,7 @@ abstract class HomeRepo {
   Future<Either<Failure, void>> addToCart({required ProductModel productModel});
   Future<Either<Failure, void>> removeFromCart(
       {required ProductModel productModel});
+
+  Future<Either<Failure, int>> updateQuantity(
+      {required ProductModel productModel, required bool increase});
 }

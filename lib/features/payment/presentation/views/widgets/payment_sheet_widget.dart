@@ -23,7 +23,7 @@ class _PaymentSheetWidgetState extends State<PaymentSheetWidget> {
     ];
 
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height * .23,
+      height: MediaQuery.sizeOf(context).height * .25,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 13),
         child: Column(

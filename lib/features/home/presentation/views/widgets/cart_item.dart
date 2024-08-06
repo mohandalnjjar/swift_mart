@@ -8,13 +8,16 @@ import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/data/models/product_model.dart';
 import 'package:swift_mart/features/home/presentation/managers/remove_from_cubit/remove_from_cart_cubit.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/update_quantity_button_builder.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
     super.key,
     required this.productModel,
   });
+
   final ProductModel productModel;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -38,11 +41,9 @@ class CartItem extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(
-          width: 10,
-        ),
+        const SizedBox(width: 10),
         SizedBox(
-          width: MediaQuery.sizeOf(context).width * .4,
+          width: MediaQuery.of(context).size.width * 0.4,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,55 +54,18 @@ class CartItem extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(
-                height: 7,
-              ),
-              Text(
-                '\$ ${productModel.price}',
-                style: AppStyles.styleSemiBold21(context),
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              Flexible(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: const Icon(
-                        Icons.add_circle_rounded,
-                        color: AppColors.kPrimaryColor,
-                        size: 27,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      '22',
-                      style: AppStyles.styleRegular18(context),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: const Icon(
-                        Icons.remove_circle_outline,
-                        color: AppColors.kPrimaryColor,
-                        size: 27,
-                      ),
-                    ),
-                  ],
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 7),
+                child: Text(
+                  '\$ ${productModel.price}',
+                  style: AppStyles.styleSemiBold21(context),
                 ),
               ),
+              UpdateQuantityButtonBuilder(productModel: productModel),
             ],
           ),
         ),
-        const Spacer(
-          flex: 3,
-        ),
+        const Spacer(flex: 3),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

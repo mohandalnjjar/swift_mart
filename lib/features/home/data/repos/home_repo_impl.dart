@@ -97,12 +97,13 @@ class HomeRepoImpl extends HomeRepo {
       final User? user = auth.currentUser;
       final userFav =
           FirebaseFirestore.instance.collection('users').doc(user!.uid);
-
+      Map<String, dynamic> updatedProduct = productModel.toMap();
+      updatedProduct['quantity'] = 1;
       await userFav.update(
         {
           'userCart': FieldValue.arrayUnion(
             [
-              productModel.toMap(),
+              updatedProduct,
             ],
           )
         },
@@ -127,17 +128,66 @@ class HomeRepoImpl extends HomeRepo {
       final userFav =
           FirebaseFirestore.instance.collection('users').doc(user!.uid);
 
+      DocumentSnapshot docSnapshot = await userFav.get();
+      List<dynamic> array = docSnapshot.get('userCart');
+      Map<String, dynamic>? productToRemove;
+
+      for (var product in array) {
+        if ((product as Map<String, dynamic>)['id'] == productModel.id) {
+          productToRemove = product;
+        }
+      }
       await userFav.update(
         {
-          'userCart': FieldValue.arrayRemove(
-            [
-              productModel.toMap(),
-            ],
-          )
+          'userCart': FieldValue.arrayRemove([productToRemove])
         },
       );
 
       return right(null);
+    } catch (e) {
+      return left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> updateQuantity(
+      {required ProductModel productModel, required bool increase}) async {
+    try {
+      final FirebaseAuth auth = FirebaseAuth.instance;
+      final User? user = auth.currentUser;
+
+      DocumentReference docRef =
+          FirebaseFirestore.instance.collection('users').doc(user!.uid);
+      DocumentSnapshot docSnapshot = await docRef.get();
+      List<dynamic> array = docSnapshot.get('userCart');
+      int index = array.indexWhere((item) => item['id'] == productModel.id);
+
+      int currentQuantity = array[index]['quantity'];
+      int newQuantity = increase ? currentQuantity + 1 : currentQuantity - 1;
+
+      if (index != -1 && newQuantity > 0) {
+        Map<String, dynamic> updatedProduct = productModel.toMap();
+        updatedProduct['quantity'] = newQuantity;
+
+        array[index] = updatedProduct;
+
+        await docRef.update(
+          {
+            'userCart': array,
+          },
+        );
+        return right(newQuantity);
+      } else {
+        return left(
+          ServerFailure(
+            errorMessage: 'Can\'t be less than one item',
+          ),
+        );
+      }
     } catch (e) {
       return left(
         ServerFailure(

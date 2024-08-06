@@ -1,10 +1,9 @@
-
 class ProductModel {
   final String title;
   final String price;
   final String description;
   final String category;
-  final String quantity;
+  int quantity;
   final String? discount;
   final List<dynamic> images;
   final List<dynamic>? sizes;
@@ -21,7 +20,7 @@ class ProductModel {
     required this.images,
     this.sizes,
   });
-  
+
   factory ProductModel.fromFireBase(Map<String, dynamic> doc) {
     return ProductModel(
       title: doc['title'],
@@ -34,7 +33,6 @@ class ProductModel {
       id: doc['id'],
     );
   }
-
 
   factory ProductModel.fromMap(Map<String, dynamic> data) {
     return ProductModel(
