@@ -12,6 +12,7 @@ import 'package:swift_mart/features/auth/presentatiion/views/register_view.dart'
 import 'package:swift_mart/features/language/presentation/views/language_view.dart';
 import 'package:swift_mart/features/home/presentation/views/my_fav_view.dart';
 import 'package:swift_mart/features/home/presentation/views/orders_view.dart';
+import 'package:swift_mart/features/reviews/presentation/views/rating_view.dart';
 import 'package:swift_mart/main_page_view.dart';
 import 'package:swift_mart/features/home/presentation/views/profile_view.dart';
 import 'package:swift_mart/features/home/presentation/views/search_view.dart';
@@ -76,6 +77,10 @@ abstract class AppRouter {
       GoRoute(
         path: RouterPath.kLanguageView,
         builder: (conext, state) => const LanguageView(),
+      ),
+      GoRoute(
+        path: RouterPath.kRattingView,
+        builder: (conext, state) => const RattingView(),
       ),
     ],
   );

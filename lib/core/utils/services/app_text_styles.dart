@@ -144,6 +144,13 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleRegular60(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 60, context: context),
+    );
+  }
+
   static TextStyle styleRegular26(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w400,

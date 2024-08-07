@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 
 class RatingWidget extends StatelessWidget {
@@ -10,7 +12,9 @@ class RatingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        GoRouter.of(context).push(RouterPath.kRattingView);
+      },
       child: Row(
         children: [
           const Icon(

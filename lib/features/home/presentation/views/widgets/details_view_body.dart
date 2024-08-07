@@ -110,9 +110,8 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                   maxLines: 3,
                 ),
                 const SizedBox(
-                  height: 1,
+                  height: 15,
                 ),
-
                 Row(
                   children: [
                     const RatingWidget(),
@@ -178,6 +177,10 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                       style: AppStyles.styleRegular17(context),
                     ),
                   ],
+                ),
+                Text(
+                  'Ratting (132)',
+                  style: AppStyles.styleSemiBold24(context),
                 )
               ],
             ),
