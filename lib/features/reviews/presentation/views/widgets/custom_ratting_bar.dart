@@ -10,25 +10,28 @@ class RatingBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: List.generate(5, (index) {
-        if (index < rating.floor()) {
-          return Icon(Icons.star,
-              color: Theme.of(context).primaryColor, size: size);
-        } else if (index == rating.floor() && rating % 1 != 0) {
-          return Stack(
-            children: [
-              Icon(Icons.star,
-                  color: Theme.of(context).primaryColor, size: size),
-              ClipRect(
-                clipper: _HalfClipper(),
-                child: Icon(Icons.star, color: Colors.grey, size: size),
-              ),
-            ],
-          );
-        } else {
-          return Icon(Icons.star, color: Colors.grey, size: size);
-        }
-      }),
+      children: List.generate(
+        5,
+        (index) {
+          if (index < rating.floor()) {
+            return Icon(Icons.star,
+                color: Theme.of(context).colorScheme.primary, size: size);
+          } else if (index == rating.floor() && rating % 1 != 0) {
+            return Stack(
+              children: [
+                Icon(Icons.star,
+                    color: Theme.of(context).colorScheme.primary, size: size),
+                ClipRect(
+                  clipper: _HalfClipper(),
+                  child: Icon(Icons.star, color: Colors.grey, size: size),
+                ),
+              ],
+            );
+          } else {
+            return Icon(Icons.star, color: Colors.grey, size: size);
+          }
+        },
+      ),
     );
   }
 }

@@ -30,7 +30,9 @@ ThemeData appThemeData({required bool isDark, required BuildContext context}) {
         isDark ? AppColors.kDarkScaffoldColor : AppColors.kLightScaffoldColor,
     brightness: isDark ? Brightness.dark : Brightness.light,
     textTheme: isDark
-        ? GoogleFonts.robotoTextTheme(ThemeData.dark().textTheme)
+        ? GoogleFonts.robotoTextTheme(
+            ThemeData.dark().textTheme,
+          )
         : GoogleFonts.robotoTextTheme(),
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor:

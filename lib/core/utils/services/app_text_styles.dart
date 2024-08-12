@@ -10,6 +10,14 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleSemiBold14(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w600,
+      color: Theme.of(context).colorScheme.primary,
+      fontSize: getResponsizeFontSize(fontSize: 14, context: context),
+    );
+  }
+
   static TextStyle styleSemiBold17(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w600,
@@ -71,6 +79,11 @@ abstract class AppStyles {
     return TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: getResponsizeFontSize(fontSize: 15, context: context),
+    );
+  }  static TextStyle styleRegular16(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 16, context: context),
     );
   }
 

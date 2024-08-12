@@ -16,8 +16,9 @@ class CustomTextFromField extends StatelessWidget {
     this.suffixIcon,
     this.obscureText = false,
     this.hintStyle,
+    this.maxLines = 1,
   });
-
+  final int maxLines;
   final String hint;
   final TextStyle? hintStyle;
   final Widget? prefixIcon;
@@ -34,6 +35,7 @@ class CustomTextFromField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
       obscureText: obscureText,
       onChanged: onChanged,
       focusNode: focusNode,
@@ -58,6 +60,12 @@ class CustomTextFromField extends StatelessWidget {
             color: AppColors.kWhitePrimaryColor,
           ),
           borderRadius: BorderRadius.circular(10),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.red,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
         ),
       ),
     );

@@ -23,6 +23,7 @@ class RattingIndicator extends StatelessWidget {
         ),
         Expanded(
           child: LinearProgressIndicator(
+            
             minHeight: 11,
             value: value,
             borderRadius: BorderRadius.circular(7),

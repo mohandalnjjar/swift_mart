@@ -29,4 +29,17 @@ abstract class Validators {
       return null;
     }
   }
+
+  //description Validator
+  static String? descriptionValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a description';
+    } else if (value.length < 15) {
+      return 'Description must be at least 15 characters long';
+    } else if (value.length > 500) {
+      return 'Description must be 500 characters or less';
+    } else {
+      return null;
+    }
+  }
 }
