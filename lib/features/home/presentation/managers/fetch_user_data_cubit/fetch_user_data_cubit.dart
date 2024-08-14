@@ -18,16 +18,19 @@ class FetchUserDataCubit extends Cubit<FetchUserDataState> {
         .collection('users')
         .doc(user!.uid)
         .snapshots()
-        .listen((data) {
-      emit(
-        FetchUserDataDone(data: data),
-      );
-    }, onError: (error) {
-      emit(
-        FetchUserDataFailed(
-          errorMessage: error.toString(),
-        ),
-      );
-    });
+        .listen(
+      (data) {
+        emit(
+          FetchUserDataDone(data: data),
+        );
+      },
+      onError: (error) {
+        emit(
+          FetchUserDataFailed(
+            errorMessage: error.toString(),
+          ),
+        );
+     },
+    );
   }
 }

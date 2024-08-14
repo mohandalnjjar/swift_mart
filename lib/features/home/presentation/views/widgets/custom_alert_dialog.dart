@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/functions/is_arabic.dart';
@@ -38,6 +40,7 @@ class CustomAlertDialog extends StatelessWidget {
               ),
             ),
             onPressed: () {
+              FirebaseAuth.instance.signOut();
               context.pop();
             },
             child: Text(

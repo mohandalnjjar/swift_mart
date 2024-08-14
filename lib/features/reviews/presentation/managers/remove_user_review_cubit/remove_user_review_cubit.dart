@@ -3,31 +3,32 @@ import 'package:meta/meta.dart';
 import 'package:swift_mart/features/reviews/data/models/review_model.dart';
 import 'package:swift_mart/features/reviews/data/repos/review_repo_impl.dart';
 
-part 'add_review_state.dart';
+part 'remove_user_review_state.dart';
 
-class AddReviewCubit extends Cubit<AddReviewCubitState> {
-  AddReviewCubit({required this.reviewRepoImpl}) : super(AddReviewInitial());
+class RemoveUserReviewCubit extends Cubit<RemoveUserReviewState> {
+  RemoveUserReviewCubit({required this.reviewRepoImpl})
+      : super(RemoveUserReviewInitial());
 
   final ReviewRepoImpl reviewRepoImpl;
 
-  Future<void> addReviewMethod(
+  Future<void> removeReviewMethod(
       {required ReviewModel revieModel, required String productId}) async {
     emit(
-      AddReviewLoading(),
+      RemoveUserReviewLoading(),
     );
 
-    var result = await reviewRepoImpl.addReview(
+    var result = await reviewRepoImpl.removeUserReview(
         revieModel: revieModel, productId: productId);
 
     result.fold(
       (failed) {
         emit(
-          AddReviewFailed(errorMeassage: failed.errorMessage),
+          RemoveUserReviewFailed(errorMessage: failed.errorMessage),
         );
       },
       (success) {
         emit(
-          AddReviewSuccess(),
+          RemoveUserReviewSuccess(),
         );
       },
     );

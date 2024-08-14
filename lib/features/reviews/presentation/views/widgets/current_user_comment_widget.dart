@@ -7,18 +7,26 @@ import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/reviews/data/models/review_model.dart';
 import 'package:swift_mart/features/reviews/presentation/managers/fetch_user_id_cubit/fetch_user_id_cubit.dart';
 import 'package:swift_mart/features/reviews/presentation/views/widgets/custom_ratting_bar.dart';
+import 'package:swift_mart/features/reviews/presentation/views/widgets/remove_review_bloc_button.dart';
 
-class CommentWidget extends StatelessWidget {
-  const CommentWidget({
+class CurrentUserCommentWidget extends StatelessWidget {
+  const CurrentUserCommentWidget({
     super.key,
     required this.reviewModel,
+    required this.productId,
   });
 
   final ReviewModel reviewModel;
+
+  final String productId;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FetchUserIdCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => FetchUserIdCubit(),
+        ),
+      ],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,7 +35,6 @@ class CommentWidget extends StatelessWidget {
               context
                   .read<FetchUserIdCubit>()
                   .fetchUserId(userId: reviewModel.userId);
-
               if (state is FetchUserIdSuccess) {
                 return Row(
                   children: [
@@ -36,7 +43,7 @@ class CommentWidget extends StatelessWidget {
                       child: CachedNetworkImage(
                         height: 45,
                         imageUrl:
-                            'https://scontent.fcai11-1.fna.fbcdn.net/v/t39.30808-6/429897266_315090971555366_5332440714602139373_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFVBWgUOO3APzZ5b6a0YeEQJhbzQZsUVUImFvNBmxRVQg1xpVzPIdrbJ-pZ_Z0uIYHITxWBzT2FpT3vMyIIXzk2&_nc_ohc=qoBREBUrLSAQ7kNvgHT4zHD&_nc_ht=scontent.fcai11-1.fna&oh=00_AYBRS9pwkz1aQTxqVO8V7Efk1gxtWNdt2i5y8yd-N_JM5A&oe=66C05BA3',
+                            'https://scontent.fcai11-1.fna.fbcdn.net/v/t39.30808-6/402651895_253683977696066_5539001254900437267_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFc4sotn7g4b5_wioVqlUCvx59zHDOQiBXHn3McM5CIFXHlCW4Vm_0mMfvtk3de6QFbaYQq4VrFQQ3oecRfd6aA&_nc_ohc=ckbgrqHG2ykQ7kNvgFXTKKg&_nc_ht=scontent.fcai11-1.fna&oh=00_AYB_reXgfW2ET9VcLgKT3JBpFAJ-68Uq3VfRxYl_gAyBsQ&oe=66C12EA9',
                       ),
                     ),
                     const SizedBox(
@@ -45,12 +52,26 @@ class CommentWidget extends StatelessWidget {
                     Text(
                       state.data['name'],
                       style: AppStyles.styleSemiBold16(context),
+                    ),
+                    const Spacer(),
+                    InkWell(
+                      child: const Icon(Icons.more_vert),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return RemoveReviewBlocButton(
+                                reviewModel: reviewModel, productId: productId);
+                          },
+                        );
+                      },
                     )
                   ],
                 );
               } else {
                 return const Text(
-                    'errror yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa333 man hhh');
+                  'errror ya',
+                );
               }
             },
           ),
