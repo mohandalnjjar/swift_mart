@@ -11,7 +11,7 @@ class FetchReviewsAverageCubit extends Cubit<FetchReviewsAverageState> {
   final ReviewRepoImpl reviewRepoImpl;
 
   /// Method to fetch the average review and handle real-time updates
-  void fetchAverageReviewMethod({required String productId}) {
+  Future<void> fetchAverageReviewMethod({required String productId}) async {
     emit(
       FetchReviewsAverageLoading(),
     );

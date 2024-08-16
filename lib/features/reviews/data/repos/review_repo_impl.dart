@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:swift_mart/core/errors/failures.dart';
 import 'package:swift_mart/features/reviews/data/models/review_model.dart';
+import 'package:swift_mart/features/reviews/data/models/star_rating_counts_model.dart';
 import 'package:swift_mart/features/reviews/data/repos/review_repo.dart';
 
 class ReviewRepoImpl extends ReviewRepo {
@@ -121,6 +122,31 @@ class ReviewRepoImpl extends ReviewRepo {
       }
     } catch (e) {
       // In case of error, return the failure
+      yield left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Stream<Either<Failure, StarRatingCounts>> countProductStars(
+      {required String productId}) async* {
+    try {
+      await for (DocumentSnapshot data in FirebaseFirestore.instance
+          .collection('products')
+          .doc(productId)
+          .snapshots()) {
+        var reviews = data.get('reviews') as List<dynamic>?;
+
+        if (reviews != null && reviews.isNotEmpty) {
+          StarRatingCounts starRatingCounts =
+              StarRatingCounts.fromReviews(reviews);
+          yield right(starRatingCounts);
+        }
+      }
+    } catch (e) {
       yield left(
         ServerFailure(
           errorMessage: e.toString(),

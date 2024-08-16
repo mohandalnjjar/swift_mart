@@ -3,14 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/reviews/presentation/managers/fetch_reviews_average_cubit/fetch_reviews_average_cubit.dart';
 import 'package:swift_mart/features/reviews/presentation/managers/fetch_reviews_cubit/fetch_reviews_cubit.dart';
-import 'package:swift_mart/features/reviews/presentation/views/widgets/custom_ratting_bar.dart';
-import 'package:swift_mart/features/reviews/presentation/views/widgets/ratting_indicator.dart';
+import 'package:swift_mart/features/reviews/presentation/views/widgets/fetch_Average_start_system.dart';
+import 'package:swift_mart/features/reviews/presentation/views/widgets/rating_indicator_bloc_builder.dart';
 
 class RattingIndicatorsWidget extends StatelessWidget {
   const RattingIndicatorsWidget({
     super.key,
+    required this.productId,
   });
-
+  final String productId;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FetchReviewsCubit, FetchReviewsState>(
@@ -34,38 +35,10 @@ class RattingIndicatorsWidget extends StatelessWidget {
                     },
                   ),
                 ),
-                const Expanded(
-                  flex: 7,
-                  child: Column(
-                    children: [
-                      RattingIndicator(
-                        stars: '5',
-                        value: 0.9,
-                      ),
-                      RattingIndicator(
-                        stars: '4',
-                        value: 0.4,
-                      ),
-                      RattingIndicator(
-                        stars: '3',
-                        value: 0.3,
-                      ),
-                      RattingIndicator(
-                        stars: '2',
-                        value: 0.2,
-                      ),
-                      RattingIndicator(
-                        stars: '1',
-                        value: 0.1,
-                      ),
-                    ],
-                  ),
-                )
+                RatingIndicatorBlocBuilder(productId: productId),
               ],
             ),
-            const RatingBar(
-              rating: 2.9,
-            ),
+            const AverageStarSystemBlocCubit(),
             const SizedBox(
               height: 5,
             ),

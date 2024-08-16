@@ -8,7 +8,6 @@ class RattingIndicator extends StatelessWidget {
     required this.value,
   });
   final String stars;
-
   final double value;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,6 @@ class RattingIndicator extends StatelessWidget {
         ),
         Expanded(
           child: LinearProgressIndicator(
-            
             minHeight: 11,
             value: value,
             borderRadius: BorderRadius.circular(7),

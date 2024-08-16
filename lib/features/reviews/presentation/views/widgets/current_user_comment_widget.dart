@@ -30,6 +30,13 @@ class CurrentUserCommentWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            'Your Review',
+            style: AppStyles.styleSemiBold24(context),
+          ),
+          const SizedBox(
+            height: 14,
+          ),
           BlocBuilder<FetchUserIdCubit, FetchUserIdState>(
             builder: (context, state) {
               context

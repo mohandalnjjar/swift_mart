@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:swift_mart/core/errors/failures.dart';
 import 'package:swift_mart/features/reviews/data/models/review_model.dart';
+import 'package:swift_mart/features/reviews/data/models/star_rating_counts_model.dart';
 
 abstract class ReviewRepo {
   Future<Either<Failure, void>> addReview(
@@ -15,5 +16,8 @@ abstract class ReviewRepo {
   });
 
   Stream<Either<Failure, double>> fetchReviewAverage(
+      {required String productId});
+
+  Stream<Either<Failure, StarRatingCounts>> countProductStars(
       {required String productId});
 }
