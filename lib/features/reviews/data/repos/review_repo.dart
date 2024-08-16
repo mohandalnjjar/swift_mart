@@ -13,4 +13,7 @@ abstract class ReviewRepo {
     required String productId,
     required String userId,
   });
+
+  Stream<Either<Failure, double>> fetchReviewAverage(
+      {required String productId});
 }

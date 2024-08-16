@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/features/reviews/presentation/managers/fetch_reviews_average_cubit/fetch_reviews_average_cubit.dart';
 import 'package:swift_mart/features/reviews/presentation/managers/fetch_reviews_cubit/fetch_reviews_cubit.dart';
 import 'package:swift_mart/features/reviews/presentation/views/widgets/custom_ratting_bar.dart';
 import 'package:swift_mart/features/reviews/presentation/views/widgets/ratting_indicator.dart';
@@ -20,10 +21,17 @@ class RattingIndicatorsWidget extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  flex: 3,
-                  child: Text(
-                    '2.5',
-                    style: AppStyles.styleRegular60(context),
+                  flex: 4,
+                  child: BlocBuilder<FetchReviewsAverageCubit,
+                      FetchReviewsAverageState>(
+                    builder: (context, state) {
+                      return Text(
+                        state is FetchReviewsAverageSuccess
+                            ? state.average.toString()
+                            : '0.0',
+                        style: AppStyles.styleRegular60(context),
+                      );
+                    },
                   ),
                 ),
                 const Expanded(

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -53,6 +54,8 @@ class RviewsViewBody extends StatelessWidget {
             }
           },
           builder: (context, state) {
+            final auth = FirebaseAuth.instance;
+            User? user = auth.currentUser;
             if (state is FetchReviewsSuccess) {
               return SliverList.builder(
                 itemCount: state.reviews.length,
@@ -61,7 +64,7 @@ class RviewsViewBody extends StatelessWidget {
                     horizontal: 13,
                     vertical: 8,
                   ),
-                  child: index == 0
+                  child: index == 0 && state.reviews[index].userId == user!.uid
                       ? CurrentUserCommentWidget(
                           reviewModel: state.reviews[index],
                           productId: reviewViewDataModel.productId,

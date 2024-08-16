@@ -91,4 +91,41 @@ class ReviewRepoImpl extends ReviewRepo {
       );
     }
   }
+
+  @override
+  Stream<Either<Failure, double>> fetchReviewAverage(
+      {required String productId}) async* {
+    try {
+      // Listen to real-time updates for the specific product
+      await for (DocumentSnapshot data in FirebaseFirestore.instance
+          .collection('products')
+          .doc(productId)
+          .snapshots()) {
+        var userReviews = data.get('reviews') as List<dynamic>?;
+        double totalRating = 0.0;
+
+        if (userReviews != null && userReviews.isNotEmpty) {
+          for (var rating in userReviews) {
+            totalRating += rating['rating'];
+          }
+
+          // Calculate the average rating
+          double averageRating = totalRating / userReviews.length;
+
+          // Yield the result as a right (successful) value
+          yield right((averageRating * 10).truncateToDouble() / 10);
+        } else {
+          // If there are no reviews, return a default value of 0.0
+          yield right(0.0);
+        }
+      }
+    } catch (e) {
+      // In case of error, return the failure
+      yield left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
 }

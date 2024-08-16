@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swift_mart/features/reviews/data/models/review_model.dart';
+import 'package:swift_mart/features/reviews/presentation/managers/fetch_reviews_average_cubit/fetch_reviews_average_cubit.dart';
 import 'package:swift_mart/features/reviews/presentation/managers/remove_user_review_cubit/remove_user_review_cubit.dart';
 
 class RemoveReviewDialog extends StatelessWidget {
@@ -11,7 +12,6 @@ class RemoveReviewDialog extends StatelessWidget {
   });
   final ReviewModel reviewModel;
   final String productId;
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -38,10 +38,14 @@ class RemoveReviewDialog extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            BlocProvider.of<RemoveUserReviewCubit>(context).removeReviewMethod(
-              revieModel: reviewModel,
-              productId: productId,
-            );
+            try {
+              BlocProvider.of<RemoveUserReviewCubit>(context)
+                  .removeReviewMethod(
+                      revieModel: reviewModel, productId: productId);
+            } finally {
+              BlocProvider.of<FetchReviewsAverageCubit>(context)
+                  .fetchAverageReviewMethod(productId: productId);
+            }
             Navigator.of(context).pop();
           },
           child: const Text('Remove'),

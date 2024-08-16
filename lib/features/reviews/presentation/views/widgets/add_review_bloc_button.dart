@@ -29,24 +29,20 @@ class AddReviewBlocButton extends StatelessWidget {
         builder: (context, state) {
           context.read<CheckUserReviewCubit>().checkUserReview(
               userId: user!.uid, productId: reviewViewDataModel.productId);
-          if (state is CheckUserReviewSuccess) {
-            if (state.isReviewed) {
-              return const SizedBox();
-            } else {
-              return CustomButton(
-                icon: const Icon(
-                  Ionicons.add,
-                  color: Colors.white,
+          if (state is CheckUserReviewSuccess && !state.isReviewed) {
+            return CustomButton(
+              icon: const Icon(
+                Ionicons.add,
+                color: Colors.white,
+              ),
+              onTap: () => GoRouter.of(context).push(
+                RouterPath.kAddRattingReview,
+                extra: ReviewViewDataModel(
+                  image: reviewViewDataModel.image,
+                  productId: reviewViewDataModel.productId,
                 ),
-                onTap: () => GoRouter.of(context).push(
-                  RouterPath.kAddRattingReview,
-                  extra: ReviewViewDataModel(
-                    image: reviewViewDataModel.image,
-                    productId: reviewViewDataModel.productId,
-                  ),
-                ),
-              );
-            }
+              ),
+            );
           } else {
             return const SizedBox();
           }

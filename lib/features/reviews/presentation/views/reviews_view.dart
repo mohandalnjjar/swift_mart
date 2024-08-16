@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swift_mart/features/reviews/data/models/review_view_data_model.dart';
+import 'package:swift_mart/features/reviews/data/repos/review_repo_impl.dart';
+import 'package:swift_mart/features/reviews/presentation/managers/fetch_reviews_average_cubit/fetch_reviews_average_cubit.dart';
 import 'package:swift_mart/features/reviews/presentation/managers/fetch_reviews_cubit/fetch_reviews_cubit.dart';
 import 'package:swift_mart/features/reviews/presentation/views/widgets/rating_view_body.dart';
 
@@ -18,6 +20,13 @@ class ReviewsView extends StatelessWidget {
               productId: reviewViewDataModel.productId,
             ),
         ),
+        BlocProvider(
+          create: (context) => FetchReviewsAverageCubit(
+            reviewRepoImpl: ReviewRepoImpl(),
+          )..fetchAverageReviewMethod(
+              productId: reviewViewDataModel.productId,
+            ),
+        )
       ],
       child: Scaffold(
         body: SafeArea(

@@ -17,6 +17,8 @@ import 'package:swift_mart/features/home/presentation/managers/remove_favoriets_
 import 'package:swift_mart/features/home/presentation/managers/remove_from_cubit/remove_from_cart_cubit.dart';
 import 'package:swift_mart/features/language/data/repos/language_repo_impl.dart';
 import 'package:swift_mart/features/language/presentation/managers/language_cubit/language_cubit.dart';
+import 'package:swift_mart/features/reviews/data/repos/review_repo_impl.dart';
+import 'package:swift_mart/features/reviews/presentation/managers/fetch_reviews_average_cubit/fetch_reviews_average_cubit.dart';
 import 'package:swift_mart/features/theme/data/repos/theme_repo_impl.dart';
 import 'package:swift_mart/features/theme/presentation/managers/cubit/theme_cubit.dart';
 import 'package:swift_mart/firebase_options.dart';
@@ -44,6 +46,11 @@ class SwiftMart extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => FetchReviewsAverageCubit(
+            reviewRepoImpl: ReviewRepoImpl(),
+          )
+        ),
         BlocProvider(
           create: (context) => ThemeCubit(
             ThemeRepoImpl(),

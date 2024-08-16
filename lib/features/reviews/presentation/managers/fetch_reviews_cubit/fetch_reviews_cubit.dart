@@ -25,10 +25,9 @@ class FetchReviewsCubit extends Cubit<FetchReviewsState> {
             return ReviewModel.fromJson(data as Map<String, dynamic>);
           },
         ).toList();
-        // Find the review with the specified user ID
+
         int index = reviews.indexWhere((review) => review.userId == user!.uid);
         if (index != -1) {
-          // Remove the review and insert it at index 0
           ReviewModel userReview = reviews.removeAt(index);
           reviews.insert(0, userReview);
         }

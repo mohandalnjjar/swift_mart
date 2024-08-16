@@ -7,6 +7,7 @@ final class FetchUserIdInitial extends FetchUserIdState {}
 
 final class FetchUserIdLoading extends FetchUserIdState {}
 
+// ignore: must_be_immutable
 final class FetchUserIdSuccess extends FetchUserIdState {
   var data;
 
