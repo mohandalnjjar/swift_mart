@@ -42,4 +42,17 @@ abstract class Validators {
       return null;
     }
   }
+
+  static String? phoneNumberValidator(String? value) {
+    if (value == null ||
+        value.isEmpty ||
+        !RegExp(r'^\+?\d{1,4}?[ -]?\(?\d{1,3}?\)?[ -]?\d{1,4}[ -]?\d{1,4}[ -]?\d{1,9}$')
+            .hasMatch(value)) {
+      return 'Please enter your phone number';
+    } else if (value.length < 7 || value.length > 15) {
+      return 'Phone number should be between 7 to 15 digits';
+    } else {
+      return null;
+    }
+  }
 }

@@ -9,7 +9,7 @@ class LanguagePageItem extends StatelessWidget {
     required this.categoryItmeModel,
     required this.isActive,
   });
-  final CategoryItemModel categoryItmeModel;
+  final LanguageCategoryItemModel categoryItmeModel;
   final bool isActive;
 
   @override

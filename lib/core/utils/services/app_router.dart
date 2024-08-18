@@ -13,7 +13,7 @@ import 'package:swift_mart/features/language/presentation/views/language_view.da
 import 'package:swift_mart/features/home/presentation/views/my_fav_view.dart';
 import 'package:swift_mart/features/home/presentation/views/orders_view.dart';
 import 'package:swift_mart/features/reviews/data/models/review_view_data_model.dart';
-import 'package:swift_mart/features/reviews/presentation/views/add_ratting_review.dart';
+import 'package:swift_mart/features/reviews/presentation/views/add_review.dart';
 import 'package:swift_mart/features/reviews/presentation/views/reviews_view.dart';
 import 'package:swift_mart/main_page_view.dart';
 import 'package:swift_mart/features/home/presentation/views/profile_view.dart';

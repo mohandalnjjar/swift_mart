@@ -35,11 +35,8 @@ class _CustomRatingBarState extends State<CustomRatingBar> {
               setState(
                 () {
                   double newRating = index + 1.0;
-                  if (_currentRating == newRating) {
-                    _currentRating -= 0.5;
-                  } else {
-                    _currentRating = newRating;
-                  }
+                  _currentRating = newRating;
+
                   widget.onRatingChanged(_currentRating);
                 },
               );

@@ -20,7 +20,6 @@ class ProfileViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        //Profile Appbar
         SliverPadding(
           padding: EdgeInsets.only(
             top: 20,
@@ -86,11 +85,9 @@ class ProfileViewBody extends StatelessWidget {
             ],
           ),
         ),
-
         const SliverToBoxAdapter(
           child: ProfileImageSection(),
         ),
-
         SliverToBoxAdapter(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

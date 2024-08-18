@@ -23,46 +23,43 @@ class ProductItem extends StatelessWidget {
           RouterPath.kDetailsView,
           extra: productModel,
         ),
-        child: AspectRatio(
-          aspectRatio: 2 / 3.4,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(13),
-                    color: AppColors.kWhitePrimaryColor,
-                  ),
-                  child: CachedNetworkImage(
-                    imageUrl: productModel.images[0],
-                  ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(13),
+                  color: AppColors.kWhitePrimaryColor,
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: productModel.images[0],
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                productModel.title,
-                maxLines: 1,
-                style: AppStyles.styleRegular19(context),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                children: [
-                  Text(
-                    '\$ ${productModel.price}',
-                    style: AppStyles.style700w16(context),
-                  ),
-                  const Spacer(),
-                  AddRemoveToFavorietsButton(productModel: productModel),
-                ],
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              productModel.title,
+              maxLines: 1,
+              style: AppStyles.styleRegular19(context),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Row(
+              children: [
+                Text(
+                  '\$ ${productModel.price}',
+                  style: AppStyles.style700w16(context),
+                ),
+                const Spacer(),
+                AddRemoveToFavorietsButton(productModel: productModel),
+              ],
+            ),
+          ],
         ),
       ),
     );

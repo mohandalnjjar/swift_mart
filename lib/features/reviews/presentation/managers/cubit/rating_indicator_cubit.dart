@@ -18,7 +18,9 @@ class RatingIndicatorCubit extends Cubit<RatingIndicatorState> {
     reviewRepoImpl.countProductStars(productId: productId).listen(
       (response) {
         response.fold((failed) {
-          emit(RatingIndicatorFailed(errorMessage: failed.errorMessage));
+          emit(
+            RatingIndicatorFailed(errorMessage: failed.errorMessage),
+          );
         }, (success) {
           emit(
             RatingIndicatorSuccess(starRatingCounts: success),

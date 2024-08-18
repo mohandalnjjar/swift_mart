@@ -4,8 +4,8 @@ import 'package:swift_mart/features/home/presentation/managers/fetch_products_cu
 import 'package:swift_mart/features/home/presentation/views/widgets/product_item.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/product_loading_indicator_list.dart';
 
-class SelectedForYouWidget extends StatelessWidget {
-  const SelectedForYouWidget({
+class SelectedForYouList extends StatelessWidget {
+  const SelectedForYouList({
     super.key,
   });
 
@@ -14,16 +14,16 @@ class SelectedForYouWidget extends StatelessWidget {
     return BlocBuilder<FetchProductsCubit, FetchProductsState>(
       builder: (context, state) {
         if (state is FetchProductsSuccess) {
-          return SliverToBoxAdapter(
-            child: SizedBox(
-              height: MediaQuery.sizeOf(context).height * .30,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: state.products.length,
-                itemBuilder: (context, index) => ProductItem(
-                  productModel: state.products[index],
-                ),
+          return SliverGrid(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 2 / 2.6,
+            ),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => ProductItem(
+                productModel: state.products[index],
               ),
+              childCount: state.products.length,
             ),
           );
         } else if (state is FetchProductsFailed) {

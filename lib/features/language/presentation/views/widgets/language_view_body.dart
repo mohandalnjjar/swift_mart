@@ -23,74 +23,74 @@ class LanguageViewBody extends StatefulWidget {
 
 class _LanguageViewBodyState extends State<LanguageViewBody> {
   late String selectedLanguage;
-  late List<CategoryItemModel> items;
+  late List<LanguageCategoryItemModel> items;
 
   @override
   void initState() {
     selectedLanguage = BlocProvider.of<LanguageCubit>(context).currentLanguage;
 
     items = [
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'Arabic',
         image: Assets.imagesMg,
         langShort: 'ar',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'English',
         image: Assets.imagesFlagOfUnitedKingdomFlatRoundCorner512x512,
         langShort: 'en',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'German',
         image: Assets.imagesFlagOfGermanyFlatRoundCorner512x512,
         langShort: 'de',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'Spanish',
         image: Assets.imagesFlagOfSpain,
         langShort: 'es',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'Indian',
         image: Assets.imagesFlagOfIndiaFlatRoundCorner512x512,
         langShort: 'in',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'French',
         image: Assets.imagesFlagOfFrance,
         langShort: 'fr',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'Russian',
         image: Assets.imagesFlagOfRussia,
         langShort: 'ru',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'Italy',
         image: Assets.imagesFlagOfItaly,
         langShort: 'it',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'Portuguese',
         image: Assets.imagesFlagOfPortugalFlatRoundCorner512x512,
         langShort: 'pt',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'Urdu',
         image: Assets.imagesFlagOfNorwayFlatRoundCorner512x512,
         langShort: 'ur',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'Indonesian',
         image: Assets.imagesFlagOfIndonesiaFlatRoundCorner512x512,
         langShort: 'id',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'Japanese',
         image: Assets.imagesFlagOfJapanFlatRoundCorner512x512,
         langShort: 'ja',
       ),
-      const CategoryItemModel(
+      const LanguageCategoryItemModel(
         title: 'Vietnamese',
         image: Assets.imagesFlagOfVietnamFlatRoundCorner512x512,
         langShort: 'vi',

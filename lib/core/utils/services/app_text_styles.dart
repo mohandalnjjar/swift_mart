@@ -80,7 +80,9 @@ abstract class AppStyles {
       fontWeight: FontWeight.w400,
       fontSize: getResponsizeFontSize(fontSize: 15, context: context),
     );
-  }  static TextStyle styleRegular16(BuildContext context) {
+  }
+
+  static TextStyle styleRegular16(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: getResponsizeFontSize(fontSize: 16, context: context),
@@ -222,6 +224,21 @@ abstract class AppStyles {
       color: Colors.grey,
       fontWeight: FontWeight.w400,
       fontSize: getResponsizeFontSize(fontSize: 17, context: context),
+    );
+  }
+
+  static TextStyle styleGreyReg20(BuildContext context) {
+    return TextStyle(
+      color: Colors.grey,
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 20, context: context),
+    );
+  }
+  static TextStyle styleGreyReg18(BuildContext context) {
+    return TextStyle(
+      color: Colors.grey,
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 18, context: context),
     );
   }
 }

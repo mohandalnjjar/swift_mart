@@ -17,20 +17,15 @@ class StarRatingCounts {
     final totalReviews = reviews.length.toDouble(); // Total number of reviews
 
     final countFiveStars =
-        reviews.where((review) => review['rating'].round() == 5).length /
-            totalReviews;
+        reviews.where((review) => review['rating'] == 5).length / totalReviews;
     final countFourStars =
-        reviews.where((review) => review['rating'].round() == 4).length /
-            totalReviews;
+        reviews.where((review) => review['rating'] == 4).length / totalReviews;
     final countThreeStars =
-        reviews.where((review) => review['rating'].round() == 3).length /
-            totalReviews;
+        reviews.where((review) => review['rating'] == 3).length / totalReviews;
     final countTwoStars =
-        reviews.where((review) => review['rating'].round() == 2).length /
-            totalReviews;
+        reviews.where((review) => review['rating'] == 2).length / totalReviews;
     final countOneStar =
-        reviews.where((review) => review['rating'].round() == 1).length /
-            totalReviews;
+        reviews.where((review) => review['rating'] == 1).length / totalReviews;
 
     return StarRatingCounts(
       fiveStars: countFiveStars,

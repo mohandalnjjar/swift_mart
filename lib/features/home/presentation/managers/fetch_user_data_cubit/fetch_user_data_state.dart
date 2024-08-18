@@ -6,10 +6,10 @@ final class FetchUserDataInitial extends FetchUserDataState {}
 
 final class FetchUserDataLoading extends FetchUserDataState {}
 
-final class FetchUserDataDone extends FetchUserDataState {
-  final DocumentSnapshot<Map<String, dynamic>> data;
+final class FetchUserDataSuccess extends FetchUserDataState {
+  final UserModel userModel;
 
-  FetchUserDataDone({required this.data});
+  FetchUserDataSuccess({required this.userModel});
 }
 
 final class FetchUserDataFailed extends FetchUserDataState {

@@ -144,6 +144,15 @@ class ReviewRepoImpl extends ReviewRepo {
           StarRatingCounts starRatingCounts =
               StarRatingCounts.fromReviews(reviews);
           yield right(starRatingCounts);
+        } else {
+          yield right(
+            StarRatingCounts(
+                fiveStars: 0.0,
+                fourStars: 0.0,
+                threeStars: 0.0,
+                twoStars: 0.0,
+                oneStar: 0.0),
+          );
         }
       }
     } catch (e) {

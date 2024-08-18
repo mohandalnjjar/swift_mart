@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:swift_mart/features/home/data/models/user_model.dart';
 
 part 'fetch_user_data_state.dart';
 
@@ -21,7 +22,11 @@ class FetchUserDataCubit extends Cubit<FetchUserDataState> {
         .listen(
       (data) {
         emit(
-          FetchUserDataDone(data: data),
+          FetchUserDataSuccess(
+            userModel: UserModel.fromJson(
+              data ,
+            ),
+          ),
         );
       },
       onError: (error) {
@@ -30,7 +35,7 @@ class FetchUserDataCubit extends Cubit<FetchUserDataState> {
             errorMessage: error.toString(),
           ),
         );
-     },
+      },
     );
   }
 }
