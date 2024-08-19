@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:swift_mart/core/errors/failures.dart';
-import 'package:swift_mart/core/functions/add_user_deatails_fire_store.dart';
+import 'package:swift_mart/core/functions/add_user_details_first_time.dart';
 import 'package:swift_mart/core/functions/add_user_details_to_firestore__second_time.dart';
 import 'package:swift_mart/features/auth/data/repos/auth_repo.dart';
 
@@ -33,11 +33,18 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, void>> singUpUserMethod(
-      {required String email, required String password}) async {
+  Future<Either<Failure, void>> singUpUserMethod({
+    required String email,
+    required String password,
+    required String name,
+  }) async {
     try {
       await auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
+
+      await addUserDetailsFistTime(name: name, email: email);
 
       return right(null);
     } catch (e) {

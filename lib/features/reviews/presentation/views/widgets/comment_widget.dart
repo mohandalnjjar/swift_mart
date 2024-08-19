@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
+import 'package:swift_mart/core/utils/const/app_images.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
+import 'package:swift_mart/core/utils/widgets/simple_shimmer_loading_indicator.dart';
 import 'package:swift_mart/features/reviews/data/models/review_model.dart';
 import 'package:swift_mart/features/reviews/presentation/managers/fetch_user_id_cubit/fetch_user_id_cubit.dart';
 import 'package:swift_mart/features/reviews/presentation/views/widgets/custom_ratting_bar.dart';
@@ -24,33 +26,43 @@ class CommentWidget extends StatelessWidget {
         children: [
           BlocBuilder<FetchUserIdCubit, FetchUserIdState>(
             builder: (context, state) {
-              context
-                  .read<FetchUserIdCubit>()
-                  .fetchUserId(userId: reviewModel.userId);
-
+              if (state is FetchUserIdInitial) {
+                context
+                    .read<FetchUserIdCubit>()
+                    .fetchUserId(userId: reviewModel.userId);
+              }
               if (state is FetchUserIdSuccess) {
                 return Row(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: CachedNetworkImage(
-                        height: 45,
-                        imageUrl:
-                            'https://scontent.fcai11-1.fna.fbcdn.net/v/t39.30808-6/429897266_315090971555366_5332440714602139373_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFVBWgUOO3APzZ5b6a0YeEQJhbzQZsUVUImFvNBmxRVQg1xpVzPIdrbJ-pZ_Z0uIYHITxWBzT2FpT3vMyIIXzk2&_nc_ohc=qoBREBUrLSAQ7kNvgHT4zHD&_nc_ht=scontent.fcai11-1.fna&oh=00_AYBRS9pwkz1aQTxqVO8V7Efk1gxtWNdt2i5y8yd-N_JM5A&oe=66C05BA3',
+                    SizedBox(
+                      height: 50,
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: CachedNetworkImage(
+                            fit: BoxFit.cover,
+                            imageUrl: state.userModel.profileImage,
+                            errorWidget: (context, url, error) => Image.asset(
+                              Assets.imagesAppIcon,
+                            ),
+                            placeholder: (context, url) =>
+                                const SimpleShimmerLoadingIndicator(),
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(
                       width: 10,
                     ),
                     Text(
-                      state.data['name'],
+                      state.userModel.name,
                       style: AppStyles.styleSemiBold16(context),
                     )
                   ],
                 );
               } else {
-                return const Text(
-                    'errror yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa333 man hhh');
+                return const Text('Failed to load user data');
               }
             },
           ),

@@ -85,7 +85,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
             GestureDetector(
               onTap: () => context.pop(),
               child: const Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(20.0),
                 child: Icon(
                   Icons.arrow_back_ios_new,
                 ),
@@ -93,7 +93,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
             ),
             const Spacer(),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(20.0),
               child: AddRemoveToFavorietsButton(
                 productModel: widget.productModel,
               ),

@@ -42,11 +42,7 @@ class _CustomRatingBarState extends State<CustomRatingBar> {
               );
             },
             child: Icon(
-              _currentRating >= index + 1
-                  ? Icons.star
-                  : _currentRating >= index + 0.5
-                      ? Icons.star_half
-                      : Icons.star_border,
+              _currentRating >= index + 1 ? Icons.star : Icons.star_outline,
               color: Colors.amber,
               size: 40.0,
             ),

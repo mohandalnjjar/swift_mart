@@ -16,13 +16,13 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: GestureDetector(
-        onTap: () => GoRouter.of(context).push(
-          RouterPath.kDetailsView,
-          extra: productModel,
-        ),
+    return GestureDetector(
+      onTap: () => GoRouter.of(context).push(
+        RouterPath.kDetailsView,
+        extra: productModel,
+      ),
+      child: AspectRatio(
+        aspectRatio: 2 / 3.4,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

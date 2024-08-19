@@ -136,5 +136,9 @@ class Assets {
   /// Assets for imagesTshirt
   /// assets/images/tshirt.png
   static const String imagesTshirt = "assets/images/tshirt.png";
+
+  /// Assets for imagesUnknownUser
+  /// assets/images/unknown_user.png
+  static const String imagesUnknownUser = "assets/images/unknown_user.png";
 }
 

@@ -47,10 +47,9 @@ class SwiftMart extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => FetchReviewsAverageCubit(
-            reviewRepoImpl: ReviewRepoImpl(),
-          )
-        ),
+            create: (context) => FetchReviewsAverageCubit(
+                  reviewRepoImpl: ReviewRepoImpl(),
+                )),
         BlocProvider(
           create: (context) => ThemeCubit(
             ThemeRepoImpl(),

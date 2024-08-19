@@ -14,21 +14,26 @@ class SelectedForYouList extends StatelessWidget {
     return BlocBuilder<FetchProductsCubit, FetchProductsState>(
       builder: (context, state) {
         if (state is FetchProductsSuccess) {
-          return SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 2 / 2.6,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => ProductItem(
-                productModel: state.products[index],
+          return SliverToBoxAdapter(
+            child: SizedBox(
+              height: MediaQuery.sizeOf(context).height * .31,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: state.products.length,
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ProductItem(
+                    productModel: state.products[index],
+                  ),
+                ),
               ),
-              childCount: state.products.length,
             ),
           );
         } else if (state is FetchProductsFailed) {
           return SliverToBoxAdapter(
-            child: Text(state.errorMessage),
+            child: Center(
+              child: Text(state.errorMessage),
+            ),
           );
         } else {
           return const SliverToBoxAdapter(

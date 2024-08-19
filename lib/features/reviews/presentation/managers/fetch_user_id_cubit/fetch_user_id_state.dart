@@ -9,9 +9,9 @@ final class FetchUserIdLoading extends FetchUserIdState {}
 
 // ignore: must_be_immutable
 final class FetchUserIdSuccess extends FetchUserIdState {
-  var data;
+  UserModel userModel;
 
-  FetchUserIdSuccess({required this.data});
+  FetchUserIdSuccess({required this.userModel});
 }
 
 final class FetchUserIdFailed extends FetchUserIdState {

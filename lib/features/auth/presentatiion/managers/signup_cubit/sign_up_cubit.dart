@@ -7,13 +7,18 @@ class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit({required this.authRepoImpl}) : super(SignUpInitial());
   final AuthRepoImpl authRepoImpl;
   Future<void> signUpMethod(
-      {required String email, required String password}) async {
+      {required String email,
+      required String password,
+      required String name}) async {
     emit(
       SignUpLoadding(),
     );
 
-    var result =
-        await authRepoImpl.singUpUserMethod(email: email, password: password);
+    var result = await authRepoImpl.singUpUserMethod(
+      email: email,
+      password: password,
+      name: name,
+    );
     result.fold(
       (failure) => emit(
         SignUpFailure(
