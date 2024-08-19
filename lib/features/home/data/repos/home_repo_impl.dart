@@ -239,4 +239,36 @@ class HomeRepoImpl extends HomeRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, void>> uploadUserDetails({
+    required String name,
+    required String phone,
+  }) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+
+    if (user == null) {
+      return left(
+        ServerFailure(errorMessage: 'User Not Found'),
+      );
+    }
+
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).update(
+        {
+          'name': name,
+          'phone': phone,
+        },
+      );
+
+      return right(null);
+    } catch (e) {
+      return left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
 }

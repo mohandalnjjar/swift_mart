@@ -17,13 +17,14 @@ class CustomTextFromField extends StatelessWidget {
     this.obscureText = false,
     this.hintStyle,
     this.maxLines = 1,
+    this.initialValue,
   });
   final int maxLines;
   final String hint;
   final TextStyle? hintStyle;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-
+  final String? initialValue;
   final void Function(String)? onChanged;
   final TextInputType? keyBordType;
   final void Function(String?)? onSaved;
@@ -35,6 +36,7 @@ class CustomTextFromField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       maxLines: maxLines,
       obscureText: obscureText,
       onChanged: onChanged,

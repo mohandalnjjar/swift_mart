@@ -12,7 +12,6 @@ Future<dynamic> uploadPictureShowModalBottomSheet({
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
-    backgroundColor: Colors.white,
     builder: (context) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),

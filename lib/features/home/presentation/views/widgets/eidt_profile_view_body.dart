@@ -64,7 +64,7 @@ class EditProfileViewBody extends StatelessWidget {
                         style: AppStyles.styleRegular24(context),
                       ),
                       const SizedBox(height: 7),
-                      UploadUserImageSection(),
+                      UploadUserImageBlocButtonSection(),
                     ],
                   ),
                 ),

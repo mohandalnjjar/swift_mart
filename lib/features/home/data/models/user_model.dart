@@ -5,8 +5,10 @@ class UserModel {
   final String email;
   final String userId;
   final String? profileImage;
+  final String? phone;
 
   UserModel({
+    required this.phone,
     required this.name,
     required this.email,
     required this.userId,
@@ -19,10 +21,7 @@ class UserModel {
       email: json['email'],
       userId: json['userId'],
       profileImage: json['profileImage'],
+      phone: json['phone'],
     );
   }
 }
-
-
-
-

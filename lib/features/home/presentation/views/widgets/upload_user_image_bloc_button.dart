@@ -8,8 +8,8 @@ import 'package:swift_mart/features/home/presentation/managers/upload_user_image
 import 'package:swift_mart/features/home/presentation/views/widgets/upload_pictures_how_modal_bottom_sheet.dart';
 import 'package:swift_mart/generated/l10n.dart';
 
-class UploadUserImageSection extends StatelessWidget {
-  const UploadUserImageSection({
+class UploadUserImageBlocButtonSection extends StatelessWidget {
+  const UploadUserImageBlocButtonSection({
     super.key,
   });
 

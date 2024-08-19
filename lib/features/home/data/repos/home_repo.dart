@@ -20,4 +20,9 @@ abstract class HomeRepo {
       {required ProductModel productModel, required bool increase});
 
   Future<Either<Failure, void>> uploadUserimage({required ImageSource source});
+
+  Future<Either<Failure, void>> uploadUserDetails({
+    required String name,
+    required String phone,
+  });
 }
