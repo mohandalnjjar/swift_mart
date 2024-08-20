@@ -27,7 +27,7 @@ class ProfileImageSection extends StatelessWidget {
                       borderRadius: BorderRadius.circular(100),
                       child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                        imageUrl: state.userModel.profileImage!,
+                        imageUrl: state.userModel.profileImage,
                         errorWidget: (context, url, error) => Image.asset(
                           Assets.imagesAppIcon,
                         ),

@@ -271,4 +271,31 @@ class HomeRepoImpl extends HomeRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, List<ProductModel>>> fetchMostRatedProducts() async {
+    try {
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection('products')
+          .orderBy('rate', descending: true)
+          .limit(2)
+          .get();
+
+      final allData = querySnapshot.docs
+          .map(
+            (doc) => ProductModel.fromFireBase(
+              doc.data(),
+            ),
+          )
+          .toList();
+
+      return right(allData);
+    } catch (e) {
+      return left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
 }

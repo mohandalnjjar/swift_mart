@@ -5,6 +5,7 @@ import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/cateogries_list.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/custom_cart_button.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/flash_sale_list.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/most_rated_products_list.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/selected_for_you_list.dart';
 import 'package:swift_mart/generated/l10n.dart';
 import '../../../../../core/utils/const/app_constance.dart';
@@ -44,6 +45,7 @@ class HomeViewBody extends StatelessWidget {
           child: CategoriesList(),
         ),
         const SelectedForYouList(),
+        const MostRatedProductsList(),
       ],
     );
   }

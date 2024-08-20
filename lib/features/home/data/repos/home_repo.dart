@@ -6,6 +6,8 @@ import 'package:swift_mart/features/home/data/models/product_model.dart';
 abstract class HomeRepo {
   Future<Either<Failure, List<ProductModel>>> fetchProducts();
 
+  Future<Either<Failure, List<ProductModel>>> fetchMostRatedProducts();
+
   Future<Either<Failure, void>> addFavorites(
       {required ProductModel productModel});
 

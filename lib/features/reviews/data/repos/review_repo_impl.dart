@@ -97,7 +97,6 @@ class ReviewRepoImpl extends ReviewRepo {
   Stream<Either<Failure, double>> fetchReviewAverage(
       {required String productId}) async* {
     try {
-      // Listen to real-time updates for the specific product
       await for (DocumentSnapshot data in FirebaseFirestore.instance
           .collection('products')
           .doc(productId)
@@ -110,18 +109,24 @@ class ReviewRepoImpl extends ReviewRepo {
             totalRating += rating['rating'];
           }
 
-          // Calculate the average rating
           double averageRating = totalRating / userReviews.length;
+          double truncatedAverage =
+              (averageRating * 10).truncateToDouble() / 10;
+          await FirebaseFirestore.instance
+              .collection('products')
+              .doc(productId)
+              .update(
+            {
+              'rate': truncatedAverage,
+            },
+          );
 
-          // Yield the result as a right (successful) value
-          yield right((averageRating * 10).truncateToDouble() / 10);
+          yield right(truncatedAverage);
         } else {
-          // If there are no reviews, return a default value of 0.0
           yield right(0.0);
         }
       }
     } catch (e) {
-      // In case of error, return the failure
       yield left(
         ServerFailure(
           errorMessage: e.toString(),

@@ -9,6 +9,7 @@ import 'package:swift_mart/core/utils/services/api_keys.dart';
 import 'package:swift_mart/core/utils/services/app_router.dart';
 import 'package:swift_mart/features/home/data/repos/home_repo_impl.dart';
 import 'package:swift_mart/features/home/presentation/managers/add_favoriets_cubit/add_favorites_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/fetch_most_rated_cubit/fetch_most_rated_cubit.dart';
 import 'package:swift_mart/features/home/presentation/managers/fetch_user_cart_cubit/fetch_user_cart_cubit.dart';
 import 'package:swift_mart/features/home/presentation/managers/fetch_user_data_cubit/fetch_user_data_cubit.dart';
 import 'package:swift_mart/features/home/presentation/managers/fetch_products_cubit/fetch_products_cubit.dart';
@@ -47,9 +48,20 @@ class SwiftMart extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => FetchReviewsAverageCubit(
-                  reviewRepoImpl: ReviewRepoImpl(),
-                )),
+          create: (context) => FetchProductsCubit(
+            HomeRepoImpl(),
+          )..fetchProductsMethod(),
+        ),
+        BlocProvider(
+          create: (context) => FetchMostRatedCubit(
+            homeRepoImpl: HomeRepoImpl(),
+          )..mostRatedProductMethod(),
+        ),
+        BlocProvider(
+          create: (context) => FetchReviewsAverageCubit(
+            reviewRepoImpl: ReviewRepoImpl(),
+          ),
+        ),
         BlocProvider(
           create: (context) => ThemeCubit(
             ThemeRepoImpl(),
@@ -62,11 +74,6 @@ class SwiftMart extends StatelessWidget {
           create: (context) => LanguageCubit(
             languageRepoImpl: LanguageRepoImpl(),
           )..getAppLanguage(context: context),
-        ),
-        BlocProvider(
-          create: (context) => FetchProductsCubit(
-            HomeRepoImpl(),
-          )..fetchProductsMethod(),
         ),
         BlocProvider(
           create: (context) => AddFavoritesCubit(
