@@ -52,7 +52,7 @@ class ProfileViewBody extends StatelessWidget {
             centerTitle: true,
             title: Text(
               S.of(context).Profile,
-              style: AppStyles.styleSemiBold30(context),
+              style: AppStyles.styleSemiBold27(context),
             ),
             actions: [
               BlocBuilder<ThemeCubit, ThemeCubitState>(

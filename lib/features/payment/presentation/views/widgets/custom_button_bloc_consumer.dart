@@ -49,7 +49,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
               ? const CircularProgressIndicator()
               : Text(
                   S.of(context).Checkout,
-                  style: AppStyles.style700w16(context),
+                  style: AppStyles.style700w14(context),
                 ),
         );
       },

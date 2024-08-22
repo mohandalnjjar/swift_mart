@@ -21,7 +21,7 @@ class ForgotPasswordView extends StatelessWidget {
           automaticallyImplyLeading: false,
           title: Text(
             S.of(context).ForgotPassword,
-            style: AppStyles.styleSemiBold30(context),
+            style: AppStyles.styleSemiBold27(context),
           ),
           centerTitle: true,
           leading: Center(

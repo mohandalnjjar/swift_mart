@@ -60,10 +60,10 @@ abstract class AppStyles {
     );
   }
 
-  static TextStyle styleSemiBold30(BuildContext context) {
+  static TextStyle styleSemiBold27(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w600,
-      fontSize: getResponsizeFontSize(fontSize: 30, context: context),
+      fontSize: getResponsizeFontSize(fontSize: 27, context: context),
     );
   }
 
@@ -173,6 +173,13 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleRegular28(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 28, context: context),
+    );
+  }
+
   // Bold styles
   static TextStyle styleBold27(BuildContext context) {
     return TextStyle(
@@ -219,6 +226,14 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleGreyReg13(BuildContext context) {
+    return TextStyle(
+      color: Colors.grey,
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 13, context: context),
+    );
+  }
+
   static TextStyle styleGreyReg17(BuildContext context) {
     return TextStyle(
       color: Colors.grey,
@@ -234,6 +249,7 @@ abstract class AppStyles {
       fontSize: getResponsizeFontSize(fontSize: 20, context: context),
     );
   }
+
   static TextStyle styleGreyReg18(BuildContext context) {
     return TextStyle(
       color: Colors.grey,

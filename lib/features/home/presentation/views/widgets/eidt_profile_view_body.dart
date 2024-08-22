@@ -32,7 +32,7 @@ class EditProfileViewBody extends StatelessWidget {
                   centerTitle: true,
                   title: Text(
                     S.of(context).EditProfile,
-                    style: AppStyles.styleSemiBold30(context),
+                    style: AppStyles.styleSemiBold27(context),
                   ),
                 ),
               ),

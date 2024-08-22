@@ -5,7 +5,8 @@ class UserModel {
   final String email;
   final String userId;
   final String profileImage;
-  final String? phone;
+  final String phone;
+  final String address;
 
   UserModel({
     required this.phone,
@@ -13,6 +14,7 @@ class UserModel {
     required this.email,
     required this.userId,
     required this.profileImage,
+    required this.address,
   });
 
   factory UserModel.fromJson(DocumentSnapshot<Map<String, dynamic>> json) {
@@ -22,6 +24,7 @@ class UserModel {
       userId: json['userId'],
       profileImage: json['profileImage'],
       phone: json['phone'],
+      address: json['address'],
     );
   }
 }

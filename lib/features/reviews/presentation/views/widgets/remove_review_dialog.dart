@@ -48,7 +48,9 @@ class RemoveReviewDialog extends StatelessWidget {
             }
             Navigator.of(context).pop();
           },
-          child: const Text('Remove'),
+          child: const Text(
+            'Remove',
+          ),
         ),
       ],
     );

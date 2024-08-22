@@ -41,11 +41,8 @@ class ProductItem extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Text(
-              productModel.title,
-              maxLines: 1,
-              style: AppStyles.styleRegular19(context),
-            ),
+            Text(productModel.title,
+                maxLines: 1, style: AppStyles.styleRegular19(context)),
             const SizedBox(
               height: 5,
             ),

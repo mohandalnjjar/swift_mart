@@ -12,6 +12,7 @@ import 'package:swift_mart/features/auth/presentatiion/views/register_view.dart'
 import 'package:swift_mart/features/language/presentation/views/language_view.dart';
 import 'package:swift_mart/features/home/presentation/views/my_fav_view.dart';
 import 'package:swift_mart/features/home/presentation/views/orders_view.dart';
+import 'package:swift_mart/features/payment/presentation/views/checkout_view.dart';
 import 'package:swift_mart/features/reviews/data/models/review_view_data_model.dart';
 import 'package:swift_mart/features/reviews/presentation/views/add_review.dart';
 import 'package:swift_mart/features/reviews/presentation/views/reviews_view.dart';
@@ -91,6 +92,10 @@ abstract class AppRouter {
         builder: (conext, state) => AddRattingReview(
           reviewViewDataModel: state.extra as ReviewViewDataModel,
         ),
+      ),
+      GoRoute(
+        path: RouterPath.kCheckoutView,
+        builder: (conext, state) => const CheckoutView(),
       ),
     ],
   );

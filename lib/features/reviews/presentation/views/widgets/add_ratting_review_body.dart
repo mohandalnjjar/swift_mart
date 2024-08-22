@@ -62,7 +62,7 @@ class _AddRattingReviewBodyState extends State<AddRattingReviewBody> {
               centerTitle: true,
               title: Text(
                 'Review',
-                style: AppStyles.styleSemiBold30(context),
+                style: AppStyles.styleSemiBold27(context),
               ),
             ),
           ),

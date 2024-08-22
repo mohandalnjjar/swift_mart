@@ -55,4 +55,17 @@ abstract class Validators {
       return null;
     }
   }
+
+//address Validator
+  static String? addressValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Enter a valid address';
+    } else if (value.length < 10 || value.length > 100) {
+      return 'Enter an address between 10 to 100 characters';
+    } else if (!RegExp(r'^[a-zA-Z0-9\s,.-]+$').hasMatch(value)) {
+      return 'Address contains invalid characters';
+    } else {
+      return null;
+    }
+  }
 }

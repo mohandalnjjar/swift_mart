@@ -66,7 +66,7 @@ class _RegisterFormState extends State<RegisterForm> {
             children: [
               Text(
                 'Sign up to continue',
-                style: AppStyles.styleSemiBold30(context),
+                style: AppStyles.styleSemiBold27(context),
               ),
               const SizedBox(
                 height: 10,
@@ -147,7 +147,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 },
                 child: Text(
                   'Sing Up',
-                  style: AppStyles.style700w16(context),
+                  style: AppStyles.styleRegular18(context),
                 ),
               ),
               const OrWidget(),

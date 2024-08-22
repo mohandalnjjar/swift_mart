@@ -20,7 +20,7 @@ class EditProfileTextFormFileds extends StatefulWidget {
 class _EditProfileTextFormFiledsState extends State<EditProfileTextFormFileds> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String? phone, name;
+  late String phone, name, address;
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +39,13 @@ class _EditProfileTextFormFiledsState extends State<EditProfileTextFormFileds> {
                 SizedBox(height: 14),
                 Text(
                   'Name',
-                  style: AppStyles.styleGreyReg18(context),
+                  style: AppStyles.styleGreyReg16(context),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 14),
                   child: CustomTextFromField(
                     hint: 'Your Name',
-                    onSaved: (value) => name = value,
+                    onSaved: (value) => name = value!,
                     initialValue: state is FetchUserDataSuccess
                         ? state.userModel.name
                         : null,
@@ -53,15 +53,30 @@ class _EditProfileTextFormFiledsState extends State<EditProfileTextFormFileds> {
                   ),
                 ),
                 Text(
+                  'Address',
+                  style: AppStyles.styleGreyReg16(context),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 14),
+                  child: CustomTextFromField(
+                    hint: 'Your Address',
+                    onSaved: (value) => address = value!,
+                    initialValue: state is FetchUserDataSuccess
+                        ? state.userModel.address
+                        : null,
+                    validator: (value) => Validators.addressValidator(value),
+                  ),
+                ),
+                Text(
                   'Phone Number',
-                  style: AppStyles.styleGreyReg18(context),
+                  style: AppStyles.styleGreyReg16(context),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: 20,
                   ),
                   child: CustomTextFromField(
-                    onSaved: (value) => phone = value,
+                    onSaved: (value) => phone = value!,
                     hint: 'Your phone number',
                     initialValue: state is FetchUserDataSuccess
                         ? state.userModel.phone
@@ -79,28 +94,31 @@ class _EditProfileTextFormFiledsState extends State<EditProfileTextFormFileds> {
                       if (state is FetchUserDataSuccess) {
                         bool isNameChanged = state.userModel.name != name;
                         bool isPhoneChanged = state.userModel.phone != phone;
+                        bool isAdressChanged =
+                            state.userModel.address != address;
 
-                        if (isNameChanged || isPhoneChanged) {
+                        if (isNameChanged ||
+                            isAdressChanged ||
+                            isPhoneChanged) {
                           BlocProvider.of<UploadUserDetailsCubit>(context)
                               .uploadUserDetails(
-                            name: name!,
-                            phone: phone!,
+                            name: name,
+                            phone: phone,
+                            address: address,
                           );
 
                           showedScaffoldMessage(
-                              context: context,
-                              message: 'Changed successfully ');
+                            context: context,
+                            message: 'Changed successfully',
+                          );
+                          if (Navigator.canPop(context)) {
+                            Navigator.pop(context);
+                          }
                         } else {
                           showedScaffoldMessage(
                               context: context, message: 'Data already used');
                         }
                       }
-
-                      BlocProvider.of<UploadUserDetailsCubit>(context)
-                          .uploadUserDetails(
-                        name: name!,
-                        phone: phone!,
-                      );
                     } else {
                       setState(() {
                         autovalidateMode = AutovalidateMode.always;

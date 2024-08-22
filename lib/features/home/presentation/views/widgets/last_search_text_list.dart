@@ -16,7 +16,7 @@ class LastSearchTextList extends StatelessWidget {
         ),
         child: Text(
           'Under Armour Shoes',
-          style: AppStyles.styleGreyReg17(context),
+          style: AppStyles.styleGreyReg16(context),
         ),
       ),
     );

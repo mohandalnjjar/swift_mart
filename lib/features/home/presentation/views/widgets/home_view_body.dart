@@ -24,7 +24,7 @@ class HomeViewBody extends StatelessWidget {
           sliver: SliverAppBar(
             title: Text(
               S.of(context).SwiftMart,
-              style: AppStyles.styleSemiBold30(context),
+              style: AppStyles.styleSemiBold27(context),
             ),
             actions: [
               CustomButton(
@@ -44,7 +44,21 @@ class HomeViewBody extends StatelessWidget {
         const SliverToBoxAdapter(
           child: CategoriesList(),
         ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 7,
+          ),
+        ),
         const SelectedForYouList(),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 13),
+            child: Text(
+              'Top rate',
+              style: AppStyles.styleRegular24(context),
+            ),
+          ),
+        ),
         const MostRatedProductsList(),
       ],
     );

@@ -9,7 +9,7 @@ class FlashSaleList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height * .28,
+      height: MediaQuery.sizeOf(context).height * .29,
       child: PageView.builder(
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {

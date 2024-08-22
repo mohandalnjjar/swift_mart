@@ -120,6 +120,7 @@ class SwiftMart extends StatelessWidget {
                   isDark: BlocProvider.of<ThemeCubit>(context).themeMode,
                   context: context,
                 ),
+                
                 builder: DevicePreview.appBuilder,
               );
             },

@@ -62,7 +62,7 @@ class OrdersViewItem extends StatelessWidget {
                 Flexible(
                   child: Text(
                     S.of(context).Code,
-                    style: AppStyles.styleGreyReg17(context),
+                    style: AppStyles.styleGreyReg16(context),
                   ),
                 ),
                 Flexible(

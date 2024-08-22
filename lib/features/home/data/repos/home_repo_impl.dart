@@ -244,6 +244,7 @@ class HomeRepoImpl extends HomeRepo {
   Future<Either<Failure, void>> uploadUserDetails({
     required String name,
     required String phone,
+    required String address,
   }) async {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
@@ -259,6 +260,7 @@ class HomeRepoImpl extends HomeRepo {
         {
           'name': name,
           'phone': phone,
+          'address': address,
         },
       );
 

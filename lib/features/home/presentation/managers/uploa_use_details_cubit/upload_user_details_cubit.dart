@@ -12,10 +12,12 @@ class UploadUserDetailsCubit extends Cubit<UploadUserDetailsState> {
   Future<void> uploadUserDetails({
     required String name,
     required String phone,
+    required String address,
   }) async {
     var response = await homeRepoImpl.uploadUserDetails(
       name: name,
       phone: phone,
+      address: address,
     );
 
     response.fold((failed) {

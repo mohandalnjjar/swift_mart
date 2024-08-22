@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
+import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/presentation/views/cart_products_details_builder.dart';
-import 'package:swift_mart/features/payment/data/repos/check_out_repo_impl.dart';
-import 'package:swift_mart/features/payment/presentation/managers/payment_cubit/payment_cubit.dart';
-import 'package:swift_mart/features/payment/presentation/views/widgets/payment_sheet_widget.dart';
 
 class CartButtomSheetWidget extends StatelessWidget {
   const CartButtomSheetWidget({
@@ -50,28 +48,12 @@ class CartButtomSheetWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: ElevatedButton(
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return BlocProvider(
-                      create: (context) => PaymentCubit(
-                        CheckOutRepoImpl(),
-                      ),
-                      child: const PaymentSheetWidget(),
-                    );
-                  },
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25),
-                      topRight: Radius.circular(25),
-                    ),
-                  ),
-                );
-              },
+              onPressed: () => GoRouter.of(context).push(
+                RouterPath.kCheckoutView,
+              ),
               child: Text(
-                'Complete Payment',
-                style: AppStyles.styleSemiBold18(context),
+                'Complete Checkout',
+                style: AppStyles.styleRegular18(context),
               ),
             ),
           ),

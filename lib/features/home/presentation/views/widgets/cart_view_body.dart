@@ -28,7 +28,7 @@ class CartViewBody extends StatelessWidget {
             centerTitle: true,
             title: Text(
               S.of(context).Cart,
-              style: AppStyles.styleSemiBold30(context),
+              style: AppStyles.styleSemiBold27(context),
             ),
           ),
         ),

@@ -31,11 +31,11 @@ class _ForGotPasswordFromState extends State<ForGotPasswordFrom> {
         children: [
           Text(
             S.of(context).EnterYourEmail,
-            style: AppStyles.styleSemiBold30(context),
+            style: AppStyles.styleSemiBold27(context),
           ),
           Text(
             S.of(context).WeWillSendAResetLink,
-            style: AppStyles.styleSemiBold30(context),
+            style: AppStyles.styleSemiBold27(context),
           ),
           const SizedBox(
             height: 16,
@@ -67,7 +67,7 @@ class _ForGotPasswordFromState extends State<ForGotPasswordFrom> {
             },
             child: Text(
               S.of(context).ResetPassword,
-              style: AppStyles.style700w16(context),
+              style: AppStyles.styleRegular18(context),
             ),
           ),
         ],

@@ -8,27 +8,27 @@ class CreditCardWodget extends StatelessWidget {
   final String image;
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 3 / 2,
-      child: Container(
-        margin: const EdgeInsets.only(
-          right: 8,
-          top: 8,
-          bottom: 8,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: AspectRatio(
+        aspectRatio: 3 / 2.2,
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.kWhitePrimaryColor,
+            borderRadius: BorderRadius.circular(26),
+            border: isActive
+                ? Border.all(
+                    color: AppColors.kPrimaryColor,
+                    width: 2.0,
+                  )
+                : null,
+          ),
+          child: Image.asset(
+            image,
+            width: 1,
+            height: 1,
+          ),
         ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(13),
-          border: isActive
-              ? Border.all(
-                  color: AppColors.kPrimaryColor,
-                  width: 2.0,
-                )
-              : Border.all(
-                  color: Colors.grey.withOpacity(0.4),
-                  width: 2.0,
-                ),
-        ),
-        child: Image.asset(image),
       ),
     );
   }

@@ -28,7 +28,7 @@ class SearchViewBody extends StatelessWidget {
             centerTitle: true,
             title: Text(
               S.of(context).Search,
-              style: AppStyles.styleSemiBold30(context),
+              style: AppStyles.styleSemiBold27(context),
             ),
             actions: [
               CustomButton(

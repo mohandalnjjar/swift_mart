@@ -27,7 +27,7 @@ class MyFavViewBody extends StatelessWidget {
             centerTitle: true,
             title: Text(
               S.of(context).favorites,
-              style: AppStyles.styleSemiBold30(context),
+              style: AppStyles.styleSemiBold27(context),
             ),
             actions: [
               CustomButton(

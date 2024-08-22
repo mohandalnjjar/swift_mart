@@ -63,7 +63,7 @@ class _LoginFormState extends State<LoginForm> {
               children: [
                 Text(
                   'Welcom back !',
-                  style: AppStyles.styleSemiBold30(context),
+                  style: AppStyles.styleSemiBold27(context),
                 ),
                 const SizedBox(
                   height: 10,
@@ -142,7 +142,7 @@ class _LoginFormState extends State<LoginForm> {
                   },
                   child: Text(
                     'Login',
-                    style: AppStyles.style700w16(context),
+                    style: AppStyles.styleRegular18(context),
                   ),
                 ),
                 const OrWidget(),

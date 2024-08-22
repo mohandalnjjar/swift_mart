@@ -50,7 +50,8 @@ class AddRemoveToCartButton extends StatelessWidget {
                   ),
                   Text(
                     isCart ? 'Remove from cart' : S.of(context).AddToCart,
-                    style: AppStyles.styleSemiBold18(context),
+                    style: AppStyles.styleRegular18(context)
+                        .copyWith(color: Colors.white),
                   ),
                 ],
               ),

@@ -15,6 +15,7 @@ Future<void> addUserDetailsFistTime(
       'profileImage':
           'https://firebasestorage.googleapis.com/v0/b/swift-mart-9e189.appspot.com/o/unknown_user.png?alt=media&token=7bd2a2fa-7807-4b31-afd7-e179e4151e0a',
       'phone': '',
+      'address': '',
       'email': email,
       'userCart': [],
       'userWish': [],

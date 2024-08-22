@@ -19,6 +19,9 @@ class FlashSaleItem extends StatelessWidget {
         margin: const EdgeInsets.symmetric(
           horizontal: 7,
         ),
+        padding: EdgeInsets.only(
+          bottom: 20,
+        ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: CachedNetworkImage(

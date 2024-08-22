@@ -26,5 +26,6 @@ abstract class HomeRepo {
   Future<Either<Failure, void>> uploadUserDetails({
     required String name,
     required String phone,
+    required String address,
   });
 }

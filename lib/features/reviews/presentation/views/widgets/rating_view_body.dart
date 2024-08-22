@@ -27,7 +27,7 @@ class RviewsViewBody extends StatelessWidget {
             centerTitle: true,
             title: Text(
               'Reviews',
-              style: AppStyles.styleSemiBold30(context),
+              style: AppStyles.styleSemiBold27(context),
             ),
             actions: [
               AddReviewBlocButton(reviewViewDataModel: reviewViewDataModel),
