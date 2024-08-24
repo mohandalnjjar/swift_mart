@@ -98,19 +98,35 @@ class HomeRepoImpl extends HomeRepo {
     try {
       final FirebaseAuth auth = FirebaseAuth.instance;
       final User? user = auth.currentUser;
-      final userFav =
-          FirebaseFirestore.instance.collection('users').doc(user!.uid);
-      Map<String, dynamic> updatedProduct = productModel.toMap();
-      updatedProduct['quantity'] = 1;
-      await userFav.update(
-        {
-          'userCart': FieldValue.arrayUnion(
-            [
-              updatedProduct,
-            ],
-          )
-        },
-      );
+
+      final DocumentSnapshot<Map<String, dynamic>> productSnapshot =
+          await FirebaseFirestore.instance
+              .collection('products')
+              .doc(productModel.id)
+              .get();
+      final int? productQuantity = productSnapshot.data()?['quantity'];
+
+      if (productQuantity == null || productQuantity <= 0) {
+        return left(
+          ServerFailure(
+            errorMessage: 'Sorry, there is not enough quantity',
+          ),
+        );
+      } else {
+        final userCart =
+            FirebaseFirestore.instance.collection('users').doc(user!.uid);
+        Map<String, dynamic> updatedProduct = productModel.toMap();
+        updatedProduct['quantity'] = 1;
+        await userCart.update(
+          {
+            'userCart': FieldValue.arrayUnion(
+              [
+                updatedProduct,
+              ],
+            )
+          },
+        );
+      }
 
       return right(null);
     } catch (e) {
@@ -123,8 +139,9 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, void>> removeFromCart(
-      {required ProductModel productModel}) async {
+  Future<Either<Failure, void>> removeFromCart({
+    required ProductModel productModel,
+  }) async {
     try {
       final FirebaseAuth auth = FirebaseAuth.instance;
       final User? user = auth.currentUser;
@@ -165,22 +182,39 @@ class HomeRepoImpl extends HomeRepo {
 
       DocumentReference docRef =
           FirebaseFirestore.instance.collection('users').doc(user!.uid);
-      DocumentSnapshot docSnapshot = await docRef.get();
-      List<dynamic> array = docSnapshot.get('userCart');
-      int index = array.indexWhere((item) => item['id'] == productModel.id);
 
-      int currentQuantity = array[index]['quantity'];
+      DocumentSnapshot docSnapshot = await docRef.get();
+
+      List<dynamic> userCart = docSnapshot.get('userCart');
+
+      int productIndex =
+          userCart.indexWhere((product) => product['id'] == productModel.id);
+
+      int currentQuantity = userCart[productIndex]['quantity'];
       int newQuantity = increase ? currentQuantity + 1 : currentQuantity - 1;
 
-      if (index != -1 && newQuantity > 0) {
+      final DocumentSnapshot<Map<String, dynamic>> productSnapshot =
+          await FirebaseFirestore.instance
+              .collection('products')
+              .doc(productModel.id)
+              .get();
+      final int? productQuantity = productSnapshot.data()?['quantity'];
+
+      if (productIndex != -1 && newQuantity > 0 && productQuantity != null) {
+        if (newQuantity > productQuantity) {
+          return left(
+            ServerFailure(
+              errorMessage:
+                  'Sorry, there is no enough quantity for${productModel.title}',
+            ),
+          );
+        }
         Map<String, dynamic> updatedProduct = productModel.toMap();
         updatedProduct['quantity'] = newQuantity;
 
-        array[index] = updatedProduct;
-
         await docRef.update(
           {
-            'userCart': array,
+            'userCart': [updatedProduct],
           },
         );
         return right(newQuantity);

@@ -5,9 +5,11 @@ class DetailsViewNumsList extends StatefulWidget {
   const DetailsViewNumsList({
     super.key,
     required this.sizes,
+    required this.onSizeSelected,
   });
 
   final List<dynamic>? sizes;
+  final ValueChanged<String> onSizeSelected;
 
   @override
   State<DetailsViewNumsList> createState() => _DetailsViewNumsList();
@@ -33,6 +35,7 @@ class _DetailsViewNumsList extends State<DetailsViewNumsList> {
                   setState(() {
                     activeIndex = index;
                   });
+                  widget.onSizeSelected(widget.sizes![index].toString());
                 }
               },
               child: DetailsVewiNumsListItem(

@@ -8,9 +8,17 @@ import 'package:swift_mart/features/home/presentation/views/widgets/details_view
 import 'package:swift_mart/features/reviews/data/repos/review_repo_impl.dart';
 import 'package:swift_mart/features/reviews/presentation/managers/fetch_reviews_average_cubit/fetch_reviews_average_cubit.dart';
 
-class DetailsView extends StatelessWidget {
+class DetailsView extends StatefulWidget {
   const DetailsView({super.key, required this.productModel});
   final ProductModel productModel;
+
+  @override
+  State<DetailsView> createState() => _DetailsViewState();
+}
+
+class _DetailsViewState extends State<DetailsView> {
+  String? selectedSize;
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -24,18 +32,32 @@ class DetailsView extends StatelessWidget {
           create: (context) => FetchReviewsAverageCubit(
             reviewRepoImpl: ReviewRepoImpl(),
           )..fetchAverageReviewMethod(
-              productId: productModel.id,
+              productId: widget.productModel.id,
             ),
         ),
       ],
       child: Scaffold(
         body: SafeArea(
           child: DetailsViewBody(
-            productModel: productModel,
+            productModel: widget.productModel,
+            onSizeSelected: (String? sizes) {
+              setState(() {
+                selectedSize = sizes;
+              });
+            },
           ),
         ),
         bottomNavigationBar: AddRemoveToCartButton(
-          productModel: productModel,
+          productModel: ProductModel(
+            id: widget.productModel.id,
+            title: widget.productModel.title,
+            price: widget.productModel.price,
+            description: widget.productModel.description,
+            category: widget.productModel.category,
+            quantity: widget.productModel.quantity,
+            images: widget.productModel.images,
+            sizes: [selectedSize],
+          ),
         ),
       ),
     );

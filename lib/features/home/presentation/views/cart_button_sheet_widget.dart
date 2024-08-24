@@ -48,9 +48,15 @@ class CartButtomSheetWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: ElevatedButton(
-              onPressed: () => GoRouter.of(context).push(
-                RouterPath.kCheckoutView,
-              ),
+              onPressed: () {
+            
+            
+                GoRouter.of(context).push(
+                  RouterPath.kCheckoutView,
+                );
+            
+            
+              },
               child: Text(
                 'Complete Checkout',
                 style: AppStyles.styleRegular18(context),
