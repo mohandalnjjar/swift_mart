@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:swift_mart/core/utils/const/app_colors.dart';
-import 'package:swift_mart/core/utils/const/app_images.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/categoriy_model.dart';
 
@@ -15,7 +14,9 @@ class ActiveCateogryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(7),
+      margin: const EdgeInsets.symmetric(
+        horizontal: 7,
+      ),
       decoration: BoxDecoration(
         color:
             isActive ? AppColors.kPrimaryColor : AppColors.kWhitePrimaryColor,
@@ -24,33 +25,20 @@ class ActiveCateogryItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.only(
-              left: 7,
-              top: 5,
-              bottom: 5,
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20.0,
+              vertical: 3,
             ),
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: Image.asset(
-                Assets.imagesTshirt,
-              ),
+            child: Text(
+              categoryItemModel.title,
+              style: isActive
+                  ? AppStyles.styleRegular15(context).copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    )
+                  : AppStyles.styleRegular15(context),
             ),
-          ),
-          SizedBox(
-            width: 6,
-          ),
-          Text(
-            categoryItemModel.title,
-            style: isActive
-                ? AppStyles.styleRegular15(context).copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )
-                : AppStyles.styleRegular15(context),
-          ),
-          SizedBox(
-            width: 18,
           ),
         ],
       ),

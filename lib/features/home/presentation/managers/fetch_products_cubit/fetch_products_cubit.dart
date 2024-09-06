@@ -9,20 +9,20 @@ class FetchProductsCubit extends Cubit<FetchProductsState> {
   FetchProductsCubit(this.homeRepoImpl) : super(FetchProductsInitial());
   final HomeRepoImpl homeRepoImpl;
 
-  Future<void> fetchProductsMethod() async {
-    emit(
-      FetchProductsLoading(),
-    );
-    var respose = await homeRepoImpl.fetchProducts();
-    respose.fold(
-      (failed) {
-        emit(
-          FetchProductsFailed(errorMessage: failed.errorMessage),
-        );
-      },
-      (success) {
-        emit(
-          FetchProductsSuccess(products: success),
+  Future<void> fetchProductsMethod({required int limit}) async {
+    homeRepoImpl.fetchProducts(limit: limit).listen(
+      (response) {
+        response.fold(
+          (failed) {
+            emit(
+              FetchProductsFailed(errorMessage: failed.errorMessage),
+            );
+          },
+          (success) {
+            emit(
+              FetchProductsSuccess(products: success),
+            );
+          },
         );
       },
     );

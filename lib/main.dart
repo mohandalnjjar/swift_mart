@@ -50,12 +50,16 @@ class SwiftMart extends StatelessWidget {
         BlocProvider(
           create: (context) => FetchProductsCubit(
             HomeRepoImpl(),
-          )..fetchProductsMethod(),
+          )..fetchProductsMethod(
+              limit: 20,
+            ),
         ),
         BlocProvider(
           create: (context) => FetchMostRatedCubit(
             homeRepoImpl: HomeRepoImpl(),
-          )..mostRatedProductMethod(),
+          )..mostRatedProductMethod(
+              limit: 2,
+            ),
         ),
         BlocProvider(
           create: (context) => FetchReviewsAverageCubit(

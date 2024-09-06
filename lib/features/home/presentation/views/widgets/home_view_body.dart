@@ -24,7 +24,7 @@ class HomeViewBody extends StatelessWidget {
           sliver: SliverAppBar(
             title: Text(
               S.of(context).SwiftMart,
-              style: AppStyles.styleSemiBold27(context),
+              style: AppStyles.styleBold31(context),
             ),
             actions: [
               CustomButton(

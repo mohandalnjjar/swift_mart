@@ -6,17 +6,29 @@ class DetailsViewNumsList extends StatefulWidget {
     super.key,
     required this.sizes,
     required this.onSizeSelected,
+    this.defaultSize,
   });
 
   final List<dynamic>? sizes;
   final ValueChanged<String> onSizeSelected;
+  final String? defaultSize;
 
   @override
   State<DetailsViewNumsList> createState() => _DetailsViewNumsList();
 }
 
 class _DetailsViewNumsList extends State<DetailsViewNumsList> {
-  int activeIndex = 0;
+  int? activeIndex;
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.defaultSize != null) {
+      setState(() {
+        activeIndex = widget.sizes!.indexOf(widget.defaultSize);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +47,9 @@ class _DetailsViewNumsList extends State<DetailsViewNumsList> {
                   setState(() {
                     activeIndex = index;
                   });
-                  widget.onSizeSelected(widget.sizes![index].toString());
+                  widget.onSizeSelected(
+                    widget.sizes![index].toString(),
+                  );
                 }
               },
               child: DetailsVewiNumsListItem(

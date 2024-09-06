@@ -10,22 +10,57 @@ import 'package:swift_mart/features/home/data/repos/home_repo.dart';
 
 class HomeRepoImpl extends HomeRepo {
   @override
-  Future<Either<Failure, List<ProductModel>>> fetchProducts() async {
+  Stream<Either<Failure, List<ProductModel>>> fetchProducts({
+    required int limit,
+  }) async* {
     final CollectionReference collectionRef =
         FirebaseFirestore.instance.collection('products');
+
     try {
-      QuerySnapshot querySnapshot = await collectionRef.get();
+      await for (QuerySnapshot querySnapshot
+          in collectionRef.limit(limit).snapshots()) {
+        final allData = querySnapshot.docs
+            .map(
+              (doc) =>
+                  ProductModel.fromFireBase(doc.data() as Map<String, dynamic>),
+            )
+            .toList();
 
-      final allData = querySnapshot.docs
-          .map(
-            (doc) =>
-                ProductModel.fromFireBase(doc.data() as Map<String, dynamic>),
-          )
-          .toList();
-
-      return right(allData);
+        yield right(allData);
+      }
     } catch (e) {
-      return left(
+      yield left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+
+  @override
+  Stream<Either<Failure, List<ProductModel>>> fetchMostRatedProducts({
+    required int limit,
+  }) async* {
+    final CollectionReference collectionRef =
+        FirebaseFirestore.instance.collection('products');
+
+    try {
+      await for (QuerySnapshot querySnapshot in collectionRef
+          .orderBy('rate', descending: true)
+          .limit(limit)
+          .snapshots()) {
+        final allData = querySnapshot.docs
+            .map(
+              (doc) =>
+                  ProductModel.fromFireBase(doc.data() as Map<String, dynamic>),
+            )
+            .toList();
+
+        yield right(allData);
+      }
+    } catch (e) {
+      yield left(
         ServerFailure(
           errorMessage: e.toString(),
         ),
@@ -94,38 +129,57 @@ class HomeRepoImpl extends HomeRepo {
 
   @override
   Future<Either<Failure, void>> addToCart(
-      {required ProductModel productModel}) async {
+      {required ProductModel productModel,
+      required String? selectedSize}) async {
     try {
       final FirebaseAuth auth = FirebaseAuth.instance;
       final User? user = auth.currentUser;
 
+      // Check available quantity
       final DocumentSnapshot<Map<String, dynamic>> productSnapshot =
           await FirebaseFirestore.instance
               .collection('products')
               .doc(productModel.id)
               .get();
-      final int? productQuantity = productSnapshot.data()?['quantity'];
+      final int? availableQuantity = productSnapshot.data()?['quantity'];
 
-      if (productQuantity == null || productQuantity <= 0) {
+      if (availableQuantity == null || availableQuantity <= 0) {
         return left(
           ServerFailure(
             errorMessage: 'Sorry, there is not enough quantity',
           ),
         );
       } else {
-        final userCart =
+        final userDoc =
             FirebaseFirestore.instance.collection('users').doc(user!.uid);
-        Map<String, dynamic> updatedProduct = productModel.toMap();
-        updatedProduct['quantity'] = 1;
-        await userCart.update(
-          {
-            'userCart': FieldValue.arrayUnion(
-              [
-                updatedProduct,
-              ],
-            )
-          },
+        final DocumentSnapshot<Map<String, dynamic>> userDocSnapshot =
+            await userDoc.get();
+        List<dynamic> userCart = userDocSnapshot.data()?['userCart'] ?? [];
+
+        final existingProductIndex = userCart.indexWhere(
+          (product) =>
+              product['id'] == productModel.id &&
+              product['selectedSize'] == selectedSize,
         );
+        if (existingProductIndex != -1) {
+          if (availableQuantity <
+              userCart[existingProductIndex]['quantity'] + 1) {
+            return left(
+              ServerFailure(
+                errorMessage: 'Sorry, there is not enough quantity',
+              ),
+            );
+          }
+          userCart[existingProductIndex]['quantity'] += 1;
+        } else {
+          Map<String, dynamic> updatedProduct =
+              productModel.addSelected(selectedSize: selectedSize);
+          updatedProduct['quantity'] = 1;
+          userCart.add(updatedProduct);
+        }
+        await userDoc.update({
+          'userCart': userCart,
+        });
       }
 
       return right(null);
@@ -187,8 +241,9 @@ class HomeRepoImpl extends HomeRepo {
 
       List<dynamic> userCart = docSnapshot.get('userCart');
 
-      int productIndex =
-          userCart.indexWhere((product) => product['id'] == productModel.id);
+      int productIndex = userCart.indexWhere((product) =>
+          product['id'] == productModel.id &&
+          product['selectedSize'] == productModel.selectedSize);
 
       int currentQuantity = userCart[productIndex]['quantity'];
       int newQuantity = increase ? currentQuantity + 1 : currentQuantity - 1;
@@ -299,33 +354,6 @@ class HomeRepoImpl extends HomeRepo {
       );
 
       return right(null);
-    } catch (e) {
-      return left(
-        ServerFailure(
-          errorMessage: e.toString(),
-        ),
-      );
-    }
-  }
-
-  @override
-  Future<Either<Failure, List<ProductModel>>> fetchMostRatedProducts() async {
-    try {
-      final querySnapshot = await FirebaseFirestore.instance
-          .collection('products')
-          .orderBy('rate', descending: true)
-          .limit(2)
-          .get();
-
-      final allData = querySnapshot.docs
-          .map(
-            (doc) => ProductModel.fromFireBase(
-              doc.data(),
-            ),
-          )
-          .toList();
-
-      return right(allData);
     } catch (e) {
       return left(
         ServerFailure(

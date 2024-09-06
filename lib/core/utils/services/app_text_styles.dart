@@ -25,9 +25,23 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleBold31(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: getResponsizeFontSize(fontSize: 31, context: context),
+    );
+  }
+
   static TextStyle styleSemiBold18(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w600,
+      fontSize: getResponsizeFontSize(fontSize: 18, context: context),
+    );
+  }
+
+  static TextStyle styleBold18(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.bold,
       fontSize: getResponsizeFontSize(fontSize: 18, context: context),
     );
   }
@@ -255,6 +269,14 @@ abstract class AppStyles {
       color: Colors.grey,
       fontWeight: FontWeight.w400,
       fontSize: getResponsizeFontSize(fontSize: 18, context: context),
+    );
+  }
+
+  static TextStyle styleGreyReg19(BuildContext context) {
+    return TextStyle(
+      color: Colors.grey,
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsizeFontSize(fontSize: 19, context: context),
     );
   }
 }

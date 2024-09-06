@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swift_mart/core/functions/show_meeage.dart';
@@ -8,7 +7,7 @@ import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/data/models/product_model.dart';
 import 'package:swift_mart/features/home/presentation/managers/add_to_cart_cubit/add_to_cart_cubit.dart';
-import 'package:swift_mart/features/home/presentation/managers/remove_from_cubit/remove_from_cart_cubit.dart';
+import 'package:swift_mart/features/home/presentation/views/widgets/add_remove_cart_buttom.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/add_remove_to_favoriets_cubit.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/detailes_list_item.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/details_view_nums_list.dart';
@@ -21,11 +20,9 @@ class DetailsViewBody extends StatefulWidget {
   const DetailsViewBody({
     super.key,
     required this.productModel,
-    required this.onSizeSelected,
   });
 
   final ProductModel productModel;
-  final ValueChanged<String?> onSizeSelected;
 
   @override
   State<DetailsViewBody> createState() => _DetailsViewBodyState();
@@ -50,14 +47,6 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                 context: context,
                 message: state.errorMessage,
               );
-            }
-          },
-        ),
-        BlocListener<RemoveFromCartCubit, RemoveFromCartState>(
-          listener: (context, state) {
-            if (state is RemoveFromCartSuccess) {
-              showedScaffoldMessage(
-                  context: context, message: 'Removed from cart');
             }
           },
         ),
@@ -159,7 +148,11 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 15),
+                  Text(
+                    'In Stock: ${widget.productModel.quantity}',
+                    style: AppStyles.styleGreyReg18(context),
+                  ),
+                  const SizedBox(height: 4),
                   SizedBox(
                     height: 70,
                     child: ListView.builder(
@@ -182,8 +175,10 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                       },
                     ),
                   ),
-                  widget.productModel.sizes!.isNotEmpty
-                      ? Column(
+                  widget.productModel.sizes == [] ||
+                          widget.productModel.sizes!.isEmpty
+                      ? SizedBox()
+                      : Column(
                           children: [
                             const SizedBox(height: 15),
                             Text(
@@ -192,16 +187,19 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                             ),
                             const SizedBox(height: 15),
                           ],
-                        )
-                      : const SizedBox(),
+                        ),
                   DetailsViewNumsList(
+                    defaultSize: widget.productModel.selectedSize,
                     sizes: widget.productModel.sizes,
                     onSizeSelected: (String size) {
                       setState(() {
                         selectedSize = size;
                       });
-                      widget.onSizeSelected(size);
                     },
+                  ),
+                  AddToCartButton(
+                    productModel: widget.productModel,
+                    selectedSize: selectedSize,
                   ),
                   ExpansionTile(
                     initiallyExpanded: true,

@@ -35,7 +35,8 @@ class UserCartBlocBuilderList extends StatelessWidget {
         } else if (state is FetchUserCartFailure) {
           showedScaffoldMessage(context: context, message: state.errorMessage);
           return const SliverToBoxAdapter(
-            child: SizedBox.shrink(), );
+            child: SizedBox.shrink(),
+          );
         } else {
           return const CartLoadingList();
         }

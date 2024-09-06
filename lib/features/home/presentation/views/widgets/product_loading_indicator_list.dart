@@ -11,14 +11,15 @@ class ProductShimmerLoadingIndicatorList extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * .30,
       child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 6,
-          itemBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: ProductLoadingShimmerIndicatorItem(),
-            );
-          }),
+        scrollDirection: Axis.horizontal,
+        itemCount: 6,
+        itemBuilder: (context, index) {
+          return const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: ProductLoadingShimmerIndicatorItem(),
+          );
+        },
+      ),
     );
   }
 }

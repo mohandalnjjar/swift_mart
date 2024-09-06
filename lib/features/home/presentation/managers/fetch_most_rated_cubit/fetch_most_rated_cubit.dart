@@ -11,21 +11,26 @@ class FetchMostRatedCubit extends Cubit<FetchMostRatedState> {
 
   final HomeRepoImpl homeRepoImpl;
 
-  Future<void> mostRatedProductMethod() async {
-    var response = await homeRepoImpl.fetchMostRatedProducts();
-
-    response.fold((failed) {
-      emit(
-        FetchMostRatedFailed(
-          errorMessage: failed.errorMessage,
-        ),
-      );
-    }, (success) {
-      emit(
-        FetchMostRatedSuccess(
-          products: success,
-        ),
-      );
-    });
+  Future<void> mostRatedProductMethod({required int limit}) async {
+    homeRepoImpl.fetchMostRatedProducts(limit: limit).listen(
+      (response) {
+        response.fold(
+          (failed) {
+            emit(
+              FetchMostRatedFailed(
+                errorMessage: failed.errorMessage,
+              ),
+            );
+          },
+          (success) {
+            emit(
+              FetchMostRatedSuccess(
+                products: success,
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }

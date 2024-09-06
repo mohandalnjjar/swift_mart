@@ -4,9 +4,12 @@ import 'package:swift_mart/core/errors/failures.dart';
 import 'package:swift_mart/features/home/data/models/product_model.dart';
 
 abstract class HomeRepo {
-  Future<Either<Failure, List<ProductModel>>> fetchProducts();
-
-  Future<Either<Failure, List<ProductModel>>> fetchMostRatedProducts();
+  Stream<Either<Failure, List<ProductModel>>> fetchProducts({
+    required int limit,
+  });
+  Stream<Either<Failure, List<ProductModel>>> fetchMostRatedProducts({
+    required int limit,
+  });
 
   Future<Either<Failure, void>> addFavorites(
       {required ProductModel productModel});
@@ -14,9 +17,12 @@ abstract class HomeRepo {
   Future<Either<Failure, void>> removeFavorites(
       {required ProductModel productModel});
 
-  Future<Either<Failure, void>> addToCart({required ProductModel productModel});
-  Future<Either<Failure, void>> removeFromCart(
-      {required ProductModel productModel});
+  Future<Either<Failure, void>> addToCart(
+      {required ProductModel productModel, required String? selectedSize});
+
+  Future<Either<Failure, void>> removeFromCart({
+    required ProductModel productModel,
+  });
 
   Future<Either<Failure, int>> updateQuantity(
       {required ProductModel productModel, required bool increase});
@@ -28,6 +34,4 @@ abstract class HomeRepo {
     required String phone,
     required String address,
   });
-
-  
 }

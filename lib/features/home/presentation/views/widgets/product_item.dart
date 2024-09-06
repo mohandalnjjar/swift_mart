@@ -22,7 +22,7 @@ class ProductItem extends StatelessWidget {
         extra: productModel,
       ),
       child: AspectRatio(
-        aspectRatio: 2 / 3.4,
+        aspectRatio: 2 / 3.1,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -45,6 +45,7 @@ class ProductItem extends StatelessWidget {
               productModel.title,
               maxLines: 1,
               style: AppStyles.styleRegular19(context),
+              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(
               height: 5,
@@ -53,7 +54,7 @@ class ProductItem extends StatelessWidget {
               children: [
                 Text(
                   '\$ ${productModel.price}',
-                  style: AppStyles.style700w16(context),
+                  style: AppStyles.styleBold18(context),
                 ),
                 const Spacer(),
                 AddRemoveToFavorietsButton(productModel: productModel),

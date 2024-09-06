@@ -51,9 +51,11 @@ class CartViewBody extends StatelessWidget {
               ),
               sliver: SliverToBoxAdapter(
                 child: Text(
-                  S.of(context).List(state is FetchUserCartSuccess
-                      ? state.products.length.toString()
-                      : '0'),
+                  S.of(context).List(
+                        state is FetchUserCartSuccess
+                            ? state.products.length.toString()
+                            : '0',
+                      ),
                   style: AppStyles.styleRegular30(context),
                 ),
               ),

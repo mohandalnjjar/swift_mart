@@ -19,7 +19,7 @@ class _CategoriesListState extends State<CategoriesList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 60,
+      height: 43,
       child: Padding(
         padding: const EdgeInsets.only(right: 13.0),
         child: ListView.builder(

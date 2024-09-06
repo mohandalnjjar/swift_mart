@@ -8,9 +8,11 @@ class ProductModel {
   final List<dynamic> images;
   final List<dynamic>? sizes;
   final String id;
+  final String? selectedSize;
 
   ProductModel({
     required this.id,
+    required this.selectedSize,
     required this.title,
     required this.price,
     required this.description,
@@ -31,6 +33,7 @@ class ProductModel {
       images: doc['Images'],
       sizes: doc['sizes'],
       id: doc['id'],
+      selectedSize: doc['selectedSize'],
     );
   }
 
@@ -45,6 +48,7 @@ class ProductModel {
       images: data['Images'],
       discount: data['discount'],
       sizes: data['sizes'],
+      selectedSize: data['selectedSize'],
     );
   }
 
@@ -59,6 +63,22 @@ class ProductModel {
       'title': title,
       'id': id,
       'quantity': quantity,
+      'selectedSize': selectedSize,
+    };
+  }
+
+  Map<String, dynamic> addSelected({required String? selectedSize}) {
+    return {
+      'Images': images,
+      'category': category,
+      'description': description,
+      'discount': discount,
+      'price': price,
+      'sizes': sizes,
+      'title': title,
+      'id': id,
+      'quantity': quantity,
+      'selectedSize': selectedSize,
     };
   }
 }
