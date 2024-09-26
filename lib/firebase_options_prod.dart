@@ -8,7 +8,7 @@ import 'package:flutter/foundation.dart'
 ///
 /// Example:
 /// ```dart
-/// import 'firebase_options.dart';
+/// import 'firebase_options_prod.dart';
 /// // ...
 /// await Firebase.initializeApp(
 ///   options: DefaultFirebaseOptions.currentPlatform,
@@ -47,6 +47,7 @@ class DefaultFirebaseOptions {
     projectId: 'swift-mart-9e189',
     authDomain: 'swift-mart-9e189.firebaseapp.com',
     storageBucket: 'swift-mart-9e189.appspot.com',
+    measurementId: 'G-XT5BR3FF6C',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -63,6 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '203446715101',
     projectId: 'swift-mart-9e189',
     storageBucket: 'swift-mart-9e189.appspot.com',
+    androidClientId: '203446715101-57oiri29t87o3ei1cks41sbr1ksci06n.apps.googleusercontent.com',
+    iosClientId: '203446715101-o9151t4p3iini8st6hq8jqbfdkm91hfs.apps.googleusercontent.com',
     iosBundleId: 'com.example.swiftMart',
   );
 
@@ -72,6 +75,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '203446715101',
     projectId: 'swift-mart-9e189',
     storageBucket: 'swift-mart-9e189.appspot.com',
+    androidClientId: '203446715101-57oiri29t87o3ei1cks41sbr1ksci06n.apps.googleusercontent.com',
+    iosClientId: '203446715101-o9151t4p3iini8st6hq8jqbfdkm91hfs.apps.googleusercontent.com',
     iosBundleId: 'com.example.swiftMart',
   );
 
@@ -82,5 +87,6 @@ class DefaultFirebaseOptions {
     projectId: 'swift-mart-9e189',
     authDomain: 'swift-mart-9e189.firebaseapp.com',
     storageBucket: 'swift-mart-9e189.appspot.com',
+    measurementId: 'G-3HZZ7VZ7JX',
   );
 }

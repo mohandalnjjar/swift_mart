@@ -9,6 +9,7 @@ class ProductModel {
   final List<dynamic>? sizes;
   final String id;
   final String? selectedSize;
+  final Map<String, dynamic>? quantityBySize;
 
   ProductModel({
     required this.id,
@@ -21,6 +22,7 @@ class ProductModel {
     this.discount,
     required this.images,
     this.sizes,
+    this.quantityBySize,
   });
 
   factory ProductModel.fromFireBase(Map<String, dynamic> doc) {
@@ -34,6 +36,7 @@ class ProductModel {
       sizes: doc['sizes'],
       id: doc['id'],
       selectedSize: doc['selectedSize'],
+      quantityBySize: doc['quantityBySize'],
     );
   }
 
@@ -49,6 +52,7 @@ class ProductModel {
       discount: data['discount'],
       sizes: data['sizes'],
       selectedSize: data['selectedSize'],
+      quantityBySize: data['quantityBySize'],
     );
   }
 
@@ -64,10 +68,13 @@ class ProductModel {
       'id': id,
       'quantity': quantity,
       'selectedSize': selectedSize,
+      'quantityBySize': quantityBySize,
     };
   }
 
-  Map<String, dynamic> addSelected({required String? selectedSize}) {
+  Map<String, dynamic> addSelected({
+    required String? selectedSize,
+  }) {
     return {
       'Images': images,
       'category': category,
@@ -79,6 +86,7 @@ class ProductModel {
       'id': id,
       'quantity': quantity,
       'selectedSize': selectedSize,
+      'quantityBySize': quantityBySize,
     };
   }
 }

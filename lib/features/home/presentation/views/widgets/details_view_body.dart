@@ -31,6 +31,7 @@ class DetailsViewBody extends StatefulWidget {
 class _DetailsViewBodyState extends State<DetailsViewBody> {
   int activeIndex = 0;
   String? selectedSize;
+  int? selectedQuantity;
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +150,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                     ],
                   ),
                   Text(
-                    'In Stock: ${widget.productModel.quantity}',
+                    'In Stock: Available',
                     style: AppStyles.styleGreyReg18(context),
                   ),
                   const SizedBox(height: 4),
@@ -180,12 +181,12 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                       ? SizedBox()
                       : Column(
                           children: [
-                            const SizedBox(height: 15),
+                            const SizedBox(height: 5),
                             Text(
                               S.of(context).SizeGuide,
                               style: AppStyles.styleSemiBold24(context),
                             ),
-                            const SizedBox(height: 15),
+                            const SizedBox(height: 5),
                           ],
                         ),
                   DetailsViewNumsList(
@@ -194,9 +195,18 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                     onSizeSelected: (String size) {
                       setState(() {
                         selectedSize = size;
+                        selectedQuantity =
+                            widget.productModel.quantityBySize?[size] ?? 0;
                       });
                     },
                   ),
+                  const SizedBox(height: 5),
+                  if (selectedQuantity != null)
+                    Text(
+                      '$selectedQuantity Items Available',
+                      style: AppStyles.styleGreyReg18(context),
+                    ),
+                  const SizedBox(height: 5),
                   AddToCartButton(
                     productModel: widget.productModel,
                     selectedSize: selectedSize,

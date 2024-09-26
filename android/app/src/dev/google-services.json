@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "29770567067",
+    "project_id": "swift-mart-5b173",
+    "storage_bucket": "swift-mart-5b173.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29770567067:android:d92abe0248b1c6beff253e",
+        "android_client_info": {
+          "package_name": "com.example.swift_mart.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPR8CCQ7svyWX969HbHMxB29v-4yzM4-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

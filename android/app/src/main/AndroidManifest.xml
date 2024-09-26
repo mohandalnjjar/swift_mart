@@ -5,7 +5,7 @@
 
     <application
     
-        android:label="Swift Mart"
+        android:label="@string/app_name"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
 

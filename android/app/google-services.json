@@ -7,12 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:203446715101:android:d38d92b590fbde12655134",
+        "mobilesdk_app_id": "1:203446715101:android:e4c00189c46a0533655134",
         "android_client_info": {
-          "package_name": "com.example.swift_mart"
+          "package_name": "com.example.swift_admin"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "203446715101-jlceo3dia1o6gb5qvq099f4ibegpuqeq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCj7TOsvEfwzn4ZUcZvBS2oMr7rFjlah8w"
@@ -20,7 +25,63 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "203446715101-jlceo3dia1o6gb5qvq099f4ibegpuqeq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "203446715101-jmudsu3a87hs4mddkti586itiarql0nn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.swiftAdmin"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:203446715101:android:d38d92b590fbde12655134",
+        "android_client_info": {
+          "package_name": "com.example.swift_mart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "203446715101-57oiri29t87o3ei1cks41sbr1ksci06n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swift_mart",
+            "certificate_hash": "7dd868bd5abdccb5a698cb26323e6022028f3b10"
+          }
+        },
+        {
+          "client_id": "203446715101-jlceo3dia1o6gb5qvq099f4ibegpuqeq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj7TOsvEfwzn4ZUcZvBS2oMr7rFjlah8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "203446715101-jlceo3dia1o6gb5qvq099f4ibegpuqeq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "203446715101-jmudsu3a87hs4mddkti586itiarql0nn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.swiftAdmin"
+              }
+            }
+          ]
         }
       }
     }

@@ -20,7 +20,7 @@ class HomeViewBody extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverPadding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           sliver: SliverAppBar(
             title: Text(
               S.of(context).SwiftMart,
