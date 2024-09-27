@@ -1,23 +1,25 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations":  [
-      
-        {
-            "name": "SwiftMartDev",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/main_dev.dart",
-            "args": ["--flavor", "SwiftMartDev", "--target", "lib/main_dev.dart" ]
-          }, 
-           {
-            "name": "SwiftMartProd",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/main_prod.dart",
-            "args": ["--flavor", "SwiftMartProd", "--target", "lib/main_prod.dart" ]
-          }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": "swift_mart",
+          "request": "launch",
+          "type": "dart"
+      },
+      {
+          "name": "swift_mart (profile mode)",
+          "request": "launch",
+          "type": "dart",
+          "flutterMode": "profile"
+      },
+      {
+          "name": "swift_mart (release mode)",
+          "request": "launch",
+          "type": "dart",
+          "flutterMode": "release"
+      }
+  ]
 }

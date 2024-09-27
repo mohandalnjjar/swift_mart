@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SwiftMart</string>
+      <string name="facebook_app_id">1204205323788784</string>
+    <string name="fb_login_protocol_scheme">fb987ffbde3fcc9b447024ffc4743d5c94</string>
 
 </resources>

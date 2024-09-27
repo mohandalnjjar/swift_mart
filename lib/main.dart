@@ -1,8 +1,11 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:swift_mart/core/utils/app_theme_data.dart';
+import 'package:swift_mart/core/utils/services/api_keys.dart';
 import 'package:swift_mart/core/utils/services/app_router.dart';
 import 'package:swift_mart/features/home/data/repos/home_repo_impl.dart';
 import 'package:swift_mart/features/home/presentation/managers/add_favoriets_cubit/add_favorites_cubit.dart';
@@ -19,7 +22,20 @@ import 'package:swift_mart/features/reviews/data/repos/review_repo_impl.dart';
 import 'package:swift_mart/features/reviews/presentation/managers/fetch_reviews_average_cubit/fetch_reviews_average_cubit.dart';
 import 'package:swift_mart/features/theme/data/repos/theme_repo_impl.dart';
 import 'package:swift_mart/features/theme/presentation/managers/cubit/theme_cubit.dart';
+import 'package:swift_mart/firebase_options.dart';
 import 'package:swift_mart/generated/l10n.dart';
+
+void main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  Stripe.publishableKey = ApiKeys.publishablekey;
+  runApp(
+    const SwiftMart(),
+  );
+}
 
 class SwiftMart extends StatelessWidget {
   const SwiftMart({super.key});
