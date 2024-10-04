@@ -7,6 +7,7 @@ import 'package:swift_mart/core/utils/const/app_colors.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
 import 'package:swift_mart/features/home/data/models/product_model.dart';
 import 'package:swift_mart/features/home/presentation/managers/add_to_cart_cubit/add_to_cart_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/fetch_dynamic_product_details_cubit/fetch_dynamic_product_details_cubit.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/add_remove_cart_buttom.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/add_remove_to_favoriets_cubit.dart';
 import 'package:swift_mart/features/home/presentation/views/widgets/detailes_list_item.dart';
@@ -153,7 +154,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                     'In Stock: Available',
                     style: AppStyles.styleGreyReg18(context),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 5),
                   SizedBox(
                     height: 70,
                     child: ListView.builder(
@@ -193,19 +194,15 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                     defaultSize: widget.productModel.selectedSize,
                     sizes: widget.productModel.sizes,
                     onSizeSelected: (String size) {
-                      setState(() {
-                        selectedSize = size;
-                        selectedQuantity =
-                            widget.productModel.quantityBySize?[size] ?? 0;
-                      });
+                      setState(
+                        () {
+                          selectedSize = size;
+                          selectedQuantity =
+                              widget.productModel.quantityBySize?[size] ?? 0;
+                        },
+                      );
                     },
                   ),
-                  const SizedBox(height: 5),
-                  if (selectedQuantity != null)
-                    Text(
-                      '$selectedQuantity Items Available',
-                      style: AppStyles.styleGreyReg18(context),
-                    ),
                   const SizedBox(height: 5),
                   AddToCartButton(
                     productModel: widget.productModel,

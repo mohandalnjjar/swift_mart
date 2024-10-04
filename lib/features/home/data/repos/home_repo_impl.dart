@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:swift_mart/core/errors/failures.dart';
 import 'package:swift_mart/core/functions/uploadImage_profile_to_firebase_fire_store.dart';
 import 'package:swift_mart/core/functions/upload_images_to_fire_storage.dart';
+import 'package:swift_mart/features/home/data/models/product_dynamic_data.dart';
 import 'package:swift_mart/features/home/data/models/product_model.dart';
 import 'package:swift_mart/features/home/data/repos/home_repo.dart';
 
@@ -22,7 +23,33 @@ class HomeRepoImpl extends HomeRepo {
         final allData = querySnapshot.docs
             .map(
               (doc) =>
-                  ProductModel.fromFireBase(doc.data() as Map<String, dynamic>),
+                  ProductModel.fromFirebase(doc.data() as Map<String, dynamic>),
+            )
+            .toList();
+
+        yield right(allData);
+      }
+    } catch (e) {
+      yield left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Stream<Either<Failure, List<ProductDynamicData>>>
+      streamProductDetails() async* {
+    final CollectionReference collectionRef =
+        FirebaseFirestore.instance.collection('products');
+
+    try {
+      await for (QuerySnapshot querySnapshot in collectionRef.snapshots()) {
+        final allData = querySnapshot.docs
+            .map(
+              (doc) => ProductDynamicData.fromFirebase(
+                  doc.data() as Map<String, dynamic>),
             )
             .toList();
 
@@ -52,7 +79,7 @@ class HomeRepoImpl extends HomeRepo {
         final allData = querySnapshot.docs
             .map(
               (doc) =>
-                  ProductModel.fromFireBase(doc.data() as Map<String, dynamic>),
+                  ProductModel.fromFirebase(doc.data() as Map<String, dynamic>),
             )
             .toList();
 
@@ -115,71 +142,6 @@ class HomeRepoImpl extends HomeRepo {
           )
         },
       );
-
-      return right(null);
-    } catch (e) {
-      return left(
-        ServerFailure(
-          errorMessage: e.toString(),
-        ),
-      );
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> addToCart(
-      {required ProductModel productModel,
-      required String? selectedSize}) async {
-    try {
-      final FirebaseAuth auth = FirebaseAuth.instance;
-      final User? user = auth.currentUser;
-
-      // Check available quantity
-      final DocumentSnapshot<Map<String, dynamic>> productSnapshot =
-          await FirebaseFirestore.instance
-              .collection('products')
-              .doc(productModel.id)
-              .get();
-      final int? availableQuantity = productSnapshot.data()?['quantity'];
-
-      if (availableQuantity == null || availableQuantity <= 0) {
-        return left(
-          ServerFailure(
-            errorMessage: 'Sorry, there is not enough quantity',
-          ),
-        );
-      } else {
-        final userDoc =
-            FirebaseFirestore.instance.collection('users').doc(user!.uid);
-        final DocumentSnapshot<Map<String, dynamic>> userDocSnapshot =
-            await userDoc.get();
-        List<dynamic> userCart = userDocSnapshot.data()?['userCart'] ?? [];
-
-        final existingProductIndex = userCart.indexWhere(
-          (product) =>
-              product['id'] == productModel.id &&
-              product['selectedSize'] == selectedSize,
-        );
-        if (existingProductIndex != -1) {
-          if (availableQuantity <
-              userCart[existingProductIndex]['quantity'] + 1) {
-            return left(
-              ServerFailure(
-                errorMessage: 'Sorry, there is not enough quantity',
-              ),
-            );
-          }
-          userCart[existingProductIndex]['quantity'] += 1;
-        } else {
-          Map<String, dynamic> updatedProduct =
-              productModel.addSelected(selectedSize: selectedSize);
-          updatedProduct['quantity'] = 1;
-          userCart.add(updatedProduct);
-        }
-        await userDoc.update({
-          'userCart': userCart,
-        });
-      }
 
       return right(null);
     } catch (e) {
@@ -352,6 +314,72 @@ class HomeRepoImpl extends HomeRepo {
           ),
         );
       }
+    } catch (e) {
+      return left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> addToCart({
+    required ProductModel productModel,
+    required String? selectedSize,
+  }) async {
+    try {
+      final FirebaseAuth auth = FirebaseAuth.instance;
+      final User? user = auth.currentUser;
+
+      // Check available quantity
+      final DocumentSnapshot<Map<String, dynamic>> productSnapshot =
+          await FirebaseFirestore.instance
+              .collection('products')
+              .doc(productModel.id)
+              .get();
+      final int? availableQuantity =
+          productSnapshot.data()?['quantityBySize'][selectedSize];
+      if (availableQuantity == null || availableQuantity <= 0) {
+        return left(
+          ServerFailure(
+            errorMessage: 'Sorry, there is not enough quantity',
+          ),
+        );
+      } else {
+        final userDoc =
+            FirebaseFirestore.instance.collection('users').doc(user!.uid);
+        final DocumentSnapshot<Map<String, dynamic>> userDocSnapshot =
+            await userDoc.get();
+        List<dynamic> userCart = userDocSnapshot.data()?['userCart'] ?? [];
+
+        final existingProductIndex = userCart.indexWhere(
+          (product) =>
+              product['id'] == productModel.id &&
+              product['selectedSize'] == selectedSize,
+        );
+        if (existingProductIndex != -1) {
+          if (availableQuantity <
+              userCart[existingProductIndex]['quantity'] + 1) {
+            return left(
+              ServerFailure(
+                errorMessage: 'Sorry, there is not enough quantity',
+              ),
+            );
+          }
+          userCart[existingProductIndex]['quantity'] += 1;
+        } else {
+          Map<String, dynamic> updatedProduct =
+              productModel.addSelectedSize(selectedSize: selectedSize);
+          updatedProduct['quantity'] = 1;
+          userCart.add(updatedProduct);
+        }
+        await userDoc.update({
+          'userCart': userCart,
+        });
+      }
+
+      return right(null);
     } catch (e) {
       return left(
         ServerFailure(

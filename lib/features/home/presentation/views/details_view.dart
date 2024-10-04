@@ -20,6 +20,12 @@ class DetailsView extends StatelessWidget {
             homeRepoImpl: HomeRepoImpl(),
           ),
         ),
+
+        BlocProvider(
+          create: (context) => AddToCartCubit(
+            homeRepoImpl: HomeRepoImpl(),
+          ),
+        ),
         BlocProvider(
           create: (context) => FetchReviewsAverageCubit(
             reviewRepoImpl: ReviewRepoImpl(),
