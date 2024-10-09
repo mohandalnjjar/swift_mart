@@ -42,13 +42,13 @@ class UpdateQuantityButtonBuilder extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 5),
-                // Text(
-                //   state is UpdateQuantitySuccess
-                //       ? state.quantity.toString()
-                //       : productModel.quantity.toString(),
-                //   style: AppStyles.styleRegular18(context),
-                // ),
-                // const SizedBox(width: 5),
+                Text(
+                  state is UpdateQuantitySuccess
+                      ? state.quantity.toString()
+                      : productModel.quantity.toString(),
+                  style: AppStyles.styleRegular18(context),
+                ),
+                const SizedBox(width: 5),
                 InkWell(
                   onTap: () {
                     BlocProvider.of<UpdateQuantityCubit>(context)

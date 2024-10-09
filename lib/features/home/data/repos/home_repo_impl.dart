@@ -23,7 +23,7 @@ class HomeRepoImpl extends HomeRepo {
         final allData = querySnapshot.docs
             .map(
               (doc) =>
-                  ProductModel.fromFirebase(doc.data() as Map<String, dynamic>),
+                  ProductModel.fromFireBase(doc.data() as Map<String, dynamic>),
             )
             .toList();
 
@@ -79,7 +79,7 @@ class HomeRepoImpl extends HomeRepo {
         final allData = querySnapshot.docs
             .map(
               (doc) =>
-                  ProductModel.fromFirebase(doc.data() as Map<String, dynamic>),
+                  ProductModel.fromFireBase(doc.data() as Map<String, dynamic>),
             )
             .toList();
 
@@ -263,6 +263,7 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
+   @override
   Future<Either<Failure, int>> updateQuantity(
       {required ProductModel productModel, required bool increase}) async {
     try {
@@ -322,8 +323,7 @@ class HomeRepoImpl extends HomeRepo {
       );
     }
   }
-
-  @override
+   @override
   Future<Either<Failure, void>> addToCart({
     required ProductModel productModel,
     required String? selectedSize,
@@ -338,8 +338,8 @@ class HomeRepoImpl extends HomeRepo {
               .collection('products')
               .doc(productModel.id)
               .get();
-      final int? availableQuantity =
-          productSnapshot.data()?['quantityBySize'][selectedSize];
+      final int? availableQuantity = productSnapshot.data()?['quantity'];
+
       if (availableQuantity == null || availableQuantity <= 0) {
         return left(
           ServerFailure(
@@ -370,7 +370,7 @@ class HomeRepoImpl extends HomeRepo {
           userCart[existingProductIndex]['quantity'] += 1;
         } else {
           Map<String, dynamic> updatedProduct =
-              productModel.addSelectedSize(selectedSize: selectedSize);
+              productModel.addSelected(selectedSize: selectedSize);
           updatedProduct['quantity'] = 1;
           userCart.add(updatedProduct);
         }
@@ -388,4 +388,4 @@ class HomeRepoImpl extends HomeRepo {
       );
     }
   }
-}
+ }
