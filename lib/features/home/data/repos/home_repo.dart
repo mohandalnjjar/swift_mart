@@ -5,9 +5,10 @@ import 'package:swift_mart/features/home/data/models/product_dynamic_data.dart';
 import 'package:swift_mart/features/home/data/models/product_model.dart';
 
 abstract class HomeRepo {
-  Stream<Either<Failure, List<ProductModel>>> fetchProducts({
-    required int limit,
-  });
+  Future<Either<Failure, void>> checkProductAvailability();
+
+  Stream<Either<Failure, List<ProductModel>>> fetchProducts(
+      {required int limit});
 
   Stream<Either<Failure, List<ProductDynamicData>>> streamProductDetails();
 

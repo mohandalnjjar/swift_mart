@@ -22,9 +22,9 @@ class FetchUserCartCubit extends Cubit<FetchUserCartState> {
         .snapshots()
         .listen(
       (DocumentSnapshot<Map<String, dynamic>> data) {
-        var userWish = data.get('userCart') as List<dynamic>;
+        var userCart = data.get('userCart') as List<dynamic>;
 
-        List<ProductModel> products = userWish.map((data) {
+        List<ProductModel> products = userCart.map((data) {
           return ProductModel.fromMap(data as Map<String, dynamic>);
         }).toList();
 

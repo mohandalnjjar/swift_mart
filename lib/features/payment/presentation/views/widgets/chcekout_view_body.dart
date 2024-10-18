@@ -60,7 +60,10 @@ class CheckoutViewBody extends StatelessWidget {
           child: PaymentMethodsLists(),
         ),
         SliverPadding(
-          padding: const EdgeInsets.only(left: 8.0, top: 34),
+          padding: const EdgeInsets.only(
+            left: 8.0,
+            top: 34,
+          ),
           sliver: SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,9 +177,7 @@ class CheckoutViewBody extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 17,
-                ),
+                SizedBox(height: 17),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

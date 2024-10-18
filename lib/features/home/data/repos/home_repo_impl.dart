@@ -263,67 +263,6 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-   @override
-  Future<Either<Failure, int>> updateQuantity(
-      {required ProductModel productModel, required bool increase}) async {
-    try {
-      final FirebaseAuth auth = FirebaseAuth.instance;
-      final User? user = auth.currentUser;
-
-      DocumentReference docRef =
-          FirebaseFirestore.instance.collection('users').doc(user!.uid);
-
-      DocumentSnapshot docSnapshot = await docRef.get();
-
-      List<dynamic> userCart = docSnapshot.get('userCart');
-
-      int productIndex = userCart.indexWhere(
-        (product) =>
-            product['id'] == productModel.id &&
-            product['selectedSize'] == productModel.selectedSize,
-      );
-
-      int currentQuantity = userCart[productIndex]['quantity'];
-      int newQuantity = increase ? currentQuantity + 1 : currentQuantity - 1;
-
-      final DocumentSnapshot<Map<String, dynamic>> productSnapshot =
-          await FirebaseFirestore.instance
-              .collection('products')
-              .doc(productModel.id)
-              .get();
-      final int? productQuantity = productSnapshot.data()?['quantity'];
-
-      if (productIndex != -1 && newQuantity > 0 && productQuantity != null) {
-        if (newQuantity > productQuantity) {
-          return left(
-            ServerFailure(
-              errorMessage:
-                  'Sorry, there is no enough quantity for${productModel.title}',
-            ),
-          );
-        }
-
-        userCart[productIndex]['quantity'] = newQuantity;
-
-        await docRef.update({'userCart': userCart});
-
-        return right(newQuantity);
-      } else {
-        return left(
-          ServerFailure(
-            errorMessage: 'Can\'t be less than one item',
-          ),
-        );
-      }
-    } catch (e) {
-      return left(
-        ServerFailure(
-          errorMessage: e.toString(),
-        ),
-      );
-    }
-  }
-   @override
   Future<Either<Failure, void>> addToCart({
     required ProductModel productModel,
     required String? selectedSize,
@@ -388,4 +327,129 @@ class HomeRepoImpl extends HomeRepo {
       );
     }
   }
- }
+
+  @override
+  Future<Either<Failure, void>> checkProductAvailability() async {
+    try {
+      final FirebaseAuth auth = FirebaseAuth.instance;
+      final User? user = auth.currentUser;
+      final userDoc =
+          FirebaseFirestore.instance.collection('users').doc(user!.uid);
+      final DocumentSnapshot<Map<String, dynamic>> userDocSnapshot =
+          await userDoc.get();
+
+      List<dynamic> userCart = userDocSnapshot.data()?['userCart'] ?? [];
+      for (var cartItem in userCart) {
+        String productId = cartItem['id'];
+        int cartQuantity = cartItem['quantity'];
+
+        // Fetch the corresponding product from the 'products' collection
+        final productDoc = await FirebaseFirestore.instance
+            .collection('products')
+            .doc(productId)
+            .get();
+
+        if (!productDoc.exists) {
+          return left(ServerFailure(
+              errorMessage: 'Product not found for ID: $productId'));
+        }
+
+        Map<String, dynamic>? productData = productDoc.data();
+        int availableQuantity = productData?['quantity'] ?? 0;
+
+        // Compare cart quantity with available quantity
+        if (cartQuantity > availableQuantity) {
+          return left(
+            ServerFailure(
+                errorMessage:
+                    'there is not enough quantity for ${cartItem['title']} only available $availableQuantity'),
+          );
+        } else {
+          return const Right(
+            null,
+          );
+        }
+      }
+    } catch (e) {
+      return left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+    return left(
+      ServerFailure(
+        errorMessage: 'Some thing went wronttry again',
+      ),
+    );
+  }
+
+  @override
+  Future<Either<Failure, int>> updateQuantity(
+      {required ProductModel productModel, required bool increase}) async {
+    try {
+      final FirebaseAuth auth = FirebaseAuth.instance;
+      final User? user = auth.currentUser;
+
+      DocumentReference docRef =
+          FirebaseFirestore.instance.collection('users').doc(user!.uid);
+
+      DocumentSnapshot docSnapshot = await docRef.get();
+
+      List<dynamic> userCart = docSnapshot.get('userCart');
+
+      int productIndex = userCart.indexWhere(
+        (product) =>
+            product['id'] == productModel.id &&
+            product['selectedSize'] == productModel.selectedSize,
+      );
+
+      int currentQuantity = userCart[productIndex]['quantity'];
+      int newQuantity = increase ? currentQuantity + 1 : currentQuantity - 1;
+
+      final DocumentSnapshot<Map<String, dynamic>> productSnapshot =
+          await FirebaseFirestore.instance
+              .collection('products')
+              .doc(productModel.id)
+              .get();
+      final int? productQuantity = productSnapshot.data()?['quantity'];
+
+      if (productIndex != -1 && newQuantity > 0 && productQuantity != null) {
+        if (newQuantity > productQuantity) {
+          userCart[productIndex]['quantity'] = productQuantity;
+
+          await docRef.update(
+            {
+              'userCart': userCart,
+            },
+          );
+
+          return left(
+            ServerFailure(
+              errorMessage:
+                  'Sorry, there is no enough quantity for${productModel.title}',
+            ),
+          );
+        }
+
+        userCart[productIndex]['quantity'] = newQuantity;
+
+        await docRef.update({'userCart': userCart});
+
+        return right(newQuantity);
+      } else {
+        return left(
+          ServerFailure(
+            errorMessage: 'Can\'t be less than one item',
+          ),
+        );
+      }
+    } catch (e) {
+      return left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+}

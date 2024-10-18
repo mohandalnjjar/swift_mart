@@ -18,7 +18,7 @@ class FethTotalCartPriceCubit extends Cubit<FetchTotalCartPriceState> {
     emit(
       FethTotalCartPriceLoading(),
     );
-
+    
     FirebaseFirestore.instance
         .collection('users')
         .doc(user!.uid)
