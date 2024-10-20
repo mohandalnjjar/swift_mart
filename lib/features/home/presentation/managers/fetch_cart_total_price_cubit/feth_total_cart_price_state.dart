@@ -8,9 +8,9 @@ final class FethTotalCartPriceInitial extends FetchTotalCartPriceState {}
 final class FethTotalCartPriceLoading extends FetchTotalCartPriceState {}
 
 final class FethTotalCartPriceSuccess extends FetchTotalCartPriceState {
-  final double totalPrice;
+  final OrderFinanceDetails orderFinanceDetails;
 
-  FethTotalCartPriceSuccess({required this.totalPrice});
+  FethTotalCartPriceSuccess({required this.orderFinanceDetails});
 }
 
 final class FethTotalCartPriceFailed extends FetchTotalCartPriceState {

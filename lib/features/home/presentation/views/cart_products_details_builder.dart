@@ -22,15 +22,11 @@ class CartProductsDetailsBuilder extends StatelessWidget {
                 style: AppStyles.styleRegular20(context),
               ),
               const Spacer(),
-              const Icon(
-                Icons.attach_money_outlined,
-                color: Colors.green,
-              ),
               Text(
                 state is FethTotalCartPriceSuccess
-                    ? state.totalPrice.toString()
-                    : '0',
-                style: AppStyles.styleSemiBold19(context),
+                    ? '\$ ${state.orderFinanceDetails.supTotalPrice}'
+                    : '\$0',
+                style: AppStyles.styleSemiBold21(context),
               ),
             ],
           ),

@@ -65,6 +65,7 @@ dependencies:
   readmore: ^3.0.0
   shared_preferences: ^2.2.3
   shimmer: ^3.0.0
+  uuid: ^4.5.1
 
 flutter_native_splash:
   color: "#69BCFC"

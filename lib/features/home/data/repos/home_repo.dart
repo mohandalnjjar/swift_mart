@@ -3,6 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:swift_mart/core/errors/failures.dart';
 import 'package:swift_mart/features/home/data/models/product_dynamic_data.dart';
 import 'package:swift_mart/features/home/data/models/product_model.dart';
+import 'package:swift_mart/features/home/data/models/order_model.dart';
 
 abstract class HomeRepo {
   Future<Either<Failure, void>> checkProductAvailability();
@@ -39,4 +40,6 @@ abstract class HomeRepo {
     required String phone,
     required String address,
   });
+
+  Future<Either<Failure, void>> submitOrder({required OrderModel orderModel});
 }

@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
+import 'package:swift_mart/core/functions/show_meeage.dart';
 import 'package:swift_mart/core/utils/const/app_constance.dart';
 import 'package:swift_mart/core/utils/const/app_images.dart';
 import 'package:swift_mart/core/utils/services/app_text_styles.dart';
-import 'package:swift_mart/core/utils/widgets/dotted_line.dart';
+import 'package:swift_mart/core/utils/widgets/custom_loading_indicator.dart';
+import 'package:swift_mart/features/home/data/models/order_model.dart';
+import 'package:swift_mart/features/home/presentation/managers/check_available_quantitycubit/check_available_quantity_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/fetch_cart_total_price_cubit/fetch_total_cart_price_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/fetch_user_cart_cubit/fetch_user_cart_cubit.dart';
 import 'package:swift_mart/features/home/presentation/managers/fetch_user_data_cubit/fetch_user_data_cubit.dart';
+import 'package:swift_mart/features/home/presentation/managers/submit_order_cubit/submit_order_cubit_cubit.dart';
+import 'package:swift_mart/features/payment/presentation/views/widgets/order_details_finance_section.dart';
 import 'package:swift_mart/features/payment/presentation/views/widgets/payment_methids_list.dart';
 
 class CheckoutViewBody extends StatelessWidget {
@@ -149,9 +156,6 @@ class CheckoutViewBody extends StatelessWidget {
                           IconlyLight.edit,
                         ),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
                     ],
                   ),
                 ),
@@ -159,74 +163,68 @@ class CheckoutViewBody extends StatelessWidget {
             ),
           ),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
-          sliver: SliverToBoxAdapter(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Subtotal',
-                      style: AppStyles.styleGreyReg17(context),
-                    ),
-                    Text(
-                      '\$ 1283',
-                      style: AppStyles.styleSemiBold21(context),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 17),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Shipping Cost',
-                      style: AppStyles.styleGreyReg17(context),
-                    ),
-                    Text(
-                      '\$ 80',
-                      style: AppStyles.styleSemiBold21(context),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: DottedLine(
-                    itemCount: 30,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total',
-                      style: AppStyles.styleGreyReg17(context),
-                    ),
-                    Text(
-                      '\$ 1,363',
-                      style: AppStyles.styleSemiBold21(context),
-                    ),
-                  ],
-                ),
-              ],
+        OrderFinanceDetailsSection(),
+        MultiBlocListener(
+          listeners: [
+            BlocListener<CheckAvailableQuantityCubit,
+                CheckAvailableQuantityState>(
+              listener: (context, state) {
+                if (state is CheckAvailableQuantityLoading) {
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) =>
+                        CustomLoadingIndicator(inAsyncCall: true),
+                  );
+                } else if (state is CheckAvailableQuantityFailed) {
+                  Navigator.of(context).pop();
+                  showedScaffoldMessage(
+                      context: context, message: state.errorMessage);
+                } else if (state is CheckAvailableQuantitySuccess) {
+                  Navigator.of(context).pop();
+                }
+              },
             ),
-          ),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 20,
-            horizontal: 8,
-          ),
-          sliver: SliverToBoxAdapter(
-            child: SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                onPressed: () {},
-                label: Text(
-                  'Pay Now',
-                  style: AppStyles.styleRegular18(context),
+            BlocListener<FethTotalCartPriceCubit, FetchTotalCartPriceState>(
+              listener: (context, state) {
+                if (state is FetchUserCartSuccess) {}
+              },
+            ),
+            BlocListener<FetchUserCartCubit, FetchUserCartState>(
+              listener: (context, state) {},
+            ),
+          ],
+          child: SliverPadding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 20,
+              horizontal: 8,
+            ),
+            sliver: SliverToBoxAdapter(
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    BlocProvider.of<CheckAvailableQuantityCubit>(context)
+                        .checkAvailableQuantityMethod();
+                    BlocProvider.of<SubmitOrderCubit>(context)
+                        .submitOrderMethod(
+                      orderModel: OrderModel(
+                        subTotalPrice: subTotalPrice,
+                        shippingCost: shippingCost,
+                        paymentStatus: paymentStatus,
+                        products: products,
+                        totalPrice: totalPrice,
+                        shippingAddress: shippingAddress,
+                        shippingMethod: shippingMethod,
+                        orderStatus: 'Pinnding',
+                        orderDate: DateTime.now(),
+                      ),
+                    );
+                  },
+                  label: Text(
+                    'Pay Now',
+                    style: AppStyles.styleRegular18(context),
+                  ),
                 ),
               ),
             ),

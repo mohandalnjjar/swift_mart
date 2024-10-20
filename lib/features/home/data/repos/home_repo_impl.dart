@@ -8,6 +8,7 @@ import 'package:swift_mart/core/functions/upload_images_to_fire_storage.dart';
 import 'package:swift_mart/features/home/data/models/product_dynamic_data.dart';
 import 'package:swift_mart/features/home/data/models/product_model.dart';
 import 'package:swift_mart/features/home/data/repos/home_repo.dart';
+import 'package:swift_mart/features/home/data/models/order_model.dart';
 
 class HomeRepoImpl extends HomeRepo {
   @override
@@ -87,36 +88,6 @@ class HomeRepoImpl extends HomeRepo {
       }
     } catch (e) {
       yield left(
-        ServerFailure(
-          errorMessage: e.toString(),
-        ),
-      );
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> addFavorites({
-    required ProductModel productModel,
-  }) async {
-    try {
-      final FirebaseAuth auth = FirebaseAuth.instance;
-      final User? user = auth.currentUser;
-      final userFav =
-          FirebaseFirestore.instance.collection('users').doc(user!.uid);
-
-      await userFav.update(
-        {
-          'userWish': FieldValue.arrayUnion(
-            [
-              productModel.toMap(),
-            ],
-          )
-        },
-      );
-
-      return right(null);
-    } catch (e) {
-      return left(
         ServerFailure(
           errorMessage: e.toString(),
         ),
@@ -444,6 +415,80 @@ class HomeRepoImpl extends HomeRepo {
           ),
         );
       }
+    } catch (e) {
+      return left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> addFavorites({
+    required ProductModel productModel,
+  }) async {
+    try {
+      final FirebaseAuth auth = FirebaseAuth.instance;
+      final User? user = auth.currentUser;
+      final userFav =
+          FirebaseFirestore.instance.collection('users').doc(user!.uid);
+
+      await userFav.update(
+        {
+          'userWish': FieldValue.arrayUnion(
+            [
+              productModel.toMap(),
+            ],
+          )
+        },
+      );
+
+      return right(null);
+    } catch (e) {
+      return left(
+        ServerFailure(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> submitOrder(
+      {required OrderModel orderModel}) async {
+    try {
+      final FirebaseAuth auth = FirebaseAuth.instance;
+      final User? user = auth.currentUser;
+
+      DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
+          .instance
+          .collection('users')
+          .doc(user!.uid)
+          .get();
+
+      var userCart = data.get('userCart') as List<dynamic>;
+
+      List<ProductModel> products = userCart.map((data) {
+        return ProductModel.fromMap(data as Map<String, dynamic>);
+      }).toList();
+
+      final OrderModel orderModel = OrderModel(
+          products: products,
+          subTotalPrice: null,
+          shippingCost: null,
+          paymentStatus: '',
+          totalPrice: null,
+          shippingAddress: '',
+          shippingMethod: '',
+          orderStatus: '',
+          orderDate: ,);
+
+      await FirebaseFirestore.instance.collection('orders').doc(user.uid).set(
+            orderModel.toMap(),
+          );
+
+      return right(null);
     } catch (e) {
       return left(
         ServerFailure(
