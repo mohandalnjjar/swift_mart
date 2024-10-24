@@ -7,8 +7,10 @@ class UserModel {
   final String profileImage;
   final String phone;
   final String address;
+  final String stripeId;
 
   UserModel({
+    required this.stripeId,
     required this.phone,
     required this.name,
     required this.email,
@@ -19,6 +21,7 @@ class UserModel {
 
   factory UserModel.fromJson(DocumentSnapshot<Map<String, dynamic>> json) {
     return UserModel(
+      stripeId: json['StripeId'],
       name: json['name'],
       email: json['email'],
       userId: json['userId'],

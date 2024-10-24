@@ -4,10 +4,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:swift_mart/core/errors/failures.dart';
 import 'package:swift_mart/core/functions/add_user_details_first_time.dart';
 import 'package:swift_mart/core/functions/add_user_details_to_firestore__second_time.dart';
+import 'package:swift_mart/core/utils/services/stripe_service.dart';
 import 'package:swift_mart/features/auth/data/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuth auth = FirebaseAuth.instance;
+
+  final StripeService stripeService = StripeService();
   @override
   Future<Either<Failure, void>> loginUserMethod(
       {required String email, required String password}) async {
@@ -45,6 +48,8 @@ class AuthRepoImpl extends AuthRepo {
       );
 
       await addUserDetailsFistTime(name: name, email: email);
+
+      await stripeService.creatCustomertId();
 
       return right(null);
     } catch (e) {
@@ -110,6 +115,7 @@ class AuthRepoImpl extends AuthRepo {
       if (isNewUser) {
         await addUserDetailsFistTime(
             name: gUser.email.replaceAll('@gmail.com', ''), email: gUser.email);
+        await stripeService.creatCustomertId();
       } else {
         await addUserDetailsWithGoogle(
             name: gUser.email.replaceAll('@gmail.com', ''), email: gUser.email);

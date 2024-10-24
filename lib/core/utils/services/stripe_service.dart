@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:swift_mart/core/utils/services/api_keys.dart';
 import 'package:swift_mart/core/utils/services/api_service.dart';
@@ -9,6 +11,25 @@ import 'package:swift_mart/features/payment/data/models/payment_models/payment_m
 
 class StripeService {
   final ApiService apiService = ApiService();
+
+  Future<void> creatCustomertId() async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
+    User? user = auth.currentUser;
+    final uid = user!.uid;
+
+    var response = await apiService.post(
+      contentType: Headers.formUrlEncodedContentType,
+      url: 'https://api.stripe.com/v1/customers',
+      token: ApiKeys.stripeAipKey,
+    );
+
+    await FirebaseFirestore.instance.collection('users').doc(uid).update(
+      {
+        'StripeId': response.data['id'],
+      },
+    );
+  }
 
   Future<PaymentModel> creatPaymentIntent(
       {required PaymentIntentInputModel paymentIntentInputModel}) async {
@@ -42,18 +63,6 @@ class StripeService {
     await Stripe.instance.presentPaymentSheet();
   }
 
-  Future<PaymentModel> creatCustomertIntent() async {
-    var response = await apiService.post(
-      contentType: Headers.formUrlEncodedContentType,
-      url: 'https://api.stripe.com/v1/customers',
-      token: ApiKeys.stripeAipKey,
-    );
-
-    var customerPaymentIntentModel = PaymentModel.fromJson(response.data);
-
-    return customerPaymentIntentModel;
-  }
-
   Future<EphemralKeyModel> creatEphemeralKey(
       {required String customerId}) async {
     var response = await apiService.post(
@@ -75,6 +84,7 @@ class StripeService {
 
   Future makePayment(
       {required PaymentIntentInputModel paymentIntentInputModel}) async {
+    //////////////////////////////////////////////////////////////
     var paymentIntentModel = await creatPaymentIntent(
       paymentIntentInputModel: paymentIntentInputModel,
     );
@@ -89,10 +99,11 @@ class StripeService {
       customerId: paymentIntentInputModel.customerId,
       customerEphemeralKeySecret: ephemeralKeyModel.secret!,
     );
-    //
-    await initPaymentSheet(
-        initPaymentSheetInputModel: initPaymentSheetInputModel);
 
+    await initPaymentSheet(
+      initPaymentSheetInputModel: initPaymentSheetInputModel,
+    );
+    //
     await displayPaymentSheet();
   }
 }

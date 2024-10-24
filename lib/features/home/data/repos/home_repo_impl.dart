@@ -461,30 +461,7 @@ class HomeRepoImpl extends HomeRepo {
       final FirebaseAuth auth = FirebaseAuth.instance;
       final User? user = auth.currentUser;
 
-      DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
-          .instance
-          .collection('users')
-          .doc(user!.uid)
-          .get();
-
-      var userCart = data.get('userCart') as List<dynamic>;
-
-      List<ProductModel> products = userCart.map((data) {
-        return ProductModel.fromMap(data as Map<String, dynamic>);
-      }).toList();
-
-      final OrderModel orderModel = OrderModel(
-          products: products,
-          subTotalPrice: null,
-          shippingCost: null,
-          paymentStatus: '',
-          totalPrice: null,
-          shippingAddress: '',
-          shippingMethod: '',
-          orderStatus: '',
-          orderDate: ,);
-
-      await FirebaseFirestore.instance.collection('orders').doc(user.uid).set(
+      await FirebaseFirestore.instance.collection('orders').doc(user!.uid).set(
             orderModel.toMap(),
           );
 
