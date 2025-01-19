@@ -15,6 +15,7 @@ class HomeRepoImpl extends HomeRepo {
   Stream<Either<Failure, List<ProductModel>>> fetchProducts({
     required int limit,
   }) async* {
+
     final CollectionReference collectionRef =
         FirebaseFirestore.instance.collection('products');
 
@@ -46,7 +47,9 @@ class HomeRepoImpl extends HomeRepo {
         FirebaseFirestore.instance.collection('products');
 
     try {
-      await for (QuerySnapshot querySnapshot in collectionRef.snapshots()) {
+      await for (QuerySnapshot querySnapshot in collectionRef.snapshots())
+      
+       {
         final allData = querySnapshot.docs
             .map(
               (doc) => ProductDynamicData.fromFirebase(
@@ -67,7 +70,7 @@ class HomeRepoImpl extends HomeRepo {
 
   @override
   Stream<Either<Failure, List<ProductModel>>> fetchMostRatedProducts({
-    required int limit,
+    required int limit
   }) async* {
     final CollectionReference collectionRef =
         FirebaseFirestore.instance.collection('products');
@@ -242,7 +245,6 @@ class HomeRepoImpl extends HomeRepo {
       final FirebaseAuth auth = FirebaseAuth.instance;
       final User? user = auth.currentUser;
 
-      // Check available quantity
       final DocumentSnapshot<Map<String, dynamic>> productSnapshot =
           await FirebaseFirestore.instance
               .collection('products')
@@ -259,6 +261,7 @@ class HomeRepoImpl extends HomeRepo {
       } else {
         final userDoc =
             FirebaseFirestore.instance.collection('users').doc(user!.uid);
+
         final DocumentSnapshot<Map<String, dynamic>> userDocSnapshot =
             await userDoc.get();
         List<dynamic> userCart = userDocSnapshot.data()?['userCart'] ?? [];
@@ -281,7 +284,9 @@ class HomeRepoImpl extends HomeRepo {
         } else {
           Map<String, dynamic> updatedProduct =
               productModel.addSelected(selectedSize: selectedSize);
+
           updatedProduct['quantity'] = 1;
+          
           userCart.add(updatedProduct);
         }
         await userDoc.update({
@@ -314,7 +319,6 @@ class HomeRepoImpl extends HomeRepo {
         String productId = cartItem['id'];
         int cartQuantity = cartItem['quantity'];
 
-        // Fetch the corresponding product from the 'products' collection
         final productDoc = await FirebaseFirestore.instance
             .collection('products')
             .doc(productId)
@@ -328,7 +332,6 @@ class HomeRepoImpl extends HomeRepo {
         Map<String, dynamic>? productData = productDoc.data();
         int availableQuantity = productData?['quantity'] ?? 0;
 
-        // Compare cart quantity with available quantity
         if (cartQuantity > availableQuantity) {
           return left(
             ServerFailure(

@@ -26,10 +26,12 @@ class _SelectedForYouListState extends State<SelectedForYouList> {
       if (_scrollController.position.atEdge &&
           _scrollController.position.pixels != 0 &&
           !isLoadingMore) {
-        setState(() {
-          isLoadingMore = true;
-          limit += 1;
-        });
+        setState(
+          () {
+            isLoadingMore = true;
+            limit += 1;
+          },
+        );
         context
             .read<FetchProductsCubit>()
             .fetchProductsMethod(limit: limit)

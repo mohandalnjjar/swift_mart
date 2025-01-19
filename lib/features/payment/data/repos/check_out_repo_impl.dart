@@ -17,7 +17,7 @@ class CheckOutRepoImpl extends CheckOutRepo {
       return right(null);
     } catch (e) {
       return left(
-        ServerFailure(
+        StripeFailure(
           errorMessage: e.toString(),
         ),
       );

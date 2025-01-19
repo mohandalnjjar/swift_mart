@@ -28,6 +28,8 @@ if (flutterVersionName == null) {
 
 android {
     namespace = "com.example.swift_mart"
+    namespace = "com.pichillilorenzo.flutter_inappwebview"
+
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 

@@ -11,7 +11,7 @@ double getResponsizeFontSize(
 }
 
 double getScaleFactor(BuildContext context) {
-  //the current width
+
   double width = MediaQuery.sizeOf(context).width;
 
   if (width < 600) {

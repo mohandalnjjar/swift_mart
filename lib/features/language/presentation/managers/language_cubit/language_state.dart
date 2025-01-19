@@ -1,18 +1,18 @@
 part of 'language_cubit.dart';
 
 @immutable
-sealed class LanguageState {}
+abstract class LanguageState {}
 
-final class LanguageInitial extends LanguageState {}
+class LanguageInitial extends LanguageState {}
 
-final class LanguageLoading extends LanguageState {}
+class LanguageLoading extends LanguageState {}
 
-final class LanguageChangeDone extends LanguageState {}
+class LanguageChangeDone extends LanguageState {}
 
-final class GetLanguageDone extends LanguageState {}
+class GetLanguageDone extends LanguageState {}
 
-final class LanguageFailed extends LanguageState {
-  final String errorMeassage;
+class LanguageFailed extends LanguageState {
+  String errorMeassage;
 
   LanguageFailed({required this.errorMeassage});
 }

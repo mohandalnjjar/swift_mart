@@ -4,7 +4,7 @@ import 'package:swift_mart/core/utils/const/app_colors.dart';
 
 ThemeData appThemeData({required bool isDark, required BuildContext context}) {
   return ThemeData(
-    splashColor: Colors.transparent,
+    // splashColor: Colors.transparent,
     appBarTheme: AppBarTheme(
       backgroundColor:
           isDark ? AppColors.kDarkScaffoldColor : AppColors.kLightScaffoldColor,

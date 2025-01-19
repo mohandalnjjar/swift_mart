@@ -118,7 +118,9 @@ class AuthRepoImpl extends AuthRepo {
         await stripeService.creatCustomertId();
       } else {
         await addUserDetailsWithGoogle(
-            name: gUser.email.replaceAll('@gmail.com', ''), email: gUser.email);
+          name: gUser.email.replaceAll('@gmail.com', ''),
+          email: gUser.email,
+        );
       }
 
       return right(null);
