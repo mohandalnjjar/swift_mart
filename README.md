@@ -21,4 +21,4 @@ Light & Dark Mode: Choose between light and dark themes for a comfortable viewin
 ## imags
 ![Image](https://github.com/user-attachments/assets/97006cc3-e727-43ad-b9da-cf8ac7bec7d7)
 ![Image](https://github.com/user-attachments/assets/cbe4c0b8-350f-448b-afd5-e54e00a77f92)
-![Screenshot_1724160235-portrait](https://github.com/user-attachments/assets/279b8d54-0680-4413-be8f-e2cfd6550cce)
+![New Project (2)](https://github.com/user-attachments/assets/0370c3b4-3f57-4683-8cc4-8aead64a2e90)
